@@ -8,7 +8,7 @@ require_once __DIR__ . '/vendor/php-activerecord/php-activerecord/ActiveRecord.p
 
 \ActiveRecord\Config::initialize(function($cfg)
 {
-     $cfg->set_model_directory(__DIR__.'/../models');
+     $cfg->set_model_directory(__DIR__.'/models');
      $cfg->set_connections(array(
          'development' => 'mysql://'.$_SERVER["DB1_USER"].':'.$_SERVER["DB1_PASS"].'@'.$_SERVER["DB1_HOST"].'/'.$_SERVER["DB1_NAME"]));
 });
