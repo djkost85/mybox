@@ -18,7 +18,7 @@
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "2012-09-13 10:06:56",
+            "time": "2012-09-13 06:06:56",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -87,7 +87,7 @@
                 "php": ">=5.3.2",
                 "doctrine/common": "2.*"
             },
-            "time": "2012-05-27 15:17:18",
+            "time": "2012-05-27 11:17:18",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -149,7 +149,7 @@
             "suggest": {
                 "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server"
             },
-            "time": "2012-04-23 12:27:40",
+            "time": "2012-04-23 08:27:40",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -227,7 +227,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-09-10 08:09:48",
+            "time": "2012-09-10 04:09:48",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -301,7 +301,7 @@
                 "symfony/css-selector": "2.1.*",
                 "symfony/dom-crawler": "2.1.*"
             },
-            "time": "2012-09-15 02:08:52",
+            "time": "2012-09-14 22:08:52",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -351,7 +351,7 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2012-06-17 16:55:34",
+            "time": "2012-06-17 12:55:34",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -409,7 +409,7 @@
             "suggest": {
                 "symfony/process": "2.1.*"
             },
-            "time": "2012-09-10 06:53:42",
+            "time": "2012-09-10 02:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -456,7 +456,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-08-22 09:48:41",
+            "time": "2012-08-22 05:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -503,7 +503,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-08-22 09:48:41",
+            "time": "2012-08-22 05:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -556,7 +556,7 @@
             "suggest": {
                 "symfony/css-selector": "2.1.*"
             },
-            "time": "2012-09-10 06:53:42",
+            "time": "2012-09-10 02:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -610,7 +610,7 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/http-kernel": "2.1.*"
             },
-            "time": "2012-09-10 06:53:42",
+            "time": "2012-09-10 02:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -657,7 +657,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-08-22 09:48:41",
+            "time": "2012-08-22 05:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -704,7 +704,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-08-22 09:48:41",
+            "time": "2012-08-22 05:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -762,7 +762,7 @@
                 "symfony/validator": "2.1.*",
                 "symfony/http-foundation": "2.1.*"
             },
-            "time": "2012-09-10 06:53:42",
+            "time": "2012-09-10 02:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -809,7 +809,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-09-04 08:24:42",
+            "time": "2012-09-04 04:24:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -877,7 +877,7 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/finder": "2.1.*"
             },
-            "time": "2012-09-11 05:12:50",
+            "time": "2012-09-11 01:12:50",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -927,7 +927,7 @@
             "suggest": {
                 "ext-intl": ">=5.3.3"
             },
-            "time": "2012-08-22 09:48:41",
+            "time": "2012-08-22 05:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -976,7 +976,7 @@
                 "monolog/monolog": "1.*",
                 "symfony/http-kernel": "2.1.*"
             },
-            "time": "2012-09-10 06:53:42",
+            "time": "2012-09-10 02:53:42",
             "type": "symfony-bridge",
             "extra": {
                 "branch-alias": {
@@ -1023,7 +1023,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-08-22 09:48:41",
+            "time": "2012-08-22 05:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1075,7 +1075,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-08-30 08:49:05",
+            "time": "2012-08-30 04:49:05",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1133,7 +1133,7 @@
                 "symfony/config": "2.1.*",
                 "symfony/yaml": "2.1.*"
             },
-            "time": "2012-09-10 06:53:42",
+            "time": "2012-09-10 02:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1198,7 +1198,7 @@
                 "symfony/validator": "2.1.*",
                 "symfony/routing": "2.1.*"
             },
-            "time": "2012-09-10 06:53:42",
+            "time": "2012-09-10 02:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1245,7 +1245,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-08-28 03:54:42",
+            "time": "2012-08-27 23:54:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1300,7 +1300,7 @@
                 "symfony/config": "2.1.*",
                 "symfony/yaml": "2.1.*"
             },
-            "time": "2012-09-10 06:53:42",
+            "time": "2012-09-10 02:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1364,7 +1364,7 @@
                 "symfony/yaml": "2.1.*",
                 "symfony/security": "2.1.*"
             },
-            "time": "2012-09-10 06:53:42",
+            "time": "2012-09-10 02:53:42",
             "type": "symfony-bridge",
             "extra": {
                 "branch-alias": {
@@ -1421,7 +1421,7 @@
                 "symfony/http-foundation": "2.1.*",
                 "symfony/yaml": "2.1.*"
             },
-            "time": "2012-09-10 06:53:42",
+            "time": "2012-09-10 02:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1467,7 +1467,7 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2012-09-13 09:15:32",
+            "time": "2012-09-13 05:15:32",
             "type": "library",
             "extra": {
                 "branch-alias": {
