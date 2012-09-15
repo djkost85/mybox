@@ -2,9 +2,9 @@
 use Symfony\Component\HttpFoundation\Request;
 
 
-require_once __DIR__.'/../vendor/autoload.php';
-require_once __DIR__.'/../controllers/api.php';
-require_once __DIR__.'/../vendor/php-activerecord/php-activerecord/ActiveRecord.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/controllers/api.php';
+require_once __DIR__ . '/vendor/php-activerecord/php-activerecord/ActiveRecord.php';
 
 \ActiveRecord\Config::initialize(function($cfg)
 {
