@@ -1,3 +1,3 @@
 [submodule "php-activerecord"]
 	path = php-activerecord
-	url = ./vendor/php-activerecord/php-activerecord/
+	url = vendor/php-activerecord/php-activerecord/
