@@ -3,13 +3,14 @@ web1: #component type & number
   shared_writable_dirs:
     - var/cache
     - var/sessions
-  document_root: web
+  document_root: web/
   php_version: 5.3.8
   php_extensions:
     - mysql
     - gd
     - eaccelerator
-     
+    - pdo_mysql
+
 db1: #component type & number
   name: posts            #component settings
   type: mysql
