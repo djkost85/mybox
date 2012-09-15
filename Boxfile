@@ -1,20 +1,7 @@
 web1:
-  ################################################
-  ## GENERAL SETTINGS
-  ################################################
-  shared_writable_dirs:
-    - /cache
-    - /log
-    - /web/uploads/profile-pictures
-
-  ################################################
-  ## WEB SPECIFIC SETTINGS
-  ################################################
   document_root: web
-
-  ################################################
-  ## PHP SPECIFIC SETTINGS
-  ################################################
+  default_gateway: index.php
+  index_list: [index.php]
   php_version: 5.3.5
   php_extensions:
     - intl
