@@ -1,6 +1,8 @@
-web1: #component type & number
-  name: mybox            #component settings
+web1:
+  name: mybox
   document_root: web
+  default_gateway: index.php
+  index_list: [index.php]
   php_version: 5.4.1
   php_extensions:
     - mysql
