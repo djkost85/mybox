@@ -1,5 +1,5 @@
 {
-    "hash": "5534315af9ca16d35edff0fc11788b24",
+    "hash": "eb05e305329935164e123e24f6866e10",
     "packages": [
         {
             "name": "doctrine/common",
@@ -18,7 +18,7 @@
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "1347545216",
+            "time": "2012-09-13 10:06:56",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -87,7 +87,7 @@
                 "php": ">=5.3.2",
                 "doctrine/common": "2.*"
             },
-            "time": "1338146238",
+            "time": "2012-05-27 15:17:18",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -149,7 +149,7 @@
             "suggest": {
                 "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server"
             },
-            "time": "2012-04-23 16:27:40",
+            "time": "2012-04-23 12:27:40",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -176,6 +176,41 @@
             ]
         },
         {
+            "name": "php-activerecord/php-activerecord",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kla/php-activerecord",
+                "reference": "6f72eb7958e7dd18a85b374ee28477de748acbd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/kla/php-activerecord/zipball/6f72eb7958e7dd18a85b374ee28477de748acbd8",
+                "reference": "6f72eb7958e7dd18a85b374ee28477de748acbd8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "1343746290",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "ActiveRecord": "lib/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "php-activerecord is an open source ORM library based on the ActiveRecord pattern.",
+            "homepage": "http://www.phpactiverecord.org/",
+            "keywords": [
+                "orm",
+                "activerecord"
+            ]
+        },
+        {
             "name": "pimple/pimple",
             "version": "dev-master",
             "source": {
@@ -192,7 +227,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "1347278988",
+            "time": "2012-09-10 08:09:48",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -266,7 +301,7 @@
                 "symfony/css-selector": "2.1.*",
                 "symfony/dom-crawler": "2.1.*"
             },
-            "time": "1347689332",
+            "time": "2012-09-15 02:08:52",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -316,7 +351,7 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2012-06-17 20:55:34",
+            "time": "2012-06-17 16:55:34",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -374,7 +409,7 @@
             "suggest": {
                 "symfony/process": "2.1.*"
             },
-            "time": "1347274422",
+            "time": "2012-09-10 06:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -421,7 +456,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1345643321",
+            "time": "2012-08-22 09:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -468,7 +503,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1345643321",
+            "time": "2012-08-22 09:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -521,7 +556,7 @@
             "suggest": {
                 "symfony/css-selector": "2.1.*"
             },
-            "time": "1347274422",
+            "time": "2012-09-10 06:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -575,7 +610,7 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/http-kernel": "2.1.*"
             },
-            "time": "1347274422",
+            "time": "2012-09-10 06:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -622,7 +657,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1345643321",
+            "time": "2012-08-22 09:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -669,7 +704,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1345643321",
+            "time": "2012-08-22 09:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -727,7 +762,7 @@
                 "symfony/validator": "2.1.*",
                 "symfony/http-foundation": "2.1.*"
             },
-            "time": "1347274422",
+            "time": "2012-09-10 06:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -774,7 +809,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1346761482",
+            "time": "2012-09-04 08:24:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -842,7 +877,7 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/finder": "2.1.*"
             },
-            "time": "1347354770",
+            "time": "2012-09-11 05:12:50",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -892,7 +927,7 @@
             "suggest": {
                 "ext-intl": ">=5.3.3"
             },
-            "time": "1345643321",
+            "time": "2012-08-22 09:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -941,7 +976,7 @@
                 "monolog/monolog": "1.*",
                 "symfony/http-kernel": "2.1.*"
             },
-            "time": "1347274422",
+            "time": "2012-09-10 06:53:42",
             "type": "symfony-bridge",
             "extra": {
                 "branch-alias": {
@@ -988,7 +1023,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1345643321",
+            "time": "2012-08-22 09:48:41",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1040,7 +1075,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1346330945",
+            "time": "2012-08-30 08:49:05",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1098,7 +1133,7 @@
                 "symfony/config": "2.1.*",
                 "symfony/yaml": "2.1.*"
             },
-            "time": "1347274422",
+            "time": "2012-09-10 06:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1163,7 +1198,7 @@
                 "symfony/validator": "2.1.*",
                 "symfony/routing": "2.1.*"
             },
-            "time": "1347274422",
+            "time": "2012-09-10 06:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1210,7 +1245,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1346140482",
+            "time": "2012-08-28 03:54:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1265,7 +1300,7 @@
                 "symfony/config": "2.1.*",
                 "symfony/yaml": "2.1.*"
             },
-            "time": "1347274422",
+            "time": "2012-09-10 06:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1329,7 +1364,7 @@
                 "symfony/yaml": "2.1.*",
                 "symfony/security": "2.1.*"
             },
-            "time": "1347274422",
+            "time": "2012-09-10 06:53:42",
             "type": "symfony-bridge",
             "extra": {
                 "branch-alias": {
@@ -1386,7 +1421,7 @@
                 "symfony/http-foundation": "2.1.*",
                 "symfony/yaml": "2.1.*"
             },
-            "time": "1347274422",
+            "time": "2012-09-10 06:53:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1432,7 +1467,7 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "1347542132",
+            "time": "2012-09-13 09:15:32",
             "type": "library",
             "extra": {
                 "branch-alias": {
