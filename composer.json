@@ -21,6 +21,7 @@
         "twig/twig": ">=1.2.0,<2.0-dev",
         "doctrine/dbal": "2.1.*",
         "swiftmailer/swiftmailer": "4.1.*",
-        "php-activerecord/php-activerecord": "*"
+        "php-activerecord/php-activerecord": "*",
+        "ukko/vk": "*"
     }
 }

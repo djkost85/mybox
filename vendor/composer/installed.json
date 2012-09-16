@@ -17,7 +17,7 @@
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2012-09-10 04:09:48",
+        "time": "2012-09-10 08:09:48",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -76,7 +76,7 @@
             "symfony/config": "2.1.*",
             "symfony/yaml": "2.1.*"
         },
-        "time": "2012-09-10 02:53:42",
+        "time": "2012-09-10 06:53:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -123,7 +123,7 @@
         "require": {
             "php": ">=5.2.4"
         },
-        "time": "2012-09-13 05:15:32",
+        "time": "2012-09-13 09:15:32",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -174,7 +174,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2012-09-04 04:24:42",
+        "time": "2012-09-04 08:24:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -230,7 +230,7 @@
             "symfony/dependency-injection": "2.1.*",
             "symfony/http-kernel": "2.1.*"
         },
-        "time": "2012-09-10 02:53:42",
+        "time": "2012-09-10 06:53:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -298,7 +298,7 @@
             "symfony/dependency-injection": "2.1.*",
             "symfony/finder": "2.1.*"
         },
-        "time": "2012-09-11 01:12:50",
+        "time": "2012-09-11 05:12:50",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -334,12 +334,12 @@
         "source": {
             "type": "git",
             "url": "git://github.com/fabpot/Silex.git",
-            "reference": "8264be8e97c49b21f1088654a1a497619fdb4f3a"
+            "reference": "97e418fcb0df2dd570732b208ce03e40e3dd2e0b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/fabpot/Silex/zipball/8264be8e97c49b21f1088654a1a497619fdb4f3a",
-            "reference": "8264be8e97c49b21f1088654a1a497619fdb4f3a",
+            "url": "https://github.com/fabpot/Silex/zipball/97e418fcb0df2dd570732b208ce03e40e3dd2e0b",
+            "reference": "97e418fcb0df2dd570732b208ce03e40e3dd2e0b",
             "shasum": ""
         },
         "require": {
@@ -355,7 +355,6 @@
             "symfony/translation": "2.1.*",
             "symfony/twig-bridge": "2.1.*",
             "symfony/validator": "2.1.*",
-            "doctrine/dbal": "2.1.*",
             "symfony/monolog-bridge": "2.1.*",
             "symfony/browser-kit": "2.1.*",
             "symfony/css-selector": "2.1.*",
@@ -366,14 +365,15 @@
             "symfony/config": "2.1.*",
             "symfony/locale": "2.1.*",
             "twig/twig": ">=1.8.0,<2.0-dev",
-            "swiftmailer/swiftmailer": "4.2.*"
+            "swiftmailer/swiftmailer": "4.2.*",
+            "doctrine/dbal": "2.2.*"
         },
         "suggest": {
             "symfony/browser-kit": "2.1.*",
             "symfony/css-selector": "2.1.*",
             "symfony/dom-crawler": "2.1.*"
         },
-        "time": "2012-09-14 22:08:52",
+        "time": "2012-09-15 15:50:39",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -407,6 +407,42 @@
         ]
     },
     {
+        "name": "php-activerecord/php-activerecord",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kla/php-activerecord",
+            "reference": "6f72eb7958e7dd18a85b374ee28477de748acbd8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/kla/php-activerecord/zipball/6f72eb7958e7dd18a85b374ee28477de748acbd8",
+            "reference": "6f72eb7958e7dd18a85b374ee28477de748acbd8",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2012-07-31 10:51:30",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "ActiveRecord": "lib/"
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "description": "php-activerecord is an open source ORM library based on the ActiveRecord pattern.",
+        "homepage": "http://www.phpactiverecord.org/",
+        "keywords": [
+            "orm",
+            "activerecord"
+        ]
+    },
+    {
         "name": "symfony/dom-crawler",
         "version": "2.1.x-dev",
         "version_normalized": "2.1.9999999.9999999-dev",
@@ -431,7 +467,7 @@
         "suggest": {
             "symfony/css-selector": "2.1.*"
         },
-        "time": "2012-09-10 02:53:42",
+        "time": "2012-09-10 06:53:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -487,7 +523,7 @@
         "suggest": {
             "symfony/process": "2.1.*"
         },
-        "time": "2012-09-10 02:53:42",
+        "time": "2012-09-10 06:53:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -535,7 +571,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2012-08-22 05:48:41",
+        "time": "2012-08-22 09:48:41",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -583,7 +619,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2012-08-22 05:48:41",
+        "time": "2012-08-22 09:48:41",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -631,7 +667,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2012-08-22 05:48:41",
+        "time": "2012-08-22 09:48:41",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -679,7 +715,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2012-08-22 05:48:41",
+        "time": "2012-08-22 09:48:41",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -727,7 +763,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2012-08-22 05:48:41",
+        "time": "2012-08-22 09:48:41",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -783,7 +819,7 @@
         "suggest": {
             "ext-intl": ">=5.3.3"
         },
-        "time": "2012-08-22 05:48:41",
+        "time": "2012-08-22 09:48:41",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -842,7 +878,7 @@
             "symfony/validator": "2.1.*",
             "symfony/http-foundation": "2.1.*"
         },
-        "time": "2012-09-10 02:53:42",
+        "time": "2012-09-10 06:53:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -890,7 +926,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2012-08-30 04:49:05",
+        "time": "2012-08-30 08:49:05",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -956,7 +992,7 @@
             "symfony/validator": "2.1.*",
             "symfony/routing": "2.1.*"
         },
-        "time": "2012-09-10 02:53:42",
+        "time": "2012-09-10 06:53:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1004,7 +1040,7 @@
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2012-08-27 23:54:42",
+        "time": "2012-08-28 03:54:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1060,7 +1096,7 @@
             "symfony/config": "2.1.*",
             "symfony/yaml": "2.1.*"
         },
-        "time": "2012-09-10 02:53:42",
+        "time": "2012-09-10 06:53:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1118,7 +1154,7 @@
             "symfony/http-foundation": "2.1.*",
             "symfony/yaml": "2.1.*"
         },
-        "time": "2012-09-10 02:53:42",
+        "time": "2012-09-10 06:53:42",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1171,7 +1207,7 @@
         "suggest": {
             "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server"
         },
-        "time": "2012-04-23 08:27:40",
+        "time": "2012-04-23 12:27:40",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1218,7 +1254,7 @@
             "monolog/monolog": "1.*",
             "symfony/http-kernel": "2.1.*"
         },
-        "time": "2012-09-10 02:53:42",
+        "time": "2012-09-10 06:53:42",
         "type": "symfony-bridge",
         "extra": {
             "branch-alias": {
@@ -1283,7 +1319,7 @@
             "symfony/yaml": "2.1.*",
             "symfony/security": "2.1.*"
         },
-        "time": "2012-09-10 02:53:42",
+        "time": "2012-09-10 06:53:42",
         "type": "symfony-bridge",
         "extra": {
             "branch-alias": {
@@ -1319,18 +1355,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/doctrine/common",
-            "reference": "f7afae04c3f89aaa478c734a4c877448edf0cad5"
+            "reference": "0fd55331b0c42f979e9337c2d0675e555b3e3966"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/doctrine/common/zipball/f7afae04c3f89aaa478c734a4c877448edf0cad5",
-            "reference": "f7afae04c3f89aaa478c734a4c877448edf0cad5",
+            "url": "https://github.com/doctrine/common/zipball/0fd55331b0c42f979e9337c2d0675e555b3e3966",
+            "reference": "0fd55331b0c42f979e9337c2d0675e555b3e3966",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.2"
         },
-        "time": "2012-09-13 06:06:56",
+        "time": "2012-09-16 01:23:57",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1400,7 +1436,7 @@
             "php": ">=5.3.2",
             "doctrine/common": "2.*"
         },
-        "time": "2012-05-27 11:17:18",
+        "time": "2012-05-27 15:17:18",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -1457,7 +1493,7 @@
         "require": {
             "php": ">=5.2.4"
         },
-        "time": "2012-06-17 12:55:34",
+        "time": "2012-06-17 16:55:34",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1490,39 +1526,46 @@
         ]
     },
     {
-        "name": "php-activerecord/php-activerecord",
+        "name": "ukko/vk",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/kla/php-activerecord",
-            "reference": "6f72eb7958e7dd18a85b374ee28477de748acbd8"
+            "url": "git://github.com/ukko/VK.git",
+            "reference": "1322fa7e564c1c85eeba0190a847454443f22419"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/kla/php-activerecord/zipball/6f72eb7958e7dd18a85b374ee28477de748acbd8",
-            "reference": "6f72eb7958e7dd18a85b374ee28477de748acbd8",
+            "url": "https://github.com/ukko/VK/zipball/1322fa7e564c1c85eeba0190a847454443f22419",
+            "reference": "1322fa7e564c1c85eeba0190a847454443f22419",
             "shasum": ""
         },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2012-07-31 14:51:30",
+        "time": "2012-08-09 20:04:40",
         "type": "library",
         "installation-source": "source",
         "autoload": {
             "psr-0": {
-                "ActiveRecord": "lib/"
+                "VK": "src/"
             }
         },
-        "license": [
-            "MIT"
+        "authors": [
+            {
+                "name": "Max Kamashev",
+                "email": "max.kamashev@gmail.com",
+                "homepage": "http://uk0.us/",
+                "role": "Developer"
+            },
+            {
+                "name": "Vlad Pronsky",
+                "email": "vladkens@yandex.ru"
+            }
         ],
-        "description": "php-activerecord is an open source ORM library based on the ActiveRecord pattern.",
-        "homepage": "http://www.phpactiverecord.org/",
+        "description": "vk.com api",
         "keywords": [
-            "orm",
-            "activerecord"
+            "api",
+            "vkontakte",
+            "vk",
+            "vk.com"
         ]
     }
 ]
