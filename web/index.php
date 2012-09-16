@@ -25,7 +25,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 $app['debug'] = true;
-$app['vk'] = new VK("3127460", "578a4YiVuVWpTUqaltxB");
+$app['vk'] = new VK("3128485", "tlORW6DTAvq8MbaLjXre");
 
 $app->get("/", function () use ($app) {
     return $app['twig']->render('index.html.twig');
