@@ -30,7 +30,7 @@ $app->get("/", function () use ($app) {
 });
 /** fb get token **/
 
-$app->get('/login_fb}', function () use ($app) {
+$app->get('/login_fb', function () use ($app) {
     $c = new auth/facebook();
     echo $c->getToken();
 });
