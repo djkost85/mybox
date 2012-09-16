@@ -41,6 +41,14 @@ $app->get('/login_fb', function () use ($app) {
     echo $c->getToken();
 
 });
+/** vk get token **/
+
+$app->get('/login_vk', function () use ($app) {
+
+    $c = new auth\vk();
+    echo $c->getToken();
+
+});
 
 $app['debug'] = true;
 /*
