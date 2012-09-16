@@ -37,7 +37,7 @@ $app->get("/login_vk", function () use ($app) {
 });
 
 $app->get("/login_vk_callback", function (Request $request) use ($app) {
-    print "Access token:" . $app['vk']->getAccessToken($request->get('code'), 'http://mybox.pagodabox.com/login_vk_callback');
+    print "Access token:" . $app['vk']->getAccessToken($request->get('code'));
 });
 
 
