@@ -6,6 +6,7 @@ use Symfony\Bridge\Twig\TwigEngine;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../controllers/api.php';
+require_once __DIR__ . '/../controllers/facebook.php';
 require_once __DIR__ . '/../vendor/php-activerecord/php-activerecord/ActiveRecord.php';
 require_once __DIR__ . '/../vendor/ukko/vk/src/VK.php';
 
@@ -29,7 +30,7 @@ $app->get("/", function () use ($app) {
 });
 /** fb get token **/
 
-$app->get('/login_fb}', function ( Application $app, Request $request ) {
+$app->get('/login_fb}', function () use ($app) {
     $c = new auth/facebook();
     echo $c->getToken();
 });
