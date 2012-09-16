@@ -17,7 +17,7 @@ class vk {
         
         $code = $_REQUEST["code"];
         
-        $token_url = "https://oauth.vk.com/access_token?client_id=' . $app_id 
+        $token_url = 'https://oauth.vk.com/access_token?client_id=' . $app_id 
                . '&client_secret=' . $app_secret . '&code=' . $code 
                . '&redirect_uri=' . urlencode($my_url);
 
