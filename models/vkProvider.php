@@ -4,11 +4,18 @@ namespace provider;
 
 class vkProvider {
 
-  protected $token = null;
+  protected $token = null; 
+ 
+  protected $appId = null;
+
+  protected $appSecret = null;
   
-  public function __construct( $token ){
-  
-     $this->token = $token;     
+  public function __construct( $credits ){
+     
+
+     $this->appId = $credits['appId'];
+
+     $this->appSecret = $credits['appSecret'];
 
   }
   

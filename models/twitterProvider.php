@@ -6,10 +6,18 @@ class twitterProvider {
 
   protected $token = null;
   
-  public function __construct( $token ){
+  protected $token_secret = null;
   
-     $this->token = $token;     
+  protected $consumer_key = null;
 
+  protected $consumer_secret = null;
+  
+  public function __construct( $credits ){
+  
+     $this->consumer_key = $credits['consumer_key'];   
+     
+     $this->consumer_secret = $credits['consumer_secret'];
+  
   }
   
   public function getPosts(){
@@ -33,7 +41,7 @@ class twitterProvider {
                 'oauth_timestamp' => time(),
                 'oauth_version' => '1.0');
       $base_info = $this->buildBaseString($url, 'GET', $oauth);
-      $composite_key = \rawurlencode($consumer_secret) . '&' . \rawurlencode($oauth_access_token_secret);
+      $composite_key = \rawurlencode($this->consumer_secret) . '&' . \rawurlencode($this->token_secret);
       $oauth_signature = \base64_encode(\hash_hmac('sha1', $base_info, $composite_key, true));
       $oauth['oauth_signature'] = $oauth_signature;
       $header = array(buildAuthorizationHeader($oauth), 'Expect:');
@@ -49,7 +57,7 @@ class twitterProvider {
 
       return \json_decode($json);     
 
-  }
+   }
 
    protected function buildBaseString($baseURI, $method, $params)
    {

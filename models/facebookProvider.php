@@ -6,12 +6,20 @@ class facebookProvider {
 
   protected $token = null;
   
-  public function __construct( $token ){
+  protected $appId = null;
+
+  protected $appSecret = null;
+
+  public function __construct( $credits ){
   
-     $this->token = $token;     
+     $this->appId = $credits['appId'];
+
+     $this->appSecret = $credits['appSecret'];     
 
   }
   
+
+
   public function getPosts(){
 
      $fql = 'SELECT post_id,  attachment, likes, description, message, actor_id,'

@@ -23,13 +23,21 @@ $app = new Silex\Application();
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
-
-$app['debug'] = true;
-$app['vk'] = new VK("3128485", "tlORW6DTAvq8MbaLjXre");
-
+/** index **/
 $app->get("/", function () use ($app) {
     return $app['twig']->render('index.html.twig');
 });
+/** fb get token **/
+$app->get('/login_fb}', function ( Application $app, Request $request ) {
+    $c = new auth/facebook();
+    echo $c->getToken();
+});
+
+$app['debug'] = true;
+/*
+$app['vk'] = new VK("3128485", "tlORW6DTAvq8MbaLjXre");
+
+
 
 $app->get("/login_vk", function () use ($app) {
     return new RedirectResponse($app['vk']->getAuthorizeURL('2', 'http://mybox.pagodabox.com/login_vk_callback'));
@@ -40,7 +48,7 @@ $app->get("/login_vk_callback", function (Request $request) use ($app) {
     print "Access token:" . $app['vk']->getAccessToken($request->get('code'));
 });
 
-
+*/
 $app->post('/api/set_token', function (Request $request) {
     $token = $request->get('token');
     $service = $request->get('service');
@@ -50,5 +58,7 @@ $app->post('/api/set_token', function (Request $request) {
 
     return json_encode(array('result'=>'ok'));
 });
+
+
 
 $app->run();
