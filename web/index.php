@@ -1,5 +1,7 @@
 <?php
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bridge\Twig\TwigEngine;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -30,7 +32,8 @@ $app->get("/", function () use ($app) {
 });
 
 $app->get("/login_vk", function () use ($app) {
-    $app['vk']->getAuthorizeURL('2', 'http://mybox.pagodabox.com/login_vk_callback');
+    return new RedirectResponse($app['vk']->getAuthorizeURL('2', 'http://mybox.pagodabox.com/login_vk_callback'));
+
 });
 
 $app->get("/login_vk_callback", function (Request $request) use ($app) {
