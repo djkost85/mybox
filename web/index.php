@@ -7,6 +7,7 @@ use Symfony\Bridge\Twig\TwigEngine;
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../controllers/api.php';
 require_once __DIR__ . '/../controllers/facebook.php';
+require_once __DIR__ . '/../controllers/vk.php';
 require_once __DIR__ . '/../vendor/php-activerecord/php-activerecord/ActiveRecord.php';
 require_once __DIR__ . '/../vendor/ukko/vk/src/VK.php';
 
