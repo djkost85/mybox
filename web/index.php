@@ -37,7 +37,7 @@ $app->get("/login_vk", function () use ($app) {
 });
 
 $app->get("/login_vk_callback", function (Request $request) use ($app) {
-    var_dump($request);
+    print "Vk auth:" . $request->get('code');
 });
 
 
