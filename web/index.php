@@ -28,6 +28,7 @@ $app->get("/", function () use ($app) {
     return $app['twig']->render('index.html.twig');
 });
 /** fb get token **/
+
 $app->get('/login_fb}', function ( Application $app, Request $request ) {
     $c = new auth/facebook();
     echo $c->getToken();
