@@ -19,20 +19,27 @@ $app = new Silex\Application();
        /*  'production' => 'mysql://'.$_SERVER["DB1_USER"].':'.$_SERVER["DB1_PASS"].'@'.$_SERVER["DB1_HOST"].'/'.$_SERVER["DB1_NAME"], */
          'development' => 'mysql://root:18445610@localhost/db1'
      ));
+
 });
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
+
     'twig.path' => __DIR__.'/../views',
+
 ));
 /** index **/
 $app->get("/", function () use ($app) {
+
     return $app['twig']->render('index.html.twig');
+
 });
 /** fb get token **/
 
 $app->get('/login_fb', function () use ($app) {
+
     $c = new auth\facebook();
     echo $c->getToken();
+
 });
 
 $app['debug'] = true;

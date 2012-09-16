@@ -1,7 +1,7 @@
 <?php
 namespace auth;
 
-class facebook {
+class vk {
 
   public function getToken() {
 
