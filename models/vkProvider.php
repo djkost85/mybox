@@ -2,7 +2,7 @@
 
 namespace provider;
 
-class facebookProvider {
+class vkProvider {
 
   protected $token = null;
   
@@ -14,14 +14,9 @@ class facebookProvider {
   
   public function getPosts(){
 
-     $fql = 'SELECT post_id,  attachment, likes, description, message, actor_id,'
-           . 'target_id, message FROM stream WHERE'
-           . 'filter_key in (SELECT filter_key FROM stream_filter WHERE uid=me()'
-           . ' AND type=\'friendlist\')';
+     $apiQuery = 'newsfeed.get?filters=post,photo,note';
 
-     $posts = array();
-
-     $posts = $this->getQuery( $fql );
+     $posts = $this->getQuery( $apiQuery );
      
      return $posts;
 
@@ -29,8 +24,8 @@ class facebookProvider {
 
   public function getQuery( $query ){
    
-    $fql_query_url = 'https://graph.facebook.com/' . '/fql?q=' . $query
-    . '&access_token=' . $this->token;
+    $fql_query_url = 'https://api.vk.com/method/' . $query
+                     .'&access_token=' . $this->token;
     
     $ch = curl_init(); 
     curl_setopt($ch, CURLOPT_URL,$url); // set url to post to 
