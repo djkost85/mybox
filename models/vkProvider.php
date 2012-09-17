@@ -43,6 +43,8 @@ class vkProvider {
          $item['attachment'] = array();
 
          $item['links'] = array();
+         
+         $item['text'] = isset( $item['text'] ) ? $item['text'] : '';
 
          $item['post_id'] = isset( $item['post_id'] ) ? $item['post_id'] : time();
 
