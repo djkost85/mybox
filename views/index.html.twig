@@ -9,14 +9,12 @@
 </div>
 
 <script type="text/javascript">
-$.ajax({
-  type: "GET",
-  url: "/boxes",
-  data: {}
-}).done(function( data ) {
-  var jsonData = eval(data);
-  console.log(jsonData);
-});
+$.getJSON("http://mybox.pagodabox.com/boxes",{},
+  function(data) {
+    $.each(data, function(i,item){
+      console.log(item);
+    });
+  });
 </script>
 
 <a href="http://mybox.pagodabox.com/connect"><button class="medium green col_4">Connect social network</button></a>
