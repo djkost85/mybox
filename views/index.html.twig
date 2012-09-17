@@ -1,10 +1,17 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Вход</h1>
+    <h1>Boxes</h1>
+<div id="boxes_area"></div>
 
-
-    <!--<button class="medium green col_4"><span class="icon social x-large" data-icon="E" title="Twitter"></span>Twitter</button>-->
-    <a href="https://www.facebook.com/dialog/oauth?client_id=425240654200438&redirect_uri=http://mybox.pagodabox.com/login_fb&scope=read_stream&state=1"><button class="medium green col_4"><span class="icon social x-large" data-icon="F" title="Facebook"></span>Facebook</button></a>
-    <a href="http://oauth.vk.com/authorize?client_id=3128485&scope=wall,friends,photo&redirect_uri=http://mybox.pagodabox.com/login_vk&response_type=code"><button class="medium green col_4"><span class="icon social x-large" data-icon="V"></span>ВКонтакте</button></a>
+<script type="text/javascript">
+$.ajax({
+  type: "GET",
+  url: "/boxes",
+  data: {}
+}).done(function( data ) {
+  var jsonData = eval(data);
+  console.log(jsonData);
+});
+</script>
 {% endblock %}

@@ -37,11 +37,22 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 
 ));
-
 /** index **/
 $app->get("/", function () use ($app) {
 
+    if( !$app['session']->has('vk') and !$app['session']->has('facebook') ){
+
+        return new RedirectResponse('http://mybox.pagodabox.com/connect');
+     
+    } 
+
     return $app['twig']->render('index.html.twig');
+
+});
+/** connect **/
+$app->get("/connect", function () use ($app) {
+
+    return $app['twig']->render('connect.html.twig');
 
 });
 
