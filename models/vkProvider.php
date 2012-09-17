@@ -46,22 +46,31 @@ class vkProvider {
 
          $item['title'] = mb_substr( $item['text'], 0, 100 );
 
-         foreach( $item['photos'] as $phk=>$photo ){
+         if( isset( $item['photos'] ) ){
+
+             foreach( $item['photos'] as $phk=>$photo ){
              
-             $item['attachment'][] = $photo['src']; 
-             $item['links'][] = $photo['src_big'];
+                $item['attachment'][] = $photo['src']; 
+
+                $item['links'][] = $photo['src_big'];
              
+             }
          }
 
-         foreach( $item['notes'] as $nk=>$note ){
+         if( isset( $item['notes'] ) )
+
+            foreach( $item['notes'] as $nk=>$note )
+
+                $item['links'][] = 'http://vk.com/note' . $note['owner_id'] . '_' . $note['nid'];
              
-             $item['links'][] = 'http://vk.com/note' . $note['owner_id'] . '_' . $note['nid'];
-             
-         }
+
 
          $posts[] = new \box\post(md5('vk' . $item['post_id'] ), 'vk', $item['post_id']. $item['title'], $item['text'], $item['attachment'], $item['date'], $item['likes']['count'], $item['links'], $item['source_id']);
      
     }
+
+    return $posts;
+
   }
 
   private function cURL($url, $header=NULL, $cookie=NULL, $p=NULL){

@@ -52,9 +52,11 @@ class facebookProvider {
 
     foreach( $result['data'] as $k=>$item){
     
-         $posts[] = new \box\post(md5('fb' . $item['post_id'] ), 'fb', $item['post_id']. $item['title'], $item['text'], $item['attachment'], $item['updated_time'], $item['likes']['count'], $item['action_links'], $item['actor_id']);
+         $posts[] = new \box\post(md5('fb' . $item['post_id'] ), 'fb', $item['post_id']. $item['title'], $item['text'], isset($item['attachment']) ? $item['attachment'] : array(), $item['updated_time'], $item['likes']['count'], isset( $item['action_links'] ) ? $item['action_links'] : array() , $item['actor_id']);
      
     }
+
+    return $posts;
    
 
   }
