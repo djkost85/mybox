@@ -34,7 +34,11 @@ class vk {
         
              .'&access_token=' . $params->access_token;
 
-        $response = json_decode($this->cURL( $url ), true );
+        $response = $this->cURL( $url );
+        
+        print_r( $response );
+
+        $response = json_decode( $response, true );
 
         $this->user = $response[0];
 

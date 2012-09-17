@@ -30,10 +30,14 @@ class facebook {
 
         $query = 'SELECT uid, first_name, last_name FROM user WHERE uid = me()';
 
-        $url = 'https://graph.facebook.com/' . '/fql?q=' . $query
+        $url = 'https://graph.facebook.com/' . '/fql?q=' .  urlencode($query)
         . '&access_token=' . $params['access_token'];
 
-        $this->user = json_decode($this->cURL( $url ), true);
+        $response = $this->cURL( $url );
+
+        print_r( $response );
+
+        $this->user = json_decode( $response, true );
 
         return $params['access_token'];
   
