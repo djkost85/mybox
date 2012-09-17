@@ -98,7 +98,7 @@ class vkProvider {
 			
 						$result[] = array('type' => 'link',
 										  'image' => '',
-										  'src' => '<iframe src="'.'http://vk.com/note' . $note['title'] . '_' . $note['nid'].'&hd=1" width="607" height="360" frameborder="0"></iframe>',
+										  'src' => 'http://vk.com/note' . $note['title'] . '_' . $note['nid'],
 										  'description' => '',
 										  'title' => $note['title']
 										  );		
