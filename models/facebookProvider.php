@@ -48,28 +48,9 @@ class facebookProvider {
 
     foreach( $result['data'] as $k=>$item){
 
-          $item['image'] = '';
-
-          $item['text'] = implode("\n", array( isset( $item['description'] )? $item['description'] : '' ,  isset( $item['message'] )? $item['message'] : '' ) );
-
-
-
-         if( isset( $item['attachment'] ) ){
-
-             $item['text'] = empty( $item['text'] ) ? $item['attachment'][0]['description'] : $item['text'];
-             
-             if( isset( $item['attachment']['media'][0] ) ){
-
-                 $item['image'] = $item['attachment']['media'][0]['src'];
-
-             }
-
-         }
-
-         
-
-         $posts[] = new \box\post(md5('fb' . $item['post_id'] ), 'fb', $item['post_id'], $item['text'], isset($item['attachment']) ? $item['attachment'] : array(), $item['created_time'], isset($item['likes']['count']) ? $item['likes']['count'] : 0, isset( $item['action_links'] ) ? $item['action_links'] : array() , $item['actor_id'], $item['image']);
-     
+         $data = $this->setItem( $item );
+		 
+		 if( $data!=null ) $posts[] = new \box\post( $data );    
     }
 
     return $posts;
@@ -77,11 +58,78 @@ class facebookProvider {
 
   }
 
-  private function parseAttachments(){
-  }
+	public function setItem( $input ){
 
-  private function parseLinks(){
-  }
+		if( ! isset( $input['likes']['count'] ) or $input['likes']['count'] == 0 ){
+		
+			return null;
+		
+		}
+		
+		$item = array();
+		
+		$item['from'] = 'facebook.com';
+		
+		$item['source'] = $input['source_id'];
+		
+		$item['date'] = $input['created_time'];
+		
+		$item['likes'] = $input['likes']['count'];
+		
+		$item['text'] = implode('<br/>', array( $input['message'], $input['description'] ) );
+
+		if( isset($input['atachment'] ) ){
+		
+			$item['text'] = implode('<br/>', array( $input['name'], $input['caption'], $input['description'] ) );
+			
+			if( isset( $input['media'] ) and count( $input['media'] ) > 0 ){
+			
+				$result = array();
+					
+				foreach($input['media'] as $k=>$att ){
+					
+					switch( $att['type'] ){
+					
+						case 'image':
+							$result[] = array('type' => 'photo',
+											  'image' => $att['src'],
+											  'src' => $att['href'],
+											  'description' => '',
+											  'title' => ''
+											  );		
+						break;
+						
+						case 'flash':
+							$result[] = array('type' => 'video',
+											  'image' => $att['imgsrc'],
+											  'src' => $att['swfsrc'],
+											  'description' => '',
+											  'title' => ''
+											  );			
+						break;
+						
+						
+						case 'mp3':
+							$result[] = array('type' => 'audio',
+											  'image' => '',
+											  'src' => $att['src'],
+											  'description' => $att['artist'] . ', ' . $att['album'],
+											  'title' => $att['title']
+											  );
+						break;
+						
+					
+					}	
+					
+				}
+				
+				$item['attachments'] = $result;
+			}
+		}
+		
+		return $item;
+
+	}
 
   private function cURL($url, $header=NULL, $cookie=NULL, $p=NULL){
         $ch = \curl_init();

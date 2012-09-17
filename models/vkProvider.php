@@ -40,49 +40,9 @@ class vkProvider {
 
     foreach( $result['response']['items'] as $k=>$item){
 
-         $item['image'] = '';
-
-         $item['attachment'] = isset( $item['attachment'] ) ? $item['attachment'] : array();
-
-         $item['links'] = array();
-         
-         $item['text'] = isset( $item['text'] ) ? $item['text'] : '';
-
-         $item['post_id'] = isset( $item['post_id'] ) ? $item['post_id'] : 0;
-
-
-         if( isset( $item['photos'] ) ){
-
-             foreach( $item['photos'] as $phk=>$photo ){
-             
-                $item['attachment'][] = $photo['src']; 
-
-                $item['links'][] = $photo['src_big'];
-             
-             }
-
-             $item['image'] = $item['photos'][0]['src'];
-         }
-
-         if( isset( $item['attachment']['photo'] ) ){
-            
-             $item['image'] = $item['attachment']['photo']['src'];
-                     
-         }
-
-         if( isset( $item['notes'] ) ){
-
-            foreach( $item['notes'] as $nk=>$note ){
-
-                $item['links'][] = 'http://vk.com/note' . $note['owner_id'] . '_' . $note['nid'];
-
-                $item['text'] .= $item['title'] . "\n";
-             
-            }
-         }
-
-
-         $posts[] = new \box\post(md5('vk' . $item['post_id'] ), 'vk', $item['post_id'], $item['text'], $item['attachment'], $item['date'], isset( $item['likes']['count'] ) ? $item['likes']['count'] : 0, $item['links'], $item['source_id'], $item['image']);
+         $data = $this->setItem( $item );
+		 
+		 if( $data!=null ) $posts[] = new \box\post( $data );
      
     }
 
@@ -90,11 +50,120 @@ class vkProvider {
 
   }
 
-  private function parseAttachments(){
-  }
+	public function setItem( $input ){
 
-  private function parseLinks(){
-  }
+
+		if( ! isset( $input['likes']['count'] ) or $input['likes']['count'] == 0 ){
+		
+			return null;
+		
+		}
+		
+		$item = array();
+		
+		$item['from'] = 'vk.com';
+		
+		$item['source'] = $input['source_id'];
+		
+		$item['date'] = $input['date'];
+		
+		$item['likes'] = $input['likes']['count'];
+		
+		$item['likes'] = isset( $input['reposts']['count'] ) ? $item['likes'] + $input['reposts']['count'] : $item['likes'];
+		
+		$item['text'] = $input['text'];
+		
+		if($input['type'] == 'photo'){
+		
+			$result = array();
+			
+			foreach( $item['photos'] as $i=>$photo){
+			
+						$result[] = array('type' => 'photo',
+										  'image' => $photo['src'],
+										  'src' => $photo['src_big'],
+										  'description' => '',
+										  'title' => ''
+										  );		
+			
+			}
+		
+		}	
+		
+		if($input['type'] == 'note'){
+		
+			$result = array();
+			
+			foreach( $item['notes'] as $i=>$note){
+			
+						$result[] = array('type' => 'link',
+										  'image' => '',
+										  'src' => 'http://vk.com/note' . $note['title'] . '_' . $note['nid'],
+										  'description' => '',
+										  'title' => $note['title']
+										  );		
+			
+			}
+		
+		}	
+		
+		if($input['type'] == 'post' and isset($input['attachments']) and count($input['attachments'])>0 ){
+		
+			$result = array();
+			
+			foreach($input['attachments'] as $k=>$att ){
+
+				switch( $att['type'] ){
+				
+					case 'photo':
+					
+						$result[] = array('type' => 'photo',
+										  'image' => $att['photo']['src'],
+										  'src' => $att['photo']['src_big'],
+										  'description' => $att['photo']['description'],
+										  'title' => $att['photo']['title']
+										  );		
+					break;
+					
+					case 'video':
+					
+						$result[] = array('type' => 'video',
+										  'image' => $att['video']['image'],
+										  'src' => 'http://vk.com/video_ext.php?oid='.$att['video']['owner_id'].'&id='.$att['video']['vid'].'&hash='.$att['video']['access_key'].'&sd',
+										  'description' => $att['video']['description'],
+										  'title' => $att['video']['title']
+										  );			
+					break;
+					
+					
+					case 'link':
+					
+						$result[] = array('type' => 'link',
+										  'image' => '',
+										  'src' => $att['link']['url'],
+										  'description' => $att['link']['description'],
+										  'title' => $att['link']['title']
+										  );
+					break;
+					
+					default:
+					
+						return null;
+						
+					break;
+				
+				}
+			}
+			
+			$item['attachments'] = $result;
+			
+		}
+
+		
+		
+		return $item;
+
+	}
 
   private function cURL($url, $header=NULL, $cookie=NULL, $p=NULL){
         $ch = \curl_init();
