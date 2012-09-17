@@ -34,7 +34,7 @@ class post{
        $this->attachment = $attachment;
        $this->date = $date;
        $this->likes = $likes;
-       $this->links = $likes;
+       $this->links = $links;
        $this->authorId = $authorId;
    }
 
