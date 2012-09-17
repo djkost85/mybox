@@ -36,7 +36,7 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
 			
 			if( att.type == 'video' ){
 			    attachments = attachments + '<div class="item">';
-				attachments = attachments + '<div class="full"><img src="'+att.src+'"/></div>';
+				attachments = attachments + '<div class="full">'+att.src+'</div>';
 				attachments = attachments + '<img src="'+att.image+'"/>';
 				attachments = attachments + '<h1>'+att.title+'<h1>';
 				attachments = attachments + '<p>'+att.description+'<p>';
@@ -45,7 +45,7 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
 			
 			if( att.type == 'photo' ){
 				attachments = attachments + '<div class="item">';
-                attachments = attachments + '<div class="full">'+att.src+'</div>';
+                attachments = attachments + '<div class="full"><img src="'+att.src+'"/></div>';
 				attachments = attachments + '<img src="'+att.image+'"/>';
 				attachments = attachments + '<h1>'+att.title+'<h1>';
 				attachments = attachments + '<p>'+att.description+'<p>';
