@@ -41,7 +41,7 @@ class facebookProvider {
 
   private function getQuery( $query ){
    
-    $fql_query_url = 'https://graph.facebook.com/' . '/fql?q=' . $query
+    $fql_query_url = 'https://graph.facebook.com/' . '/fql?q=' . urlencode($query)
     . '&access_token=' . $this->token;
     
     $result = $this->cURL( $fql_query_url );            
