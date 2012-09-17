@@ -120,8 +120,8 @@ class vkProvider {
 						$result[] = array('type' => 'photo',
 										  'image' => $att['photo']['src'],
 										  'src' => $att['photo']['src_big'],
-										  'description' => $att['photo']['description'],
-										  'title' => $att['photo']['title']
+										  'description' => isset( $att['photo']['description'] ) ? $att['photo']['description'] : '',
+										  'title' => isset( $att['photo']['title'] ) ? $att['photo']['title'] : ''
 										  );		
 					break;
 					
@@ -130,8 +130,8 @@ class vkProvider {
 						$result[] = array('type' => 'video',
 										  'image' => $att['video']['image'],
 										  'src' => 'http://vk.com/video_ext.php?oid='.$att['video']['owner_id'].'&id='.$att['video']['vid'].'&hash='.$att['video']['access_key'].'&sd',
-										  'description' => $att['video']['description'],
-										  'title' => $att['video']['title']
+										  'description' => isset( $att['video']['description'] ) ? $att['photo']['description'] : '',
+										  'title' => isset( $att['video']['title'] ) ? $att['photo']['title'] : ''
 										  );			
 					break;
 					
@@ -141,8 +141,8 @@ class vkProvider {
 						$result[] = array('type' => 'link',
 										  'image' => '',
 										  'src' => $att['link']['url'],
-										  'description' => $att['link']['description'],
-										  'title' => $att['link']['title']
+										  'description' => isset( $att['link']['description'] ) ? $att['photo']['description'] : '',
+										  'title' => isset( $att['link']['title'] ) ? $att['photo']['title'] : ''
 										  );
 					break;
 					

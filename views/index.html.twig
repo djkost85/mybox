@@ -23,44 +23,44 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
 
       itemData = itemData + '<p>'+item.text+'</p>';
 	  
-	  var atatchments = '';
+	  var attachments = '';
 	  
 	  if( item.attachments.length > 0 ){
 	  
-		atatchments = atatchments + '<div class="attachments">';
+		attachments = attachments + '<div class="attachments">';
 		
 		for( index in item.attachments){
 		
 			var att = item.attachments[index];
 			
 			if( att.type == 'video' ){
-			    atatchments = atatchments + '<div class="item">';
-				atatchments = atatchments + '<div class="full"><img src="'+att.src+'"/></div>';
-				atatchments = atatchments + '<img src="'+att.image+'"/>';
-				atatchments = atatchments + '<h1>'+att.title+'<h1>';
-				atatchments = atatchments + '<p>'+att.description+'<p>';
-			    atatchments = atatchments + '</div>';
+			    attachments = attachments + '<div class="item">';
+				attachments = attachments + '<div class="full"><img src="'+att.src+'"/></div>';
+				attachments = attachments + '<img src="'+att.image+'"/>';
+				attachments = attachments + '<h1>'+att.title+'<h1>';
+				attachments = attachments + '<p>'+att.description+'<p>';
+			    attachments = attachments + '</div>';
 			}
 			
 			if( att.type == 'photo' ){
-				atatchments = atatchments + '<div class="item">';
-                atatchments = atatchments + '<div class="full">'+att.src+'</div>';
-				atatchments = atatchments + '<img src="'+att.image+'"/>';
-				atatchments = atatchments + '<h1>'+att.title+'<h1>';
-				atatchments = atatchments + '<p>'+att.description+'<p>';
-				atatchments = atatchments + '</div>';
+				attachments = attachments + '<div class="item">';
+                attachments = attachments + '<div class="full">'+att.src+'</div>';
+				attachments = attachments + '<img src="'+att.image+'"/>';
+				attachments = attachments + '<h1>'+att.title+'<h1>';
+				attachments = attachments + '<p>'+att.description+'<p>';
+				attachments = attachments + '</div>';
 			}
 			
 			if( att.type == 'link' ){
-				atatchments = atatchments + '<div class="item">';
-				atatchments = atatchments + '<a href="'+att.src+'">'+att.src+'</a>';
-				atatchments = atatchments + '<h1>'+att.title+'<h1>';
-				atatchments = atatchments + '<p>'+att.description+'<p>';
-				atatchments = atatchments + '</div>';
+				attachments = attachments + '<div class="item">';
+				attachments = attachments + '<a href="'+att.src+'">'+att.src+'</a>';
+				attachments = attachments + '<h1>'+att.title+'<h1>';
+				attachments = attachments + '<p>'+att.description+'<p>';
+				attachments = attachments + '</div>';
 			}		
 		}
 		
-		atatchments = atatchments + '<div class="box_area_clear"></div></div>';
+		attachments = attachments + '<div class="box_area_clear"></div></div>';
 	  
 	  }
 	  

@@ -128,8 +128,8 @@ class facebookProvider {
 							$result[] = array('type' => 'link',
 											  'image' => '',
 											  'src' => $att['src'],
-											  'description' => $att['artist'] . ', ' . $att['album'],
-											  'title' => $att['title']
+											  'description' => ( isset( $att['artist'] ) ? $att['artist'] : '' ) . ' ' . ( isset( $att['album'] ) ? $att['album'] : '' ),
+											  'title' => isset( $att['title'] ) ? $att['title'] : ''
 											  );
 						break;
 						
