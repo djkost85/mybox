@@ -70,7 +70,7 @@ class facebookProvider {
 		
 		$item['from'] = 'facebook.com';
 		
-		$item['source'] = $input['source_id'];
+		$item['source'] = isset( $input['source_id'] ) ? $input['source_id'] : 0;
 		
 		$item['date'] = $input['created_time'];
 		
@@ -79,14 +79,23 @@ class facebookProvider {
 		$item['text'] = implode('<br/>', array( $input['message'], $input['description'] ) );
 
 		if( isset($input['attachment'] ) ){
-		
-			$item['text'] = implode('<br/>', array( $input['name'], $input['caption'], $input['description'] ) );
 			
-			if( isset( $input['media'] ) and count( $input['media'] ) > 0 ){
+			$item['text'] = array();
+			
+			if( isset ( $input['attachment']['name'] ) ) $item['text'][] = $input['attachment']['name'];
+			
+			if( isset ( $input['attachment']['caption'] ) ) $item['text'][] = $input['attachment']['caption'];
+			
+			if( isset ( $input['attachment']['description'] ) ) $item['text'][] = $input['attachment']['description'];
+
+		
+			$item['text'] = implode('<br/>', $item['text'] );
+			
+			if( isset( $input['attachment']['media'] ) and count( $input['attachment']['media'] ) > 0 ){
 			
 				$result = array();
 					
-				foreach($input['media'] as $k=>$att ){
+				foreach($input['attachment']['media'] as $k=>$att ){
 					
 					switch( $att['type'] ){
 					

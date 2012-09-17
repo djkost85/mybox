@@ -12,7 +12,7 @@ class post{
 	
 	public $date = 0;
 	
-	public $attachments = 0;
+	public $attachments = array();
 	
 	public $from = '';
 	
