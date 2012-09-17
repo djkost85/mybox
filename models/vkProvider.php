@@ -46,7 +46,7 @@ class vkProvider {
          
          $item['text'] = isset( $item['text'] ) ? $item['text'] : '';
 
-         $item['post_id'] = isset( $item['post_id'] ) ? $item['post_id'] ? 0;
+         $item['post_id'] = isset( $item['post_id'] ) ? $item['post_id'] : 0;
 
          $item['title'] = mb_substr( isset( $item['text'] ) ? $item['text'] : '', 0, 100 );
 
