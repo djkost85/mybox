@@ -129,9 +129,9 @@ class vkProvider {
 					
 						$result[] = array('type' => 'video',
 										  'image' => $att['video']['image'],
-										  'src' => 'http://vk.com/video_ext.php?oid='.$att['video']['owner_id'].'&id='.$att['video']['vid'].'&hash='.$att['video']['access_key'].'&sd',
-										  'description' => isset( $att['video']['description'] ) ? $att['photo']['description'] : '',
-										  'title' => isset( $att['video']['title'] ) ? $att['photo']['title'] : ''
+										  'src' => '<iframe src="http://vk.com/video_ext.php?oid='.$att['video']['owner_id'].'&id='.$att['video']['vid'].'&hash='.$att['video']['access_key'].'&hd=1"  width="607" height="360" frameborder="0"></iframe>',
+										  'description' => isset( $att['video']['description'] ) ? $att['video']['description'] : '',
+										  'title' => isset( $att['video']['title'] ) ? $att['video']['title'] : ''
 										  );			
 					break;
 					
@@ -141,8 +141,8 @@ class vkProvider {
 						$result[] = array('type' => 'link',
 										  'image' => '',
 										  'src' => $att['link']['url'],
-										  'description' => isset( $att['link']['description'] ) ? $att['photo']['description'] : '',
-										  'title' => isset( $att['link']['title'] ) ? $att['photo']['title'] : ''
+										  'description' => isset( $att['link']['description'] ) ? $att['link']['description'] : '',
+										  'title' => isset( $att['link']['title'] ) ? $att['link']['title'] : ''
 										  );
 					break;
 					
