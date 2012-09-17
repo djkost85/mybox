@@ -38,8 +38,9 @@ class vkProvider {
     
     $result = \json_decode( $this->cURL( $query_url ), true ); 
           
+    var_dump($result);
 
-    return  $result['response']['items'];
+    return  array();//$result['response']['items'];
 
   }
 
