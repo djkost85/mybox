@@ -29,8 +29,6 @@ class facebookProvider {
            . 'filter_key IN ( SELECT filter_key FROM stream_filter WHERE uid=me() )';
 
      $posts = array();
-
-     
      
      $posts = $this->getQuery( $fql );
      
@@ -44,8 +42,6 @@ class facebookProvider {
     . '&access_token=' . $this->token;
     
     $result = $this->cURL( $fql_query_url );            
-
-    var_dump($result);
 
     return \json_decode( $result, true );
 

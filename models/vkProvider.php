@@ -37,8 +37,6 @@ class vkProvider {
                      .'&access_token=' . $this->token;
     
     $result = \json_decode( $this->cURL( $query_url ), true ); 
-          
-    print_r($result);
 
     return  $result['response']['items'];
 

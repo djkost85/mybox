@@ -20,7 +20,6 @@ class api {
 
          $vk_posts = $vkP->getPosts();
 
-         //var_dump( $vk_posts );
 
      }
 
@@ -32,11 +31,10 @@ class api {
          
          $fb_posts = $fbP->getPosts();
      
-         //var_dump( $fb_posts );
      }
 
      return $posts;
-     //return \array_merge( $fb_posts, $vk_posts );
+
   
   }
 
