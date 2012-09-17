@@ -24,9 +24,7 @@ class post{
 
    public $authorId=0;
 
-
-
-   public function __construct( $id = 0, $from = '', $postid = 0, $title = '', $text = '', $media = array(), $date='', $likes = 0, $links = array(), $authorId = 0 ){
+   public function __construct( $id = 0, $from = '', $postid = 0, $title = '', $text = '', $media = array(), $date = '', $likes = 0, $links = array(), $authorId = 0 ){
    
        $this->id = $id;
        $this->from = $from;
