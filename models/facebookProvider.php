@@ -108,7 +108,7 @@ class facebookProvider {
 											  );		
 						break;
 						
-						case 'flash':
+						case 'video':
 							$result[] = array('type' => 'video',
 											  'image' => $att['src'],
 											  'src' => $att['href'],
@@ -117,8 +117,16 @@ class facebookProvider {
 											  );			
 						break;
 						
+						case 'link':
+							$result[] = array('type' => 'link',
+											  'image' => '',
+											  'src' => $att['href'],
+											  'description' => '',
+											  'title' => ''
+											  );			
+						break;						
 						
-						case 'mp3':
+						case 'audio':
 							$result[] = array('type' => 'link',
 											  'image' => '',
 											  'src' => $att['src'],
