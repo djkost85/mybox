@@ -34,12 +34,34 @@ class vkProvider {
   public function getQuery( $query ){
    
     $query_url = 'https://api.vk.com/method/' . $query
-                     .'&access_token=' . $this->token;
+                     .'&count=100&access_token=' . $this->token;
     
     $result = \json_decode( $this->cURL( $query_url ), true ); 
 
-    return  $result['response']['items'];
+    foreach( $result['response']['items'] as $k=>$item){
 
+         $item['attachment'] = array();
+
+         $item['links'] = array();
+
+         $item['title'] = mb_substr( $item['text'], 0, 100 );
+
+         foreach( $item['photos'] as $phk=>$photo ){
+             
+             $item['attachment'][] = $photo['src']; 
+             $item['links'][] = $photo['src_big'];
+             
+         }
+
+         foreach( $item['notes'] as $nk=>$note ){
+             
+             $item['links'][] = 'http://vk.com/note' . $note['owner_id'] . '_' . $note['nid'];
+             
+         }
+
+         $posts[] = new \box\post(md5('vk' . $item['post_id'] ), 'vk', $item['post_id']. $item['title'], $item['text'], $item['attachment'], $item['date'], $item['likes']['count'], $item['links'], $item['source_id']);
+     
+    }
   }
 
   private function cURL($url, $header=NULL, $cookie=NULL, $p=NULL){

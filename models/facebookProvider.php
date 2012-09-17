@@ -40,11 +40,22 @@ class facebookProvider {
   private function getQuery( $query ){
    
     $fql_query_url = 'https://graph.facebook.com/fql?q=' . urlencode($query)
-    . '&access_token=' . $this->token;
+    . '&limit=100&access_token=' . $this->token;
     
     $result = \json_decode( $this->cURL( $fql_query_url ), true );            
 
-    return  $result['data'];
+    $posts = array();
+
+    $item['text'] = implode("\n", array( $item['description'], $item['message'] ) );
+
+    $item['title'] = mb_substr( $item['text'], 0, 100 );
+
+    foreach( $result['data'] as $k=>$item){
+    
+         $posts[] = new \box\post(md5('fb' . $item['post_id'] ), 'fb', $item['post_id']. $item['title'], $item['text'], $item['attachment'], $item['updated_time'], $item['likes']['count'], $item['action_links'], $item['actor_id']);
+     
+    }
+   
 
   }
 

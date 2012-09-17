@@ -9,6 +9,7 @@ require_once __DIR__ . '/../controllers/api.php';
 require_once __DIR__ . '/../controllers/facebook.php';
 require_once __DIR__ . '/../controllers/vk.php';
 require_once __DIR__ . '/../controllers/facebook.php';
+require_once __DIR__ . '/../models/post.php';
 require_once __DIR__ . '/../models/vkProvider.php';
 require_once __DIR__ . '/../models/facebookProvider.php';
 require_once __DIR__ . '/../vendor/php-activerecord/php-activerecord/ActiveRecord.php';
