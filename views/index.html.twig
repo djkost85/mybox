@@ -15,7 +15,7 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
       console.log(item);
       var date = new Date(item.date * 1000);
 
-      if($item.image!=''){
+      if( item.image!='' ){
          item.text = item.text + '<img src="'+item.image+'" width="278px"/>';
       }
 
