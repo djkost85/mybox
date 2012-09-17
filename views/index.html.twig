@@ -19,11 +19,15 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
 
       var itemData = '<div class="box_area_item">';
 
-      itemData = itemData + '<i>At '+date.getDay()+'.'+date.getMonth()+'.'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+' from '+item.from+'</i><p>'+item.text+'</p>';
+      itemData = itemData + '<i>At '+date.getDay()+'.'+date.getMonth()+'.'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+' from '+item.from+'</i>';
 
       if( item.image!='' ){
          itemData = itemData + '<img src="'+item.image+'" align="left"/>';
       }
+
+      itemData = itemData + '<p>'+item.text+'</p>';
+
+
 
       itemData = itemData + '</div>';
 
