@@ -129,7 +129,7 @@ class vkProvider {
 					
 						$result[] = array('type' => 'video',
 										  'image' => $att['video']['image'],
-										  'src' => '<iframe src="http://vk.com/video_ext.php?oid='.$att['video']['owner_id'].'&id='.$att['video']['vid'].'&hash='.$att['video']['access_key'].'&hd=1"  width="607" height="360" frameborder="0"></iframe>',
+										  'src' => 'http://vk.com/video_ext.php?oid='.$att['video']['owner_id'].'&id='.$att['video']['vid'].'&hash='.$att['video']['access_key'].'&hd=1',
 										  'description' => isset( $att['video']['description'] ) ? $att['video']['description'] : '',
 										  'title' => isset( $att['video']['title'] ) ? $att['video']['title'] : ''
 										  );			

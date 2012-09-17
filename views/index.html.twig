@@ -6,6 +6,7 @@
 <div class="box_area">
 <div id="boxes0" class="boxes_column"></div>
 <div id="boxes1" class="boxes_column"></div>
+<div id="boxes2" class="boxes_column"></div>
 <div class="box_area_clear"></div>
 </div>
 
@@ -45,7 +46,7 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
 			
 			if( att.type == 'photo' ){
 				attachments = attachments + '<div class="item">';
-                attachments = attachments + '<div class="full"><img src="'+att.src+'"/></div>';
+                attachments = attachments + '<div class="full">'+att.src+'</div>';
 				attachments = attachments + '<img src="'+att.image+'"/>';
 				attachments = attachments + '<h1>'+att.title+'<h1>';
 				attachments = attachments + '<p>'+att.description+'<p>';
@@ -71,7 +72,7 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
 
       itemData = itemData + '</div>';
 
-	  var columnIndex = i%2;
+	  var columnIndex = i%3;
 	  
       $('#boxes'+columnIndex).append(itemData);
     });
