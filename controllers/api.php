@@ -20,6 +20,8 @@ class api {
 
          $vk_posts = $vkP->getPosts();
 
+         var_dump( $vk_posts );
+
      }
 
      if( $app['session']->has('facebook') ){
@@ -30,9 +32,11 @@ class api {
          
          $fb_posts = $fbP->getPosts();
      
+         var_dump( $fb_posts );
      }
 
-     return array_merge( $fb_posts, $vk_posts );
+     return $posts();
+     //return \array_merge( $fb_posts, $vk_posts );
   
   }
 
