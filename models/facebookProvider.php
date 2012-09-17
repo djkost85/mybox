@@ -54,7 +54,7 @@ class facebookProvider {
 
          $item['title'] = mb_substr( $item['text'], 0, 100 );
 
-         $posts[] = new \box\post(md5('fb' . $item['post_id'] ), 'fb', $item['post_id']. $item['title'], $item['text'], isset($item['attachment']) ? $item['attachment'] : array(), $item['created_time'], $item['likes']['count'], isset( $item['action_links'] ) ? $item['action_links'] : array() , $item['actor_id']);
+         $posts[] = new \box\post(md5('fb' . $item['post_id'] ), 'fb', $item['post_id']. $item['title'], $item['text'], isset($item['attachment']) ? $item['attachment'] : array(), $item['created_time'], isset($item['likes']['count']) ? $item['likes']['count'] : 0, isset( $item['action_links'] ) ? $item['action_links'] : array() , $item['actor_id']);
      
     }
 
