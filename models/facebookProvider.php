@@ -24,7 +24,7 @@ class facebookProvider {
 
   public function getPosts(){
 
-     $fql = 'SELECT post_id,  attachment, likes, description, message, created_time, actor_id,'
+     $fql = 'SELECT source_id, attachment, likes, description, message, created_time, actor_id,'
            . 'target_id, message FROM stream WHERE type in (80,128,247,308) and '
            . 'filter_key IN ( SELECT filter_key FROM stream_filter WHERE '
            . 'uid=me() and type=\'friendlist\') ';
@@ -79,6 +79,8 @@ class facebookProvider {
 		$item['text'] = implode('<br/>', array( $input['message'], $input['description'] ) );
 
 		if( isset($input['attachment'] ) ){
+		
+			print_r($input['attachment']);
 			
 			$item['text'] = array();
 			
