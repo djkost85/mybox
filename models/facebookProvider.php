@@ -42,9 +42,9 @@ class facebookProvider {
     $fql_query_url = 'https://graph.facebook.com/fql?q=' . urlencode($query)
     . '&access_token=' . $this->token;
     
-    $result = $this->cURL( $fql_query_url );            
+    $result = \json_decode( $this->cURL( $fql_query_url ), true );            
 
-    return \json_decode( $result, true );
+    return  $result['data'];
 
   }
 

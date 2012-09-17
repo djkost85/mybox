@@ -30,12 +30,11 @@ class api {
          $fbP = new \provider\facebookProvider( $fb['token'] );
          
          $fb_posts = $fbP->getPosts();
-
-var_dump($fb_posts);
      
      }
 
-     
+     $posts = array_merge( $fb_posts, $vk_posts );
+
      return $posts;
 
   
