@@ -32,7 +32,7 @@ class vk {
         
         $url = 'https://api.vk.com/method/' . $query
         
-             .'&access_token=' . $this->token;
+             .'&access_token=' . $params->access_token;
 
         $response = json_decode($this->cURL( $url ), true );
 
