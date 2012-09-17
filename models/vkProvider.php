@@ -73,6 +73,7 @@ class vkProvider {
          }
 
          $item['title'] = mb_substr( isset( $item['text'] ) ? $item['text'] : '', 0, 100 );
+
          $posts[] = new \box\post(md5('vk' . $item['post_id'] ), 'vk', $item['post_id'], $item['title'], $item['text'], $item['attachment'], $item['date'], isset( $item['likes']['count'] ) ? $item['likes']['count'] : 0, $item['links'], $item['source_id']);
      
     }

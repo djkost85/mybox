@@ -52,6 +52,17 @@ class facebookProvider {
 
          $item['title'] = mb_substr( $item['text'] , 0, 100 );
 
+         if( isset( $item['attachment'] ) ){
+
+             $item['title'] = empty( $item['title'] ) ? $item['attachment'][0]['caption'] : $item['title'];
+
+             $item['text'] = empty( $item['text'] ) ? $item['attachment'][0]['description'] : $item['text'];
+
+
+         }
+
+         
+
          $posts[] = new \box\post(md5('fb' . $item['post_id'] ), 'fb', $item['post_id'], $item['title'], $item['text'], isset($item['attachment']) ? $item['attachment'] : array(), $item['created_time'], isset($item['likes']['count']) ? $item['likes']['count'] : 0, isset( $item['action_links'] ) ? $item['action_links'] : array() , $item['actor_id']);
      
     }
