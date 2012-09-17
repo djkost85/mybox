@@ -11,7 +11,7 @@ class api {
      $vk_posts = array();
 
      $fb_posts = array();
-
+/*
      if( $app['session']->has('vk') ){
    
          $vk = $app['session']->get('vk');
@@ -22,7 +22,7 @@ class api {
 
 
      }
-
+*/
      if( $app['session']->has('facebook') ){
      
          $fb = $app['session']->get('facebook');
