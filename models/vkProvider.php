@@ -44,7 +44,9 @@ class vkProvider {
 
          $item['links'] = array();
 
-         $item['title'] = mb_substr( $item['text'], 0, 100 );
+         $item['post_id'] = isset( $item['post_id'] ) ? $item['post_id'] : time();
+
+         $item['title'] = mb_substr( isset( $item['text'] ) ? $item['text'] : '', 0, 100 );
 
          if( isset( $item['photos'] ) ){
 
@@ -65,7 +67,7 @@ class vkProvider {
              
 
 
-         $posts[] = new \box\post(md5('vk' . $item['post_id'] ), 'vk', $item['post_id']. $item['title'], $item['text'], $item['attachment'], $item['date'], $item['likes']['count'], $item['links'], $item['source_id']);
+         $posts[] = new \box\post(md5('vk' . $item['post_id'] ), 'vk', $item['post_id']. $item['title'], $item['text'], $item['attachment'], $item['date'], isset( $item['likes']['count'] ) ? $item['likes']['count'] : 0, $item['links'], $item['source_id']);
      
     }
 
