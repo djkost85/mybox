@@ -47,7 +47,9 @@ class facebookProvider {
     $posts = array();
 
     foreach( $result['data'] as $k=>$item){
-    
+
+          $item['image'] = '';
+
           $item['text'] = implode("\n", array( isset( $item['description'] )? $item['description'] : '' ,  isset( $item['message'] )? $item['message'] : '' ) );
 
 
@@ -55,13 +57,18 @@ class facebookProvider {
          if( isset( $item['attachment'] ) ){
 
              $item['text'] = empty( $item['text'] ) ? $item['attachment'][0]['description'] : $item['text'];
+             
+             if( isset( $item['attachment']['media'][0] ) ){
 
+                 $item['image'] = $item['attachment']['media'][0]['src'];
+
+             }
 
          }
 
          
 
-         $posts[] = new \box\post(md5('fb' . $item['post_id'] ), 'fb', $item['post_id'], $item['text'], isset($item['attachment']) ? $item['attachment'] : array(), $item['created_time'], isset($item['likes']['count']) ? $item['likes']['count'] : 0, isset( $item['action_links'] ) ? $item['action_links'] : array() , $item['actor_id']);
+         $posts[] = new \box\post(md5('fb' . $item['post_id'] ), 'fb', $item['post_id'], $item['text'], isset($item['attachment']) ? $item['attachment'] : array(), $item['created_time'], isset($item['likes']['count']) ? $item['likes']['count'] : 0, isset( $item['action_links'] ) ? $item['action_links'] : array() , $item['actor_id'], $item['image']);
      
     }
 

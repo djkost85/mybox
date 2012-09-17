@@ -22,7 +22,9 @@ class post{
 
    public $authorId=0;
 
-   public function __construct( $id = 0, $from = '', $postid = 0,  $text = '', $attachment = array(), $date = '', $likes = 0, $links = array(), $authorId = 0 ){
+   public $image='';
+
+   public function __construct( $id = 0, $from = '', $postid = 0,  $text = '', $attachment = array(), $date = '', $likes = 0, $links = array(), $authorId = 0, $image = '' ){
    
        $this->id = $id;
        $this->from = $from;
@@ -33,6 +35,7 @@ class post{
        $this->likes = $likes;
        $this->links = $links;
        $this->authorId = $authorId;
+       $this->image = $image;
    }
 
 }

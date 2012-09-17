@@ -40,6 +40,8 @@ class vkProvider {
 
     foreach( $result['response']['items'] as $k=>$item){
 
+         $item['image'] = '';
+
          $item['attachment'] = isset( $item['attachment'] ) ? $item['attachment'] : array();
 
          $item['links'] = array();
@@ -47,7 +49,6 @@ class vkProvider {
          $item['text'] = isset( $item['text'] ) ? $item['text'] : '';
 
          $item['post_id'] = isset( $item['post_id'] ) ? $item['post_id'] : 0;
-
 
 
          if( isset( $item['photos'] ) ){
@@ -59,6 +60,14 @@ class vkProvider {
                 $item['links'][] = $photo['src_big'];
              
              }
+
+             $item['image'] = $item['photos'][0]['src'];
+         }
+
+         if( isset( $item['attachment']['photo'] ) ){
+            
+             $item['image'] = $item['attachment']['photo']['src'];
+                     
          }
 
          if( isset( $item['notes'] ) ){
@@ -73,7 +82,7 @@ class vkProvider {
          }
 
 
-         $posts[] = new \box\post(md5('vk' . $item['post_id'] ), 'vk', $item['post_id'], $item['text'], $item['attachment'], $item['date'], isset( $item['likes']['count'] ) ? $item['likes']['count'] : 0, $item['links'], $item['source_id']);
+         $posts[] = new \box\post(md5('vk' . $item['post_id'] ), 'vk', $item['post_id'], $item['text'], $item['attachment'], $item['date'], isset( $item['likes']['count'] ) ? $item['likes']['count'] : 0, $item['links'], $item['source_id'], $item['image']);
      
     }
 

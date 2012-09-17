@@ -15,6 +15,10 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
       console.log(item);
       var date = new Date(item.date * 1000);
 
+      if($item.image!=''){
+         item.text = item.text + '<img src="'+item.image+'" width="278px"/>';
+      }
+
       $('#boxes').append('<div class="box_area_item"><p>'+item.text+'</p><i>At '+date.getDay()+'.'+date.getMonth()+'.'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+' from '+item.from+'</i></div>');
     });
   });
