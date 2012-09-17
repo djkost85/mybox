@@ -46,12 +46,14 @@ class facebookProvider {
 
     $posts = array();
 
-    $item['text'] = implode("\n", array( isset( $item['description'] )? $item['description'] : '' ,  isset( $item['message'] )? $item['message'] : '' ) );
 
-    $item['title'] = mb_substr( $item['text'], 0, 100 );
 
     foreach( $result['data'] as $k=>$item){
     
+          $item['text'] = implode("\n", array( isset( $item['description'] )? $item['description'] : '' ,  isset( $item['message'] )? $item['message'] : '' ) );
+
+         $item['title'] = mb_substr( $item['text'], 0, 100 );
+
          $posts[] = new \box\post(md5('fb' . $item['post_id'] ), 'fb', $item['post_id']. $item['title'], $item['text'], isset($item['attachment']) ? $item['attachment'] : array(), $item['created_time'], $item['likes']['count'], isset( $item['action_links'] ) ? $item['action_links'] : array() , $item['actor_id']);
      
     }
