@@ -17,13 +17,15 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
 
       var date = new Date(item.date * 1000);
 
-      var itemData = '<div class="box_area_item"><p>'+item.text+'</p>';
+      var itemData = '<div class="box_area_item">';
+
+      itemData = itemData + '<i>At '+date.getDay()+'.'+date.getMonth()+'.'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+' from '+item.from+'</i><p>'+item.text+'</p>';
 
       if( item.image!='' ){
          itemData = itemData + '<img src="'+item.image+'" align="left"/>';
       }
 
-      itemData = itemData + '<i>At '+date.getDay()+'.'+date.getMonth()+'.'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+' from '+item.from+'</i></div>';
+      itemData = itemData + '</div>';
 
       $('#boxes').append(itemData);
     });
