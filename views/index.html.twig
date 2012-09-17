@@ -3,7 +3,10 @@
 {% block content %}
 
     <h1>Boxes</h1>
-<div id="boxes_area"></div>
+<div class="box_area">
+<div id="boxes">Loading...</div>
+<div class="box_area_clear"></div>
+</div>
 
 <script type="text/javascript">
 $.ajax({
@@ -16,5 +19,5 @@ $.ajax({
 });
 </script>
 
-<a href="http://mybox.pagodabox.com/connect"><button class="medium green col_4"><span class="icon add"  title="Facebook"></span> Connect social network</button></a>
+<a href="http://mybox.pagodabox.com/connect"><button class="medium green col_4">Connect social network</button></a>
 {% endblock %}
