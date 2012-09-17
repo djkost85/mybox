@@ -8,8 +8,9 @@ class vk {
   public function getToken() {
 
 
-	$app_id = '3128485';
-        $app_secret = 'tlORW6DTAvq8MbaLjXre';
+	$app_id = VK_APP_ID;
+        $app_secret = VK_APP_SECRET;
+
         $my_url = 'http://mybox.pagodabox.com/login_vk';
   
         if(isset($_REQUEST['error_reason'])){
@@ -30,7 +31,7 @@ class vk {
         
         $query = 'users.get?uids=' . $params->user_id . '&fields=uid,first_name,last_name';
         
-        $url = 'https://api.vk.com/method/' . $query
+        $url = 'https://api.vk.com/method/' . urlencode($query)
         
              .'&access_token=' . $params->access_token;
 

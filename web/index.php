@@ -8,10 +8,16 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../controllers/api.php';
 require_once __DIR__ . '/../controllers/facebook.php';
 require_once __DIR__ . '/../controllers/vk.php';
+require_once __DIR__ . '/../controllers/facebook.php';
+require_once __DIR__ . '/../models/vkProvider.php';
+require_once __DIR__ . '/../models/facebookProvider.php';
 require_once __DIR__ . '/../vendor/php-activerecord/php-activerecord/ActiveRecord.php';
-require_once __DIR__ . '/../vendor/ukko/vk/src/VK.php';
+require_once __DIR__ . '/../cnfg.php';
+
 
 $app = new Silex\Application();
+
+$app['debug'] = true;
 
 $app->register(new Silex\Provider\SessionServiceProvider());
 
@@ -30,12 +36,23 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 
 ));
+
 /** index **/
 $app->get("/", function () use ($app) {
 
     return $app['twig']->render('index.html.twig');
 
 });
+
+/** boxes list **/
+$app->get('/boxes', function () use ($app) {
+
+    $posts = array();
+
+    return json_encode( $posts );    
+
+});
+
 /** fb get token **/
 
 $app->get('/login_fb', function () use ($app) {
@@ -46,9 +63,7 @@ $app->get('/login_fb', function () use ($app) {
 
     $app['session']->set( 'facebook', array( 'token' => $token, 'user' => $c->user ) );
 
-    print_r( $c );
-
-    //return new RedirectResponse('http://mybox.pagodabox.com/boxes');
+    return new RedirectResponse('http://mybox.pagodabox.com/boxes');
 
 });
 /** vk get token **/
@@ -61,37 +76,8 @@ $app->get('/login_vk', function () use ($app) {
 
     $app['session']->set( 'vk', array( 'token' => $token, 'user' => $c->user ) );
 
-    print_r( $c );
+    return new RedirectResponse('http://mybox.pagodabox.com/boxes');
 
-    //return new RedirectResponse('http://mybox.pagodabox.com/boxes');
-
-});
-
-$app['debug'] = true;
-/*
-$app['vk'] = new VK("3128485", "tlORW6DTAvq8MbaLjXre");
-
-
-
-$app->get("/login_vk", function () use ($app) {
-    return new RedirectResponse($app['vk']->getAuthorizeURL('2', 'http://mybox.pagodabox.com/login_vk_callback'));
-
-});
-
-$app->get("/login_vk_callback", function (Request $request) use ($app) {
-    print "Access token:" . $app['vk']->getAccessToken($request->get('code'));
-});
-
-*/
-$app->post('/api/set_token', function (Request $request) {
-
-    $token = $request->get('token');
-    $service = $request->get('service');
-
-    //@TODO Сохранение здесь!
-
-
-    return json_encode(array('result'=>'ok'));
 });
 
 

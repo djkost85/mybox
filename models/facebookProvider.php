@@ -10,11 +10,13 @@ class facebookProvider {
 
   protected $appSecret = null;
 
-  public function __construct( $credits ){
+  public function __construct( $token ){
   
-     $this->appId = $credits['appId'];
+     $this->appId = FACEBOOK_APP_ID;
 
-     $this->appSecret = $credits['appSecret'];     
+     $this->appSecret = FACEBOOK_APP_SECRET;   
+
+     $this->token = $token;  
 
   }
   
@@ -29,29 +31,56 @@ class facebookProvider {
 
      $posts = array();
 
+     
+     
      $posts = $this->getQuery( $fql );
      
      return $posts;
 
   }
 
-  public function getQuery( $query ){
+  private function getQuery( $query ){
    
     $fql_query_url = 'https://graph.facebook.com/' . '/fql?q=' . $query
     . '&access_token=' . $this->token;
     
-    $ch = \curl_init(); 
-    \curl_setopt($ch, CURLOPT_URL,$fql_query_url); // set url to post to 
-    \curl_setopt($ch, CURLOPT_FAILONERROR, 1); 
-    \curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);// allow redirects 
-    \curl_setopt($ch, CURLOPT_RETURNTRANSFER,1); // return into a variable 
-    \curl_setopt($ch, CURLOPT_TIMEOUT, 3); // times out after 4s 
-    \curl_setopt($ch, CURLOPT_GET, 1); // set POST method 
-    $result = \curl_exec($ch); // run the whole process 
-    \curl_close($ch);            
+    $result = $this->cURL( $fql_query_url );            
 
     return \json_decode($result);
 
+  }
+
+  private function cURL($url, $header=NULL, $cookie=NULL, $p=NULL){
+        $ch = \curl_init();
+        \curl_setopt($ch, CURLOPT_HEADER, $header);
+        \curl_setopt($ch, CURLOPT_NOBODY, $header);
+        \curl_setopt($ch, CURLOPT_URL, $url);
+        \curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        \curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+        \curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+        \curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        \curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        \curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+        if ($p) {
+            \curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            \curl_setopt($ch, CURLOPT_POST, 1);
+            \curl_setopt($ch, CURLOPT_POSTFIELDS, $p);
+        }
+
+        $result = \curl_exec($ch);
+        \curl_close($ch);
+        
+        if ($result) {
+
+            return $result;
+
+        } else {
+
+            return \curl_error($ch);
+
+        }
+        
   }
 
 }
