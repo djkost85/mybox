@@ -9,8 +9,6 @@ class post{
    public $from = '';
 
    public $postId=0;
-
-   public $title='';
  
    public $text='';
 
@@ -24,12 +22,11 @@ class post{
 
    public $authorId=0;
 
-   public function __construct( $id = 0, $from = '', $postid = 0, $title = '', $text = '', $attachment = array(), $date = '', $likes = 0, $links = array(), $authorId = 0 ){
+   public function __construct( $id = 0, $from = '', $postid = 0,  $text = '', $attachment = array(), $date = '', $likes = 0, $links = array(), $authorId = 0 ){
    
        $this->id = $id;
        $this->from = $from;
        $this->postId = $postid;
-       $this->title = $title;
        $this->text = $text;
        $this->attachment = $attachment;
        $this->date = $date;
