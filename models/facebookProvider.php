@@ -46,6 +46,8 @@ class facebookProvider {
     
     $result = $this->cURL( $fql_query_url );            
 
+    echo $result;
+
     return \json_decode( $result, true );
 
   }
