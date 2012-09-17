@@ -31,7 +31,7 @@ class api {
          
          $fb_posts = $fbP->getPosts();
 
-var_dump($db_posts);
+var_dump($fb_posts);
      
      }
 
