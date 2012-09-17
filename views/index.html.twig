@@ -1,10 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
+<a href="http://mybox.pagodabox.com/connect"><button class="medium green col_4">Connect social network</button></a>
     <h1>Boxes</h1>
 <div class="box_area">
-<div id="boxes">Loading...</div>
+<div id="boxes"></div>
 <div class="box_area_clear"></div>
 </div>
 
@@ -20,5 +20,5 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
   });
 </script>
 
-<a href="http://mybox.pagodabox.com/connect"><button class="medium green col_4">Connect social network</button></a>
+
 {% endblock %}
