@@ -47,8 +47,6 @@ class facebookProvider {
 
     $posts = array();
 
-
-
     foreach( $result['data'] as $k=>$item){
     
           $item['text'] = implode("\n", array( isset( $item['description'] )? $item['description'] : '' ,  isset( $item['message'] )? $item['message'] : '' ) );
