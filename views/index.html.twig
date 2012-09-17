@@ -13,6 +13,9 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
   function(data) {
     $.each(data, function(i,item){
       console.log(item);
+      var date = new Date(item.date * 1000);
+
+      $('#boxes').append('<div class="box_area_item"><h3>'+item.title+'</h3><p>'+item.text+'</p><i>At '+date.getDay()+'.'+date.getMonth()+'.'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+' from '+item.from+'</i></div>');
     });
   });
 </script>
