@@ -12,17 +12,15 @@
 $.getJSON("http://mybox.pagodabox.com/boxes",{},
   function(data) {
     $.each(data, function(i,item){
-      console.log(item);
-      var date = new Date(item.date * 1000);
 
-      if( item.image!='' ){
-         item.text = item.text + '<img src="'+item.image+'" width="278px"/>';
-      }
+      console.log(item);
+
+      var date = new Date(item.date * 1000);
 
       var itemData = '<div class="box_area_item"><p>'+item.text+'</p>';
 
       if( item.image!='' ){
-         itemData = itemData + '<img src="'+item.image+'" width="278px"/>';
+         itemData = itemData + '<img src="'+item.image+'"/>';
       }
 
       itemData = itemData + '<i>At '+date.getDay()+'.'+date.getMonth()+'.'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+' from '+item.from+'</i></div>';
