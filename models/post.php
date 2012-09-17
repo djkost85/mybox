@@ -14,7 +14,7 @@ class post{
  
    public $text='';
 
-   public $media = array();
+   public $attachment = array();
 
    public $date = '';
 
@@ -24,17 +24,17 @@ class post{
 
    public $authorId=0;
 
-   public function __construct( $id = 0, $from = '', $postid = 0, $title = '', $text = '', $media = array(), $date = '', $likes = 0, $links = array(), $authorId = 0 ){
+   public function __construct( $id = 0, $from = '', $postid = 0, $title = '', $text = '', $attachment = array(), $date = '', $likes = 0, $links = array(), $authorId = 0 ){
    
        $this->id = $id;
        $this->from = $from;
        $this->postid = $postid;
        $this->title = $title;
        $this->text = $text;
-       $this->media = $media;
+       $this->attachment = $attachment;
        $this->date = $date;
        $this->likes = $likes;
-       $this->links = $links;
+       $this->links = $likes;
        $this->authorId = $authorId;
    }
 
