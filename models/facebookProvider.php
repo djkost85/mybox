@@ -41,7 +41,7 @@ class facebookProvider {
     . '&access_token=' . $this->token;
     
     $ch = \curl_init(); 
-    \curl_setopt($ch, CURLOPT_URL,$url); // set url to post to 
+    \curl_setopt($ch, CURLOPT_URL,$fql_query_url); // set url to post to 
     \curl_setopt($ch, CURLOPT_FAILONERROR, 1); 
     \curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);// allow redirects 
     \curl_setopt($ch, CURLOPT_RETURNTRANSFER,1); // return into a variable 

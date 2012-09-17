@@ -3,6 +3,8 @@ namespace auth;
 
 class vk {
 
+  public $user = null;
+
   public function getToken() {
 
 
@@ -25,6 +27,16 @@ class vk {
         $response = $this->cURL($token_url);
 
         $params = json_decode( $response );
+        
+        $query = 'users.get?uids=' . $params->user_id . '&fields=uid,first_name,last_name';
+        
+        $url = 'https://api.vk.com/method/' . $query
+        
+             .'&access_token=' . $this->token;
+
+        $response = json_decode($this->cURL( $url ), true );
+
+        $this->user = $response[0];
 
         return $params->access_token;
   

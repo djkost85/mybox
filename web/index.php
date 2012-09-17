@@ -13,6 +13,8 @@ require_once __DIR__ . '/../vendor/ukko/vk/src/VK.php';
 
 $app = new Silex\Application();
 
+$app->register(new Silex\Provider\SessionServiceProvider());
+
 \ActiveRecord\Config::initialize(function($cfg)
 {
      $cfg->set_model_directory(__DIR__.'/../models');
@@ -39,7 +41,14 @@ $app->get("/", function () use ($app) {
 $app->get('/login_fb', function () use ($app) {
 
     $c = new auth\facebook();
-    echo $c->getToken();
+    
+    $token = $c->getToken();
+
+    $app['session']->set( 'facebook', array( 'token' => $token, 'user' => $c->user ) );
+
+    print_r( $c );
+
+    //return new RedirectResponse('http://mybox.pagodabox.com/boxes');
 
 });
 /** vk get token **/
@@ -47,7 +56,14 @@ $app->get('/login_fb', function () use ($app) {
 $app->get('/login_vk', function () use ($app) {
 
     $c = new auth\vk();
-    echo $c->getToken();
+
+    $token = $c->getToken();
+
+    $app['session']->set( 'vk', array( 'token' => $token, 'user' => $c->user ) );
+
+    print_r( $c );
+
+    //return new RedirectResponse('http://mybox.pagodabox.com/boxes');
 
 });
 
@@ -68,6 +84,7 @@ $app->get("/login_vk_callback", function (Request $request) use ($app) {
 
 */
 $app->post('/api/set_token', function (Request $request) {
+
     $token = $request->get('token');
     $service = $request->get('service');
 

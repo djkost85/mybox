@@ -3,6 +3,8 @@ namespace auth;
 
 class facebook {
 
+  public $user = null;  
+
   public function getToken() {
 
 
@@ -24,6 +26,13 @@ class facebook {
         $response = $this->cURL($token_url);
 
         parse_str( $response, $params );
+
+        $query = 'SELECT uid, first_name, last_name FROM user WHERE uid = me()';
+
+        $url = 'https://graph.facebook.com/' . '/fql?q=' . $query
+        . '&access_token=' . $this->token;
+
+        $this->user = json_decode($this->cURL( $url ), true);
 
         return $params['access_token'];
   
