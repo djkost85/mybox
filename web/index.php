@@ -79,7 +79,7 @@ $app->get('/login_fb', function () use ($app) {
 
     $app['session']->set( 'facebook', array( 'token' => $token, 'user' => $c->user ) );
 
-    return new RedirectResponse('http://mybox.pagodabox.com/boxes');
+    return new RedirectResponse('http://mybox.pagodabox.com');
 
 });
 /** vk get token **/
@@ -92,7 +92,7 @@ $app->get('/login_vk', function () use ($app) {
 
     $app['session']->set( 'vk', array( 'token' => $token, 'user' => $c->user ) );
 
-    return new RedirectResponse('http://mybox.pagodabox.com/boxes');
+    return new RedirectResponse('http://mybox.pagodabox.com');
 
 });
 
