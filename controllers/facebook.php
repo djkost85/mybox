@@ -31,7 +31,7 @@ class facebook {
 
         $query = 'SELECT uid, first_name, last_name FROM user WHERE uid = me()';
 
-        $url = 'https://graph.facebook.com/' . '/fql?q=' .  urlencode($query)
+        $url = 'https://graph.facebook.com/fql?q=' .  urlencode($query)
         . '&access_token=' . $params['access_token'];
 
         $response = json_decode($this->cURL( $url ), true );
