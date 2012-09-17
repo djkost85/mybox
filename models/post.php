@@ -6,7 +6,7 @@ class post{
 
    public $id = 0;
 
-   public $from = ''
+   public $from = '';
 
    public $postId=0;
 
@@ -19,7 +19,6 @@ class post{
    public $date = '';
 
    public $likes = 0;
-
 
    public $links = array();
 
