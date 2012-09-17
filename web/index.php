@@ -49,6 +49,10 @@ $app->get('/boxes', function () use ($app) {
 
     $posts = array();
 
+    $c = new box\api();
+
+    $posts = $c->getPosts( $app );
+
     return json_encode( $posts );    
 
 });

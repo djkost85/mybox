@@ -39,7 +39,7 @@ class vkProvider {
     $this->cURL( $query_url ); 
           
 
-    return \json_decode($result);
+    return \json_decode( $result, true );
 
   }
 

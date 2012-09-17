@@ -3,25 +3,36 @@ namespace box;
 
 class api {
 
-  public function setToken( Silex\Application $app ) {
-
-    var_dump( $app );
-
-  }
 
   public function getPosts( Silex\Application $app ) {
+     
+     $posts = array();
+     
+     $vk_posts = array();
 
-     $provider = ''; // get provider name
-     
-     $token = ''; // load token
-     
-     require_once __DIR__.'/../models/'.$provider.'Provider.php'; // include provider class
-     
-     $class = 'provider\\'.$provider.'Provider';
+     $fb_posts = array();
 
-     $provider = new $class( $token );
+     if( $app['session']->has('vk') ){
+   
+         $vk = $app['session']->get('vk');
+
+         $vkP = new provider\vkProvider( $vk['token'] );
+
+         $vk_posts = $vkP->getPosts();
+
+     }
+
+     if( $app['session']->has('facebook') ){
      
-     echo call_user_func_array( array( $provider, "getPosts" ), array() );
+         $fb = $app['session']->get('facebook');
+
+         $fbP = new provider\vkProvider( $fb['token'] );
+         
+         $fb_posts = $fbP->getPosts();
+     
+     }
+
+     return array_merge( $fb_posts, $vk_posts );
   
   }
 
