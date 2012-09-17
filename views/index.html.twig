@@ -71,7 +71,7 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
 
       itemData = itemData + '</div>';
 
-	  columnIndex = i%2;
+	  var columnIndex = i%2;
 	  
       $('#boxes'+columnIndex).append(itemData);
     });
