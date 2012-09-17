@@ -26,8 +26,7 @@ class facebookProvider {
 
      $fql = 'SELECT post_id,  attachment, likes, description, message, actor_id,'
            . 'target_id, message FROM stream WHERE'
-           . 'filter_key in (SELECT filter_key FROM stream_filter WHERE uid=me()'
-           . ' AND type=\'friendlist\')';
+           . 'filter_key IN ( SELECT filter_key FROM stream_filter WHERE uid=me() )';
 
      $posts = array();
 
@@ -41,7 +40,7 @@ class facebookProvider {
 
   private function getQuery( $query ){
    
-    $fql_query_url = 'https://graph.facebook.com/' . '/fql?q=' . urlencode($query)
+    $fql_query_url = 'https://graph.facebook.com/fql?q=' . urlencode($query)
     . '&access_token=' . $this->token;
     
     $result = $this->cURL( $fql_query_url );            
