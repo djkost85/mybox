@@ -25,10 +25,9 @@ class facebookProvider {
   public function getPosts(){
 
      $fql = 'SELECT post_id,  attachment, likes, description, message, created_time, actor_id,'
-           . ' target_id, message FROM stream WHERE '
-           . ' filter_key IN ( SELECT filter_key FROM stream_filter WHERE '
-           . ' uid=me() and type in(56,66,80,128,247,308)'
-           . ' and type=\'friendlist\')';
+           . 'target_id, message FROM stream WHERE '
+           . 'filter_key IN ( SELECT filter_key FROM stream_filter WHERE '
+           . 'uid=me() and type=\'friendlist\')  and type in(56,66,80,128,247,308) ';
 
      $posts = array();
      
