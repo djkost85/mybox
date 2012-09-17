@@ -126,13 +126,8 @@ class facebookProvider {
 											  );			
 						break;						
 						
-						case 'audio':
-							$result[] = array('type' => 'link',
-											  'image' => '',
-											  'src' => $att['src'],
-											  'description' => ( isset( $att['artist'] ) ? $att['artist'] : '' ) . ' ' . ( isset( $att['album'] ) ? $att['album'] : '' ),
-											  'title' => isset( $att['title'] ) ? $att['title'] : ''
-											  );
+						default:
+							return null;
 						break;
 						
 					
