@@ -16,7 +16,7 @@ class api {
    
          $vk = $app['session']->get('vk');
 
-         $vkP = new provider\vkProvider( $vk['token'] );
+         $vkP = new \provider\vkProvider( $vk['token'] );
 
          $vk_posts = $vkP->getPosts();
 
@@ -26,7 +26,7 @@ class api {
      
          $fb = $app['session']->get('facebook');
 
-         $fbP = new provider\vkProvider( $fb['token'] );
+         $fbP = new \provider\vkProvider( $fb['token'] );
          
          $fb_posts = $fbP->getPosts();
      
