@@ -32,7 +32,7 @@ class facebookProvider {
      $posts = array();
      
      $posts = $this->getQuery( $fql );
-     print_r($posts);
+
      return $posts;
 
   }
