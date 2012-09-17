@@ -77,6 +77,12 @@ class facebookProvider {
 
   }
 
+  private function parseAttachments(){
+  }
+
+  private function parseLinks(){
+  }
+
   private function cURL($url, $header=NULL, $cookie=NULL, $p=NULL){
         $ch = \curl_init();
         \curl_setopt($ch, CURLOPT_HEADER, $header);
