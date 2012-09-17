@@ -33,11 +33,11 @@ class facebook {
         $url = 'https://graph.facebook.com/' . '/fql?q=' .  urlencode($query)
         . '&access_token=' . $params['access_token'];
 
-        $response = $this->cURL( $url );
+        $response = json_decode($this->cURL( $url ), true );
 
-        print_r( $response );
 
-        $this->user = json_decode( $response, true );
+
+        $this->user =  $response['data'][0];
 
         return $params['access_token'];
   
