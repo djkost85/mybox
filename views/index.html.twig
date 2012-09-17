@@ -21,13 +21,52 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
 
       itemData = itemData + '<i>At '+date.getDay()+'.'+date.getMonth()+'.'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+' from '+item.from+'</i>';
 
-      if( item.image!='' ){
-         itemData = itemData + '<img src="'+item.image+'" align="left"/>';
-      }
-
       itemData = itemData + '<p>'+item.text+'</p>';
-
-
+	  
+	  var atatchments = '';
+	  
+	  if( item.attachments.length > 0 ){
+	  
+		atatchments = atatchments + '<div class="attachments">';
+		
+		for( index in item.attachments){
+		
+			var att = item.attachments[index];
+			
+			if( att.type == 'video' ){
+			    atatchments = atatchments + '<div class="item">';
+				atatchments = atatchments + '<div class="full"><img src="'+att.src+'"/></div>';
+				atatchments = atatchments + '<img src="'+att.image+'"/>';
+				atatchments = atatchments + '<h1>'+att.title+'<h1>';
+				atatchments = atatchments + '<p>'+att.description+'<p>';
+			    atatchments = atatchments + '</div>';
+			}
+			
+			if( att.type == 'photo' ){
+				atatchments = atatchments + '<div class="item">';
+                atatchments = atatchments + '<div class="full">'+att.src+'</div>';
+				atatchments = atatchments + '<img src="'+att.image+'"/>';
+				atatchments = atatchments + '<h1>'+att.title+'<h1>';
+				atatchments = atatchments + '<p>'+att.description+'<p>';
+				atatchments = atatchments + '</div>';
+			}
+			
+			if( att.type == 'link' ){
+				atatchments = atatchments + '<div class="item">';
+				atatchments = atatchments + '<a href="'+att.src+'">'+att.src+'</a>';
+				atatchments = atatchments + '<h1>'+att.title+'<h1>';
+				atatchments = atatchments + '<p>'+att.description+'<p>';
+				atatchments = atatchments + '</div>';
+			}		
+		}
+		
+		atatchments = atatchments + '</div>';
+	  
+	  }
+	  
+      itemData = itemData + attachments;
+	  
+      itemData = itemData + '<div class="rate">'+item.likes+'</div>';
 
       itemData = itemData + '</div>';
 

@@ -78,7 +78,7 @@ class facebookProvider {
 		
 		$item['text'] = implode('<br/>', array( $input['message'], $input['description'] ) );
 
-		if( isset($input['atachment'] ) ){
+		if( isset($input['attachment'] ) ){
 		
 			$item['text'] = implode('<br/>', array( $input['name'], $input['caption'], $input['description'] ) );
 			
@@ -102,7 +102,13 @@ class facebookProvider {
 						case 'flash':
 							$result[] = array('type' => 'video',
 											  'image' => $att['imgsrc'],
-											  'src' => $att['swfsrc'],
+											  'src' => '<object width="'.$att['expanded_width'].'" height="'.$att['expanded_height'].'"'
+														.'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"'
+														.'codebase="http://fpdownload.macromedia.com/'
+														.'pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0">'
+														.'<param name="SRC" value="'.$att['swfsrc'].'">'
+														.'<embed src="'.$att['swfsrc'].'" width="'.$att['expanded_width'].'" height="'.$att['expanded_height'].'"></embed>'
+														.'</object>',
 											  'description' => '',
 											  'title' => ''
 											  );			
@@ -110,7 +116,7 @@ class facebookProvider {
 						
 						
 						case 'mp3':
-							$result[] = array('type' => 'audio',
+							$result[] = array('type' => 'link',
 											  'image' => '',
 											  'src' => $att['src'],
 											  'description' => $att['artist'] . ', ' . $att['album'],
