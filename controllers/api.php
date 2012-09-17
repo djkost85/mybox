@@ -35,7 +35,7 @@ class api {
          var_dump( $fb_posts );
      }
 
-     return $posts();
+     return $posts;
      //return \array_merge( $fb_posts, $vk_posts );
   
   }

@@ -36,7 +36,7 @@ class vkProvider {
     $query_url = 'https://api.vk.com/method/' . $query
                      .'&access_token=' . $this->token;
     
-    $this->cURL( $query_url ); 
+    $result = $this->cURL( $query_url ); 
           
 
     return \json_decode( $result, true );
