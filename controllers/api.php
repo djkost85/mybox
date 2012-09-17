@@ -4,7 +4,7 @@ namespace box;
 class api {
 
 
-  public function getPosts( Silex\Application $app ) {
+  public function getPosts( $app ) {
      
      $posts = array();
      
