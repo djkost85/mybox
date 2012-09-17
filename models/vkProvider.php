@@ -23,7 +23,7 @@ class vkProvider {
   
   public function getPosts(){
 
-     $apiQuery = 'newsfeed.get?filters=post,photo,note';
+     $apiQuery = 'newsfeed.get?filters=post,note,photo';
 
      $posts = $this->getQuery( $apiQuery );
      
@@ -40,7 +40,7 @@ class vkProvider {
 
     foreach( $result['response']['items'] as $k=>$item){
 
-         $item['attachment'] = array();
+         $item['attachment'] = isset( $item['attachment'] ) ? $item['attachment'] : array();
 
          $item['links'] = array();
          
@@ -69,6 +69,7 @@ class vkProvider {
                 $item['text']. = $item['title']."\n";
              
             }
+
          $item['title'] = mb_substr( isset( $item['text'] ) ? $item['text'] : '', 0, 100 );
          $posts[] = new \box\post(md5('vk' . $item['post_id'] ), 'vk', $item['post_id'], $item['title'], $item['text'], $item['attachment'], $item['date'], isset( $item['likes']['count'] ) ? $item['likes']['count'] : 0, $item['links'], $item['source_id']);
      
