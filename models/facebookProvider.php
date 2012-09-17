@@ -79,8 +79,6 @@ class facebookProvider {
 		$item['text'] = implode('<br/>', array( $input['message'], $input['description'] ) );
 
 		if( isset($input['attachment'] ) ){
-		
-			print_r($input['attachment']);
 			
 			$item['text'] = array();
 			
@@ -101,7 +99,7 @@ class facebookProvider {
 					
 					switch( $att['type'] ){
 					
-						case 'image':
+						case 'photo':
 							$result[] = array('type' => 'photo',
 											  'image' => $att['src'],
 											  'src' => $att['href'],
@@ -112,14 +110,8 @@ class facebookProvider {
 						
 						case 'flash':
 							$result[] = array('type' => 'video',
-											  'image' => $att['imgsrc'],
-											  'src' => '<object width="'.$att['expanded_width'].'" height="'.$att['expanded_height'].'"'
-														.'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"'
-														.'codebase="http://fpdownload.macromedia.com/'
-														.'pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0">'
-														.'<param name="SRC" value="'.$att['swfsrc'].'">'
-														.'<embed src="'.$att['swfsrc'].'" width="'.$att['expanded_width'].'" height="'.$att['expanded_height'].'"></embed>'
-														.'</object>',
+											  'image' => $att['src'],
+											  'src' => $att['href'],
 											  'description' => '',
 											  'title' => ''
 											  );			
