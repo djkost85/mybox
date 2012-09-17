@@ -28,7 +28,7 @@ class post{
    
        $this->id = $id;
        $this->from = $from;
-       $this->postid = $postid;
+       $this->postId = $postid;
        $this->title = $title;
        $this->text = $text;
        $this->attachment = $attachment;
