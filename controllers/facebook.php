@@ -23,7 +23,9 @@ class facebook {
 
         $response = $this->cURL($token_url);
 
-        return $response;
+        parse_str( $response, $params );
+
+        return $params['access_token'];
   
   }
 

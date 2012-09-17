@@ -24,7 +24,9 @@ class vk {
 
         $response = $this->cURL($token_url);
 
-        return $response;
+        $params = json_decode( $response );
+
+        return $params->access_token;
   
   }
 
