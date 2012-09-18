@@ -29,8 +29,7 @@ $app->register(new Silex\Provider\SessionServiceProvider());
      echo __DIR__;
      $cfg->set_model_directory(__DIR__.'/../vendor/php-activerecord/php-activerecord/models');
      $cfg->set_connections(array(
-       /*  'production' => 'mysql://'.$_SERVER["DB1_USER"].':'.$_SERVER["DB1_PASS"].'@'.$_SERVER["DB1_HOST"].'/'.$_SERVER["DB1_NAME"], */
-         'development' => 'mysql://root:18445610@localhost/db1'
+     'production' => 'mysql://'.$_SERVER["DB1_USER"].':'.$_SERVER["DB1_PASS"].'@'.$_SERVER["DB1_HOST"].'/'.$_SERVER["DB1_NAME"]
      ));
 
 });
