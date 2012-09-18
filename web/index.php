@@ -10,6 +10,8 @@ require_once __DIR__ . '/../controllers/facebook.php';
 require_once __DIR__ . '/../controllers/vk.php';
 require_once __DIR__ . '/../controllers/facebook.php';
 require_once __DIR__ . '/../models/post.php';
+require_once __DIR__ . '/../models/record.php';
+require_once __DIR__ . '/../models/user.php';
 require_once __DIR__ . '/../models/vkProvider.php';
 require_once __DIR__ . '/../models/facebookProvider.php';
 require_once __DIR__ . '/../vendor/php-activerecord/php-activerecord/ActiveRecord.php';
@@ -37,10 +39,22 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 
 ));
+
+/** auth **/
+$app['user'] = null;
+
+if( $app['session']->has('user') ){
+	
+	$userId = $app['session']->get('user');
+        $app['user'] = \box\user::find_by_id($userId);
+	
+
+}
+
 /** index **/
 $app->get("/", function () use ($app) {
 
-    if( !$app['session']->has('vk') and !$app['session']->has('facebook') ){
+    if( $app['session']->has('user') ){
 
         return new RedirectResponse('http://mybox.pagodabox.com/connect');
      
@@ -77,7 +91,34 @@ $app->get('/login_fb', function () use ($app) {
     
     $token = $c->getToken();
 
-    $app['session']->set( 'facebook', array( 'token' => $token, 'user' => $c->user ) );
+    if($app['user'] == null ){
+
+	$user = \box\user::find_by_fbId($c->user['uid']);
+
+	$user->fbToken = $token;
+
+        if($user == null ){
+	
+		$user = new \box\user();
+		$user->fbId = $c->user['uid'];
+		$user->fbToken = $token;
+
+
+        }
+
+	$user->save;
+	$app['session']->set('user', $user->id);
+
+    }else{
+
+	$user = $app['user'];
+	$user->fbId = $c->user['uid'];
+	$user->fbToken = $token;  
+	$user->save(); 
+
+    }
+
+    //$app['session']->set( 'facebook', array( 'token' => $token, 'user' => $c->user ) );
 
     return new RedirectResponse('http://mybox.pagodabox.com');
 
@@ -90,7 +131,34 @@ $app->get('/login_vk', function () use ($app) {
 
     $token = $c->getToken();
 
-    $app['session']->set( 'vk', array( 'token' => $token, 'user' => $c->user ) );
+    if($app['user'] == null ){
+
+	$user = \box\user::find_by_vkId($c->user['uid']);
+
+	$user->vkToken = $token;
+
+        if($user == null ){
+	
+		$user = new \box\user();
+		$user->vkId = $c->user['uid'];
+		$user->vkToken = $token;
+
+
+        }
+
+	$user->save;
+	$app['session']->set('user', $user->id);
+
+    }else{
+
+	$user = $app['user'];
+	$user->vkId = $c->user['uid'];
+	$user->vkToken = $token;  
+	$user->save(); 
+
+    }
+
+    //$app['session']->set( 'vk', array( 'token' => $token, 'user' => $c->user ) );
 
     return new RedirectResponse('http://mybox.pagodabox.com');
 

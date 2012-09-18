@@ -36,8 +36,6 @@ class facebook {
 
         $response = json_decode($this->cURL( $url ), true );
 
-
-
         $this->user =  $response['data'][0];
 
         return $params['access_token'];

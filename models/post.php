@@ -4,7 +4,7 @@ namespace box;
 
 class post{
 
-    public $source = 0;
+        public $source = 0;
 	
 	public $text = '';
 
