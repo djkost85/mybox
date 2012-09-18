@@ -15,11 +15,17 @@ class post{
 	public $attachments = array();
 	
 	public $from = '';
+
+	public $userId;
 	
 	public function __construct( $data ){
 	
 		foreach( $data as $name=>$value ) $this->$name = $value;
 	
+	}
+
+        public function getId(){
+		return md5($this->userId.$this->date.$this->source.$this->from)
 	}
 	
 }
