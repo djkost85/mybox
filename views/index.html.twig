@@ -11,7 +11,7 @@
 </div>
 
 <script type="text/javascript">
-$.getJSON("http://mybox.pagodabox.com/boxes",{},
+$.getJSON("/mybox/web/boxes",{},
   function(data) {
     $.each(data, function(i,item){
 
@@ -21,7 +21,7 @@ $.getJSON("http://mybox.pagodabox.com/boxes",{},
 
       var itemData = '<div class="box_area_item">';
 
-      itemData = itemData + '<i>At '+date.getDay()+'.'+date.getMonth()+'.'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+' from '+item.from+'</i>';
+      itemData = itemData + '<i>At '+date.format('dd/mm/yyyy H:i:s')+' from '+item.from+'</i>';
 
       itemData = itemData + '<p>'+item.text+'</p>';
 	  

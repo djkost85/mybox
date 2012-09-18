@@ -16,7 +16,7 @@ class post{
 	
 	public $from = '';
 
-	public $userId;
+	public $userId=0;
 	
 	public function __construct( $data ){
 	
@@ -25,7 +25,8 @@ class post{
 	}
 
         public function getId(){
-		return md5($this->userId.$this->date.$this->source.$this->from)
+
+		return md5( $this->userId  . $this->date . $this->source . $this->from );
 	}
 	
 }

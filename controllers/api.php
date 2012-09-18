@@ -12,6 +12,8 @@ class api {
 
      $fb_posts = array();
 
+     if( $app['user'] == null ) return array();
+
      if( ! empty( $app['user']->vkId ) ){
    
          //$vk = $app['session']->get('vk');
