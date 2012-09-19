@@ -17,6 +17,12 @@ class vk {
 			die('Facebook auth error!');
             return null;
         }
+		
+		if( ! isset( $_REQUEST["code"] ) ){
+		
+			return null;
+		
+		}
         
         $code = $_REQUEST["code"];
         

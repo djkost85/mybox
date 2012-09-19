@@ -41,7 +41,7 @@ class facebookProvider {
    
     $fql_query_url = 'https://graph.facebook.com/fql?q=' . urlencode($query)
     . '&limit=100&access_token=' . $this->token;
-    
+   
     $result = \json_decode( $this->cURL( $fql_query_url ), true );            
 
     $posts = array();
@@ -52,6 +52,7 @@ class facebookProvider {
 		 
 		 if( $data!=null ) $posts[] = new \box\boxPost( $data );    
     }
+
 
     return $posts;
    
@@ -82,12 +83,17 @@ class facebookProvider {
 			
 			$item['text'] = array();
 			
+			if( isset ( $input['message'] ) ) $item['text'][] = $input['message'];
+			
+			if( isset ( $input['description'] ) ) $item['text'][] = $input['description'];
+			
 			if( isset ( $input['attachment']['name'] ) ) $item['text'][] = $input['attachment']['name'];
 			
 			if( isset ( $input['attachment']['caption'] ) ) $item['text'][] = $input['attachment']['caption'];
 			
 			if( isset ( $input['attachment']['description'] ) ) $item['text'][] = $input['attachment']['description'];
-
+			
+			
 		
 			$item['text'] = implode('<br/>', $item['text'] );
 			

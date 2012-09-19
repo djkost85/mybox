@@ -20,55 +20,99 @@ body{
 	background-attachment:fixed;
 }
 #header{
-	background:#000000;
+	background:#333333;
 	text-align:center;
-	width:960px;
+	width:800px;
 	background-image:url(/assert/css/img/images/header_bg.png);
 	background-position:left bottom;
 	background-repeat:repeat-x;
+	height:40px;
+	padding-top:10px;
+	padding-left:160px;
 	
 }
-#logo{
-	background-image:url(/assert/css/img/images/logo.png);
-	width:128px;
-	height:128px;
-}
-#header h1{
-	font-family:Times New Roman;
-	font-size:48px;
-}
+#wrap{width:960px;margin:0 auto;background:#333333;overflow:hidden;}
+#main{width:920px;margin:0 auto;background:#555555;padding:20px;}
 #footer{
 	margin:0px;
 	border-style:solid;
 	width:920px;
 	border:0;
-	background:#000000;
+	background:#333333;
 	color:#ffffff;
 	background-image:url(/assert/css/img/images/footer_bg.png);
 	background-position:left top;
 	background-repeat:repeat-x;
-	padding:20px;
-	height:50px;
+	padding:10px 20px 10px 20px;
+	height:30px;
 	
 	
 }
 #footer a{color:#ffffff;}
-#dialogBox{display:none;background:#ffffff;}
-#dialogBox .data h1.title{display:none;}
-#dialogBox .data .image{display:none;}
-#dialogBox .attachments{display:block;}
-#dialogBox .attachments .item{display:inline-block;overflow:hidden;margin:5px;}
-#dialogBox .attachments .item .full{display:block;}
-#dialogBox .attachments .item .small{display:none;}
-#dialogBox .overlay{display:none;}
-#dialogBox h1{
+
+#dialogBox{
+	width:100%;
+	height:100%;
+	position:absolute;
+	display:none;
+	top:0px;
+	left:0px;
+	z-index:9;
+}
+#dialogBox .window .content  .data h1.title{	
 	font-size:24px;
 	line-height:32px;
 	color:#000000;
 	font-style:italic;
 	font-family:Times New Roman;
 }
+#dialogBox .window  .content .data .image{display:none;}
+#dialogBox .window  .content .attachments{display:block;text-align:center;align:center;}
+#dialogBox .window  .content .attachments .item{display:inline-block;overflow:hidden;margin:5px;}
+#dialogBox .window  .content .attachments .item .full{display:block;}
+#dialogBox .window  .content .attachments .item .small{display:none;}
+#dialogBox .window  .content .overlay{display:none;}
 
+
+#dialogBox .shadow{
+	width:100%;
+	height:100%;
+	background:#000000;
+	opacity:0.5;
+	position:fixed;
+	z-index:9;
+}
+
+#dialogBox .window{
+
+	width:940px;
+	background:#ffffff;
+	padding:30px;
+	position:absolute;
+	left:50%;
+	margin-left:-480px;
+	z-index:10;
+
+}
+#dialogBox .window .close{
+	display:block;
+	color:#555555;
+	margin-top:-18px;
+	margin-right:-18px;
+	float:right;
+	font-size:18px;
+	line-height:18px;
+	font-family:Verdana;
+	cursor: pointer;
+
+}
+
+#dialogBox .window .content{
+
+	width:940px;
+	background:#ffffff;
+
+}
 .box_area{
 	
 	width:960px;
@@ -111,7 +155,7 @@ body{
 	display:block;
 	background-image:url(/assert/css/img/images/white_overlay_grad.png);
 	margin-bottom:-50px;
-	margin-top:-49px;
+	margin-top:-47px;
 	position:absolute;
 }
 .short .data{max-height:300px;overflow:hidden;}
@@ -124,11 +168,11 @@ body{
 .box_area_item .attachments .item h1{font-size:14px;color:#333333;margin:0px;padding:0px;}
 .box_area_item .attachments .item p{font-size:12px;color:#222222;font-style:italic;}
 
-.rating{font-size:12px;font-weight:bold;color:#555555;float:left;}
+.rating{font-size:12px;font-weight:bold;color:#555555;float:left;padding-top:5px;}
 .rating span{float:left;}
-.date{font-size:12px;font-weight:bold;color:#555555;float:left;}
+.date{font-size:12px;font-weight:bold;color:#555555;float:left;padding-top:5px;}
 .date span{float:left;}
-.from{font-size:12px;font-weight:bold;color:#555555;float:left;}
+.from{font-size:12px;font-weight:bold;color:#555555;float:left;padding-top:5px;}
 .from a{font-size:12px;font-weight:bold;color:#555555;text-decoration:none;}
 .from span{float:left;}
 
@@ -137,18 +181,30 @@ body{
 	clear:both;
 
 }
-
+#connect_menu{background:#ffffff;padding:20px;border-radius:5px;}
+#connect_menu .title{float:left;font-size:48px;line-height:48px;padding-right:10px;color:#558855;}
+.vk_button{cursor:pointer;float:left;width:48px;height:48px;background-image:url(/assert/css/img/images/vkontakte.png);margin-right:10px;}
+.fb_button{cursor:pointer;float:left;width:48px;height:48px;background-image:url(/assert/css/img/images/facebook.png);margin-right:10px;}
+a.connect{background-image:url(/assert/css/img/images/connect.png);display:block;width:32px;height:32px;}
 </style>
 
 </head>
 <body>
+<div id="dialogBox">
+<div class="shadow"></div>
+<div class="window">
+<div class="close">x</div>
+<div class="content"></div>
+</div>
+</div>
 <a id="top-of-page"></a>
-<div id="wrap" class="clearfix">
+<div id="wrap">
+<div id="header">
+<a href="/connect" class="connect"></a>
+</div>
+{% block content %}{% endblock %}
 
-	<div class="col_12">
-	   {% block content %}{% endblock %}
-	</div>
-
+<div id="footer"></div>
 
 </div><!-- END WRAP -->
 </body></html>

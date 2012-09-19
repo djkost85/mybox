@@ -1,12 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<a href="/connect"><button class="small green col_2">Connect social network</button></a>
-<div id="header"><div id="logo"></div></div>
+
 <!-- -->
 <input type="hidden" id="filter_likes" value="0"/>
 <!-- -->
-<div id="dialogBox"></div>
+
 <div class="box_area">
 <div id="boxes0" class="boxes_column boxes_column0"></div>
 <div id="boxes1" class="boxes_column boxes_column1"></div>
@@ -44,7 +43,11 @@ function loadBoxes(){
 			
 			if( att.type == 'photo' ){
 				attachments = attachments + '<div class="item photo">';
-                attachments = attachments + '<div class="full"><img src="'+att.src+'"/><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+				if( item.from == 'facebook.com' ){
+					attachments = attachments + '<div class="full"><a href=""><img src="'+att.image+'"/></a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+				}else{
+					attachments = attachments + '<div class="full"><img src="'+att.src+'"/><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+				}
 				attachments = attachments + '<div class="small"><img src="'+att.image+'"/></div>';
 				attachments = attachments + '</div>';
 			}
@@ -89,7 +92,7 @@ function loadBoxes(){
 	  
       itemData = itemData + '<div class="date"><span class="ui-icon ui-icon-clock"></span>'+date+'</div>';
 	  
-	  itemData = itemData + '<div class="from"><span class="ui-icon ui-icon-link"></span><a href="http://item.from">'+item.from+'</a></div>';
+	  itemData = itemData + '<div class="from"><span class="ui-icon ui-icon-link"></span><a href="http://'+item.from+'">'+item.from+'</a></div>';
 	  
       itemData = itemData + '<div class="box_area_clear"></div></div>';
 
@@ -104,10 +107,13 @@ function loadBoxes(){
 
 }
 function showFullBox(id){
-	$('#dialogBox').html($('#box_'+id).html());
-	$('#dialogBox').dialog( { modal: true, width: 900, title: $('#box_'+id+' div.data h1.title').html() } );
+	$('#dialogBox div.window div.content').html($('#box_'+id).html());
+	$('#dialogBox div.window').css('top', parseInt($('body').scrollTop())+20+'px');
+	$('#dialogBox').show();
+	$('#dialogBox div.shadow').click(function(){$('#dialogBox').hide();});
+	$('#dialogBox div.window div.close').click(function(){$('#dialogBox').hide();});
 }
 loadBoxes();
 </script>
-<div id="footer"></div>
+
 {% endblock %}

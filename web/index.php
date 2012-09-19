@@ -31,9 +31,10 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 
      $cfg->set_model_directory(__DIR__.'/../models');
      $cfg->set_connections(array(
-     'prod' => 'mysql://'.$_SERVER["DB1_USER"].':'.$_SERVER["DB1_PASS"].'@'.$_SERVER["DB1_HOST"].'/'.$_SERVER["DB1_NAME"]//,'dev' => 'mysql://root@localhost/mybox'
+     'prod' => 'mysql://'.$_SERVER["DB1_USER"].':'.$_SERVER["DB1_PASS"].'@'.$_SERVER["DB1_HOST"].'/'.$_SERVER["DB1_NAME"],
+	 'dev' => 'mysql://root@localhost/mybox'
      ));
-     $cfg->set_default_connection('prod');
+     $cfg->set_default_connection('dev');
 
 });
 
@@ -94,7 +95,7 @@ $app->get('/api/update', function () use ($app) {
 
     $c = new box\api();
 	
-    $update_time_preiod = 100;
+    $update_time_preiod = 0;
 	
 	$update_time = time() - $update_time_preiod;
 	
@@ -129,7 +130,13 @@ $app->get('/login_fb', function () use ($app) {
     $c = new auth\facebook();
     
     $token = $c->getToken();
-
+	
+	if( $token == null ){
+	
+		return new RedirectResponse( BASE_URL.'/connect' );
+	
+	}
+	
     if( $app['user'] == null ){
 
 		$user = \box\user::find_by_fbid($c->user['uid']);
@@ -167,7 +174,13 @@ $app->get('/login_vk', function () use ($app) {
     $c = new auth\vk();
 
     $token = $c->getToken();
-
+	
+	if( $token == null ){
+	
+		return new RedirectResponse( BASE_URL.'/connect' );
+	
+	}
+	
     if( $app['user'] == null ){
 
 		$user = \box\user::find_by_vkid( $c->user['uid'] );

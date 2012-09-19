@@ -9,7 +9,7 @@ class facebook {
   public function getToken() {
 
 
-	$app_id = FACEBOOK_APP_ID;
+		$app_id = FACEBOOK_APP_ID;
         $app_secret = FACEBOOK_APP_SECRET;
 
         $my_url = 'http://mybox.pagodabox.com/login_fb';
@@ -19,6 +19,12 @@ class facebook {
             return null;
         }
         
+		if( ! isset( $_REQUEST["code"] ) ){
+		
+			return null;
+		
+		}
+		
         $code = $_REQUEST["code"];
         
         $token_url = "https://graph.facebook.com/oauth/access_token?"
