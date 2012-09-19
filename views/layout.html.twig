@@ -4,45 +4,134 @@
 <title>MyBox</title>
 <meta charset="UTF-8">
 <meta name="description" content="" />
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="/assert/jquery/js/jquery-1.8.0.min.js"></script> 
+<script type="text/javascript" src="/assert/jquery/js/jquery-ui-1.8.23.custom.min.js"></script>  
 <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <script type="text/javascript" src="/assert/js/prettify.js"></script>                                   <!-- PRETTIFY -->
 <script type="text/javascript" src="/assert/js/kickstart.js"></script>                                  <!-- KICKSTART -->
-<link rel="stylesheet" type="text/css" href="/assert/css/kickstart.css" media="all" />                  <!-- KICKSTART -->
+<link rel="stylesheet" type="text/css" href="/assert/jquery/css/ui-lightness/jquery-ui-1.8.23.custom.css" media="all" />                  <!-- KICKSTART -->
+<link rel="stylesheet" type="text/css" href="/assert/style.css" media="all" /> 
 <link rel="stylesheet" type="text/css" href="/assert/style.css" media="all" /> 
 <!-- CUSTOM STYLES -->
 
 <style type="text/css">
+body{
+	background-image:url(/assert/css/img/images/bg.jpg);
+	background-attachment:fixed;
+}
+#header{
+	background:#000000;
+	text-align:center;
+	width:960px;
+	background-image:url(/assert/css/img/images/header_bg.png);
+	background-position:left bottom;
+	background-repeat:repeat-x;
+	
+}
+#logo{
+	background-image:url(/assert/css/img/images/logo.png);
+	width:128px;
+	height:128px;
+}
+#header h1{
+	font-family:Times New Roman;
+	font-size:48px;
+}
+#footer{
+	margin:0px;
+	border-style:solid;
+	width:920px;
+	border:0;
+	background:#000000;
+	color:#ffffff;
+	background-image:url(/assert/css/img/images/footer_bg.png);
+	background-position:left top;
+	background-repeat:repeat-x;
+	padding:20px;
+	height:50px;
+	
+	
+}
+#footer a{color:#ffffff;}
+#dialogBox{display:none;background:#ffffff;}
+#dialogBox .data h1.title{display:none;}
+#dialogBox .data .image{display:none;}
+#dialogBox .attachments{display:block;}
+#dialogBox .attachments .item{display:inline-block;overflow:hidden;margin:5px;}
+#dialogBox .attachments .item .full{display:block;}
+#dialogBox .attachments .item .small{display:none;}
+#dialogBox .overlay{display:none;}
+#dialogBox h1{
+	font-size:24px;
+	line-height:32px;
+	color:#000000;
+	font-style:italic;
+	font-family:Times New Roman;
+}
 
 .box_area{
-
-	width:930px;
+	
+	width:960px;
     margin:0 auto;
-
+	background:#555555;
 
 }
 
 .boxes_column{
+	
 	float:left;
-	width:310px;
+	width:320px;
 	overflow:hidden;
+	
 }
+
+
 .box_area_item{
 
-        width:280px;
-        padding:10px;
-        margin:5px;
-
+	width:290px;
+	padding:10px;
+	margin:5px 5px 10px 5px;;
+	cursor:pointer;
+	border-width:0px 0px 0px 0px;
+	border-color:#555555;
+	border-style:solid;
+	background:#ffffff;
+	border-radius:10px;
 }
-.box_area_item h1{font-size:18px;font-family:Times New Roman;margin:5px 0px 5px 0px;line-height:24px;}
-.box_area_item p{color:#000000;font-size:14px;font-family:Verdana;}
-.box_area_item span{font-weight:bold;font-size:16px;}
-.box_area_item .attachments{}
+.box_area_item h1{
+	font-size:18px;
+	font-family:Times New Roman;
+	margin:5px 0px 5px 0px;
+	line-height:24px;
+}
+.full .overlay{display:none;}
+.short .overlay{
+	width:280px;
+	height:50px;
+	display:block;
+	background-image:url(/assert/css/img/images/white_overlay_grad.png);
+	margin-bottom:-50px;
+	margin-top:-49px;
+	position:absolute;
+}
+.short .data{max-height:300px;overflow:hidden;}
+.short .data .image{border-radius:5px;overflow:hidden;float:left;margin-right:5px;margin-bottom:5px;}
+
+.box_area_item .attachments{display:none;}
 .box_area_item .attachments .item{display:inline-block;overflow:hidden;margin:5px;}
 .box_area_item .attachments .item .full{display:none;}
+.box_area_item .attachments .item .small{border-radius:5px;overflow:hidden;}
 .box_area_item .attachments .item h1{font-size:14px;color:#333333;margin:0px;padding:0px;}
 .box_area_item .attachments .item p{font-size:12px;color:#222222;font-style:italic;}
-.box_area_item .rate{font-size:16px;font-weight:bold;color:#55ff00;}
+
+.rating{font-size:12px;font-weight:bold;color:#555555;float:left;}
+.rating span{float:left;}
+.date{font-size:12px;font-weight:bold;color:#555555;float:left;}
+.date span{float:left;}
+.from{font-size:12px;font-weight:bold;color:#555555;float:left;}
+.from a{font-size:12px;font-weight:bold;color:#555555;text-decoration:none;}
+.from span{float:left;}
+
 .box_area_clear{
 
 	clear:both;

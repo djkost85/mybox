@@ -2,14 +2,15 @@
 
 {% block content %}
 <a href="/connect"><button class="small green col_2">Connect social network</button></a>
-<h1>MyBoxes</h1>
+<div id="header"><div id="logo"></div></div>
 <!-- -->
 <input type="hidden" id="filter_likes" value="0"/>
 <!-- -->
+<div id="dialogBox"></div>
 <div class="box_area">
-<div id="boxes0" class="boxes_column"></div>
-<div id="boxes1" class="boxes_column"></div>
-<div id="boxes2" class="boxes_column"></div>
+<div id="boxes0" class="boxes_column boxes_column0"></div>
+<div id="boxes1" class="boxes_column boxes_column1"></div>
+<div id="boxes2" class="boxes_column boxes_column2"></div>
 <div class="box_area_clear"></div>
 </div>
 
@@ -20,14 +21,8 @@ function loadBoxes(){
     $.each(data, function(i,item){
 
       console.log(item);
-
-      var date = new Date(item.date * 1000);
-
-      var itemData = '<div class="box_area_item">';
-
-
-	  if( item.title != '' ) itemData = itemData + '<h1>'+item.title+'</h1>';
-      if( item.text != '' ) itemData = itemData + '<p>'+item.text+'</p>';
+	  
+	  var image = '';
 	  
 	  var attachments = '';
 	  
@@ -41,54 +36,78 @@ function loadBoxes(){
 			
 			if( att.type == 'video' ){
 			    attachments = attachments + '<div class="item">';
-				attachments = attachments + '<div class="full">'+att.src+'</div>';
-				attachments = attachments + '<img src="'+att.image+'"/>';
-				attachments = attachments + '<h1>'+att.title+'<h1>';
-				attachments = attachments + '<p>'+att.description+'<p>';
+				attachments = attachments + '<div class="full"><a href="'+att.src+'" target="_blank"><img src="'+att.image+'"/></a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+				attachments = attachments + '<div class="small"><img src="'+att.image+'"/></div>';
 			    attachments = attachments + '</div>';
+				
 			}
 			
 			if( att.type == 'photo' ){
-				attachments = attachments + '<div class="item">';
-                attachments = attachments + '<div class="full">'+att.src+'</div>';
-				attachments = attachments + '<img src="'+att.image+'"/>';
-				attachments = attachments + '<h1>'+att.title+'<h1>';
-				attachments = attachments + '<p>'+att.description+'<p>';
+				attachments = attachments + '<div class="item photo">';
+                attachments = attachments + '<div class="full"><img src="'+att.src+'"/><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+				attachments = attachments + '<div class="small"><img src="'+att.image+'"/></div>';
 				attachments = attachments + '</div>';
 			}
 			
 			if( att.type == 'link' ){
-				attachments = attachments + '<div class="item">';
-				attachments = attachments + '<a href="'+att.src+'">'+att.src+'</a>';
-				attachments = attachments + '<h1>'+att.title+'<h1>';
-				attachments = attachments + '<p>'+att.description+'<p>';
+				attachments = attachments + '<div class="item link">';
+				attachments = attachments + '<div class="full"><a href="'+att.src+'"  target="_blank">'+att.src+'</a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+				attachments = attachments + '<div class="small"><a href="'+att.src+'"  target="_blank">'+att.src+'</a></div>';
 				attachments = attachments + '</div>';
-			}		
+			}	
+
+			if( image == '' && att.image !='' ){
+			
+				image = att.image;
+			
+			}
 		}
 		
 		attachments = attachments + '<div class="box_area_clear"></div></div>';
 	  
 	  }
 	  
+      var date = $.datepicker.formatDate('yy/mm/dd', new Date(item.date * 1000));
+
+      var itemData = '<div class="box_area_item short" id="box_'+item.id+'" onClick="showFullBox(\''+item.id+'\');">';
+
+      itemData = itemData + '<div class="data">';
+	  
+	  if( item.title != '' && item.title!='null' ) itemData = itemData + '<h1 class="title">'+item.title+'</h1>';
+	  
+	  if( image != '' ) itemData = itemData + '<div class="image"><img src="'+image+'"/></div>';
+	  
+	  if( item.text != '' && item.text!='null' ) itemData = itemData + '<div class="text">'+item.text+'</div>';
+	  
       if( attachments != '' ) itemData = itemData + attachments;
 	  
-      itemData = itemData + '<div class="rate">'+item.likes+'</div>';
+	  itemData = itemData + '<div class="box_area_clear"></div></div>';
 	  
-      itemData = itemData + '<div class="date">'+date.toString('yyyy/MM/dd'); +'</div>';
+	  itemData = itemData + '<div class="overlay"></div>';
 	  
-	  itemData = itemData + '<div class="from"> '+item.from+'</div>';
+      itemData = itemData + '<div class="rating"><span class="ui-icon ui-icon-heart"></span>'+item.likes+'</div>';
+	  
+      itemData = itemData + '<div class="date"><span class="ui-icon ui-icon-clock"></span>'+date+'</div>';
+	  
+	  itemData = itemData + '<div class="from"><span class="ui-icon ui-icon-link"></span><a href="http://item.from">'+item.from+'</a></div>';
 	  
       itemData = itemData + '<div class="box_area_clear"></div></div>';
 
 	  var columnIndex = i%3;
 	  
       $('#boxes'+columnIndex).append(itemData);
+	 
 	  
     });
   });
+  
+
+}
+function showFullBox(id){
+	$('#dialogBox').html($('#box_'+id).html());
+	$('#dialogBox').dialog( { modal: true, width: 900, title: $('#box_'+id+' div.data h1.title').html() } );
 }
 loadBoxes();
 </script>
-
-
+<div id="footer"></div>
 {% endblock %}
