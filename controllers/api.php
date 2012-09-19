@@ -5,7 +5,12 @@ class api {
 
   public function getPosts( $app ) {
 	
-	//$this->setPosts($app);
+
+	if( $app['user']->lastupdate == 0 ){
+	
+		$this->setPosts( $app['user'] );
+		
+	}
 	
 	$likes = $app['request']->get( 'likes', 0 );
 	
