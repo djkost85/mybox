@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `from` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `vkid` varchar(255) NOT NULL,

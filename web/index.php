@@ -31,10 +31,9 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 
      $cfg->set_model_directory(__DIR__.'/../models');
      $cfg->set_connections(array(
-     //'prod' => 'mysql://'.$_SERVER["DB1_USER"].':'.$_SERVER["DB1_PASS"].'@'.$_SERVER["DB1_HOST"].'/'.$_SERVER["DB1_NAME"],
- 'dev' => 'mysql://root@localhost/mybox'
+     'prod' => 'mysql://'.$_SERVER["DB1_USER"].':'.$_SERVER["DB1_PASS"].'@'.$_SERVER["DB1_HOST"].'/'.$_SERVER["DB1_NAME"]//,'dev' => 'mysql://root@localhost/mybox'
      ));
-     $cfg->set_default_connection('dev');
+     $cfg->set_default_connection('prod');
 
 });
 
