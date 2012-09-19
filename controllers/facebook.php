@@ -38,6 +38,7 @@ class facebook {
 
         $this->user =  $response['data'][0];
 
+		
         return $params['access_token'];
   
   }

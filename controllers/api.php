@@ -3,8 +3,33 @@ namespace box;
 
 class api {
 
-
   public function getPosts( $app ) {
+	
+	//$this->setPosts($app);
+	
+	$likes = $app['request']->get( 'likes', 0 );
+	
+	$posts =array();
+	
+	$options = array('conditions' => array( 'user = ? AND likes > ?' , $app['user']->id, $likes ), 'order' => 'date desc', 'limit'=>100);
+	
+	$postList = \box\post::find('all',  $options );
+	
+	$lc = count( $postList );
+	
+	for( $i = 0; $i < $lc ; $i++){
+		
+		$posts[] = $postList[$i]->attributes();
+		unset( $postList[$i] );
+
+		$posts[ count( $posts ) - 1 ]['attachments'] = json_decode( $posts[ count( $posts ) - 1 ]['attachments'], true );
+	}
+	
+	return $posts;
+	
+  }
+  
+  public function setPosts( $user ) {
      
      $posts = array();
      
@@ -12,36 +37,50 @@ class api {
 
      $fb_posts = array();
 
-     if( $app['user'] == null ) return array();
+     if( $user == null ) return array();
 
-     if( ! empty( $app['user']->vkId ) ){
+     if( ! empty( $user->vkid ) ){
    
          //$vk = $app['session']->get('vk');
 
-         $vkP = new \provider\vkProvider( $app['user']->vkToken );
+         $vkP = new \provider\vkProvider( $user->vktoken );
 
          $vk_posts = $vkP->getPosts();
 
 
      }
 
-     if( ! empty( $app['user']->fbId ) ){
+     if( ! empty( $user->fbid ) ){
      
          //$fb = $app['session']->get('facebook');
 
-         $fbP = new \provider\facebookProvider( $app['user']->fbToken );
+         $fbP = new \provider\facebookProvider( $user->fbtoken );
          
          $fb_posts = $fbP->getPosts();
      
      }
 
-     $app['user']->lastUpdate = time();
+     $postList = array_merge( $fb_posts, $vk_posts );
+	 
+	 foreach( $postList as $k=>$post ){
+		
+		$posts[ $post->getId() ] = $post;
+	 
+	 }
+	 
+	 foreach( $posts as $k=>$post ){
+	 
+		$post->userId = $user->id;
+		
+		if( null ==  \box\post::find_by_id( $post->getId() ) ){
+		
+			$post = new \box\post( $post->getArray() );
+			
+			$post->save();
+			
+		}
 
-     $app['user']->save();
-
-     $posts = array_merge( $fb_posts, $vk_posts );
-
-     return $posts;
+	 }
 
   
   }

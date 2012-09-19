@@ -1,8 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<a href="http://mybox.pagodabox.com/connect"><button class="medium green col_4">Connect social network</button></a>
-    <h1>Boxes</h1>
+<a href="/connect"><button class="small green col_2">Connect social network</button></a>
+<h1>MyBoxes</h1>
+<!-- -->
+<input type="hidden" id="filter_likes" value="0"/>
+<!-- -->
 <div class="box_area">
 <div id="boxes0" class="boxes_column"></div>
 <div id="boxes1" class="boxes_column"></div>
@@ -11,7 +14,8 @@
 </div>
 
 <script type="text/javascript">
-$.getJSON("/boxes",{},
+function loadBoxes(){
+ $.getJSON("/boxes",{'likes':$('#filter_likes').val()},
   function(data) {
     $.each(data, function(i,item){
 
@@ -21,9 +25,9 @@ $.getJSON("/boxes",{},
 
       var itemData = '<div class="box_area_item">';
 
-      itemData = itemData + '<i>At '+date.format('dd/mm/yyyy H:i:s')+' from '+item.from+'</i>';
 
-      itemData = itemData + '<p>'+item.text+'</p>';
+	  if( item.title != '' ) itemData = itemData + '<h1>'+item.title+'</h1>';
+      if( item.text != '' ) itemData = itemData + '<p>'+item.text+'</p>';
 	  
 	  var attachments = '';
 	  
@@ -66,17 +70,24 @@ $.getJSON("/boxes",{},
 	  
 	  }
 	  
-      itemData = itemData + attachments;
+      if( attachments != '' ) itemData = itemData + attachments;
 	  
       itemData = itemData + '<div class="rate">'+item.likes+'</div>';
-
-      itemData = itemData + '</div>';
+	  
+      itemData = itemData + '<div class="date">'+date.toString('yyyy/MM/dd'); +'</div>';
+	  
+	  itemData = itemData + '<div class="from"> '+item.from+'</div>';
+	  
+      itemData = itemData + '<div class="box_area_clear"></div></div>';
 
 	  var columnIndex = i%3;
 	  
       $('#boxes'+columnIndex).append(itemData);
+	  
     });
   });
+}
+loadBoxes();
 </script>
 
 

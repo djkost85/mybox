@@ -8,7 +8,7 @@ class vk {
   public function getToken() {
 
 
-	$app_id = VK_APP_ID;
+		$app_id = VK_APP_ID;
         $app_secret = VK_APP_SECRET;
 
         $my_url = 'http://mybox.pagodabox.com/login_vk';
@@ -31,15 +31,15 @@ class vk {
         
         $query = 'users.get?uids=' . $params->user_id . '&fields=uid,first_name,last_name';
         
-        $url = 'https://api.vk.com/method/' . urlencode($query)
+        $url = 'https://api.vk.com/method/' . $query
         
              .'&access_token=' . $params->access_token;
 
         $response = $this->cURL( $url );
+		
+        $response = \json_decode( $response, true );
 
-        $response = json_decode( $response, true );
-
-        $this->user = $response['response'][0];
+        $this->user = $response['response'][0];	
 
         return $params->access_token;
   

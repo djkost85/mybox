@@ -42,7 +42,7 @@ class vkProvider {
 
          $data = $this->setItem( $item );
 		 
-		 if( $data!=null ) $posts[] = new \box\post( $data );
+		 if( $data!=null ) $posts[] = new \box\boxPost( $data );
      
     }
 
