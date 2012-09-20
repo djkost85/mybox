@@ -20,9 +20,13 @@ class api {
 	
 	$page = $page < 0 ? 0 : $page;
 	
+	$limit = 30;
+	
+	$offset = $limit*$page;
+	
 	$posts =array();
 	
-	$options = array('conditions' => array( 'user = ? AND likes > ?' , $app['user']->id, $likes ), 'order' => 'date desc', 'limit'=>30);
+	$options = array('conditions' => array( 'user = ? AND likes > ?' , $app['user']->id, $likes ), 'order' => 'date desc', 'limit' => $limit, 'offset' => $offset );
 	
 	$postList = \box\post::find('all',  $options );
 	

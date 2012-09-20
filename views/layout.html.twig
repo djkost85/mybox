@@ -153,7 +153,7 @@ body{
 }
 .full .overlay{display:none;}
 .short .overlay{
-	width:280px;
+	width:290px;
 	height:50px;
 	display:block;
 	background-image:url(/assert/css/img/images/white_overlay_grad.png);
@@ -163,7 +163,8 @@ body{
 }
 .short .data{max-height:300px;overflow:hidden;}
 .short .data .image{border-radius:5px;overflow:hidden;float:left;margin-right:5px;margin-bottom:5px;}
-
+.short .data .imagecenter{width:290px;text-align:center;align:center;}
+.short .data .imagecenter{align:center;display:inline-block;}
 .box_area_item .attachments{display:none;}
 .box_area_item .attachments .item{display:inline-block;overflow:hidden;margin:5px;}
 .box_area_item .attachments .item .full{display:none;}
@@ -255,11 +256,11 @@ mybox = {
 
 		  itemData = itemData + '<div class="data">';
 		  
-		  if( item.title != '' && item.title!='null' ) itemData = itemData + '<h1 class="title">'+item.title+'</h1>';
+		  if( item.title != '' && item.title!=null ) itemData = itemData + '<h1 class="title">'+item.title+'</h1>';
 		  
-		  if( image != '' ) itemData = itemData + '<div class="image"><img src="'+image+'"/></div>';
+		  if( image != '' ) itemData = itemData + '<div class="image'+( item.text == '' ? ' imagecenter' : '' )+'"><img src="'+image+'"/></div>';
 		  
-		  if( item.text != '' && item.text!='null' ) itemData = itemData + '<div class="text">'+item.text+'</div>';
+		  if( item.text != '') itemData = itemData + '<div class="text">'+item.text+'</div>';
 		  
 		  if( attachments != '' ) itemData = itemData + attachments;
 		  
