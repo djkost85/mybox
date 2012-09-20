@@ -85,11 +85,12 @@ body{
 
 #dialogBox .window{
 
-	width:940px;
+	width:900px;
 	background:#ffffff;
 	padding:30px;
 	position:absolute;
 	left:50%;
+	top:20px;
 	margin-left:-480px;
 	z-index:10;
 
@@ -187,7 +188,109 @@ body{
 .fb_button{cursor:pointer;float:left;width:48px;height:48px;background-image:url(/assert/css/img/images/facebook.png);margin-right:10px;}
 a.connect{background-image:url(/assert/css/img/images/connect.png);display:block;width:32px;height:32px;}
 </style>
+<script type="text/javascript">
+function loadBoxes(){
+ $.getJSON("/boxes",{'likes':$('#filter_likes').val()},
+  function(data) {
+    $.each(data, function(i,item){
 
+      console.log(item);
+	  
+	  var image = '';
+	  
+	  var attachments = '';
+	  
+	  if( item.attachments.length > 0 ){
+	  
+		attachments = attachments + '<div class="attachments">';
+		
+		for( index in item.attachments){
+		
+			var att = item.attachments[index];
+			
+			if( att.type == 'video' ){
+			    attachments = attachments + '<div class="item">';
+				attachments = attachments + '<div class="full"><a href="'+att.src+'" target="_blank"><img src="'+att.image+'"/></a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+				attachments = attachments + '<div class="small"><img src="'+att.image+'"/></div>';
+			    attachments = attachments + '</div>';
+				
+			}
+			
+			if( att.type == 'photo' ){
+				attachments = attachments + '<div class="item photo">';
+				if( item.from == 'facebook.com' ){
+					attachments = attachments + '<div class="full"><a href=""><img src="'+att.image+'"/></a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+				}else{
+					attachments = attachments + '<div class="full"><img src="'+att.src+'"/><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+				}
+				attachments = attachments + '<div class="small"><img src="'+att.image+'"/></div>';
+				attachments = attachments + '</div>';
+			}
+			
+			if( att.type == 'link' ){
+				attachments = attachments + '<div class="item link">';
+				attachments = attachments + '<div class="full"><a href="'+att.src+'"  target="_blank">'+att.src+'</a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+				attachments = attachments + '<div class="small"><a href="'+att.src+'"  target="_blank">'+att.src+'</a></div>';
+				attachments = attachments + '</div>';
+			}	
+
+			if( image == '' && att.image !='' ){
+			
+				image = att.image;
+			
+			}
+		}
+		
+		attachments = attachments + '<div class="box_area_clear"></div></div>';
+	  
+	  }
+	  
+      var date = $.datepicker.formatDate('yy/mm/dd', new Date(item.date * 1000));
+
+      var itemData = '<div class="box_area_item short" id="box_'+item.id+'" onClick="showFullBox(\''+item.id+'\');">';
+
+      itemData = itemData + '<div class="data">';
+	  
+	  if( item.title != '' && item.title!='null' ) itemData = itemData + '<h1 class="title">'+item.title+'</h1>';
+	  
+	  if( image != '' ) itemData = itemData + '<div class="image"><img src="'+image+'"/></div>';
+	  
+	  if( item.text != '' && item.text!='null' ) itemData = itemData + '<div class="text">'+item.text+'</div>';
+	  
+      if( attachments != '' ) itemData = itemData + attachments;
+	  
+	  itemData = itemData + '<div class="box_area_clear"></div></div>';
+	  
+	  itemData = itemData + '<div class="overlay"></div>';
+	  
+      itemData = itemData + '<div class="rating"><span class="ui-icon ui-icon-heart"></span>'+item.likes+'</div>';
+	  
+      itemData = itemData + '<div class="date"><span class="ui-icon ui-icon-clock"></span>'+date+'</div>';
+	  
+	  itemData = itemData + '<div class="from"><span class="ui-icon ui-icon-link"></span><a href="http://'+item.from+'">'+item.from+'</a></div>';
+	  
+      itemData = itemData + '<div class="box_area_clear"></div></div>';
+
+	  var columnIndex = i%3;
+	  
+      $('#boxes'+columnIndex).append(itemData);
+	 
+	  
+    });
+  });
+  
+
+}
+function showFullBox(id){
+	$('#dialogBox div.window div.content').html($('#box_'+id).html());
+	//$('#dialogBox div.window').css('top', parseInt($('body').scrollTop())+20+'px');
+	$('#wrap').hide();
+	$('#dialogBox').show();
+	$('#dialogBox div.shadow').click(function(){$('#dialogBox').hide();});
+	$('#dialogBox div.window div.close').click(function(){$('#wrap').show();$('#dialogBox').hide();});
+}
+
+</script>
 </head>
 <body>
 <div id="dialogBox">
