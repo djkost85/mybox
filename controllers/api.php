@@ -12,11 +12,17 @@ class api {
 		
 	}
 	
-	$likes = $app['request']->get( 'likes', 0 );
+	$likes = intval( $app['request']->get( 'likes', 0 ) );
+	
+	$likes = $likes < 0 ? 0 : $likes;
+	
+	$page = intval( $app['request']->get( 'page', 0 ) );
+	
+	$page = $page < 0 ? 0 : $page;
 	
 	$posts =array();
 	
-	$options = array('conditions' => array( 'user = ? AND likes > ?' , $app['user']->id, $likes ), 'order' => 'date desc', 'limit'=>100);
+	$options = array('conditions' => array( 'user = ? AND likes > ?' , $app['user']->id, $likes ), 'order' => 'date desc', 'limit'=>30);
 	
 	$postList = \box\post::find('all',  $options );
 	

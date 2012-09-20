@@ -194,7 +194,7 @@ a.connect{background-image:url(/assert/css/img/images/connect.png);display:block
 mybox = {
 	 scrollTop: 0,
 	 load: function(){
-	 $.getJSON("/boxes",{'likes':$('#filter_likes').val()},
+	 $.getJSON("/boxes",{'likes':$('#mybox_filter_likes').val(), 'page':$('#mybox_page').val()},
 	  function(data) {
 		$.each(data, function(i,item){
 
@@ -223,7 +223,7 @@ mybox = {
 				if( att.type == 'photo' ){
 					attachments = attachments + '<div class="item photo">';
 					if( item.from == 'facebook.com' ){
-						attachments = attachments + '<div class="full"><a href=""><img src="'+att.image+'"/></a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+						attachments = attachments + '<div class="full"><a href="'+att.src+'"><img src="'+att.image+'"/></a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
 					}else{
 						attachments = attachments + '<div class="full"><img src="'+att.src+'"/><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
 					}
@@ -299,6 +299,10 @@ mybox = {
 </script>
 </head>
 <body>
+<!-- boxes data -->
+<input type="hidden" id="mybox_filter_likes" value="0"/>
+<input type="hidden" id="mybox_page" value="0"/>
+<!-- -->
 <div id="loading"></div>
 <div id="dialogBox">
 <div class="window">

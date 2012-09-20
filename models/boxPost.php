@@ -41,11 +41,8 @@ class boxPost{
 		
 			$title = mb_substr( $title, 0, 117 ).'...';
 			
-		}else{
-			
-			$this->text ='';
-			
 		}
+		
 		return array(	
 		
 				'id' => $this->getId(),
