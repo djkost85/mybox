@@ -78,7 +78,7 @@ class vk {
 
         } else {
 
-            return \curl_error($ch);
+            return null;
 
         }
         

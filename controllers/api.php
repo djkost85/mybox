@@ -64,7 +64,11 @@ class api {
          $fb_posts = $fbP->getPosts();
      
      }
-
+	 
+	 $vk_posts = ( $vk_posts == null ) ?  array() : $vk_posts;
+	 
+	 $fb_posts = ( $fb_posts == null ) ?  array() : $fb_posts;
+	  
      $postList = array_merge( $fb_posts, $vk_posts );
 	 
 	 foreach( $postList as $k=>$post ){

@@ -44,6 +44,12 @@ class facebookProvider {
    
     $result = \json_decode( $this->cURL( $fql_query_url ), true );            
 
+	if( ! isset( $result['data'] )  ){
+	
+		return null;
+	
+	}
+	
     $posts = array();
 
     foreach( $result['data'] as $k=>$item){
@@ -176,7 +182,7 @@ class facebookProvider {
 
         } else {
 
-            return \curl_error($ch);
+            return null;
 
         }
         

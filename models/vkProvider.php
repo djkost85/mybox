@@ -37,7 +37,13 @@ class vkProvider {
                      .'&count=100&access_token=' . $this->token;
     
     $result = \json_decode( $this->cURL( $query_url ), true ); 
-
+	
+	if( ! isset( $result['response']['items'] ) ){
+	
+		return null;
+	
+	}
+	
     foreach( $result['response']['items'] as $k=>$item){
 
          $data = $this->setItem( $item );
@@ -192,7 +198,7 @@ class vkProvider {
 
         } else {
 
-            return \curl_error($ch);
+            return null;
 
         }
         

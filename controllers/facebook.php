@@ -76,7 +76,7 @@ class facebook {
 
         } else {
 
-            return \curl_error($ch);
+            return null;
 
         }
         
