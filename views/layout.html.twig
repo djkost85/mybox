@@ -194,8 +194,12 @@ a.connect{background-image:url(/assert/css/img/images/connect.png);display:block
 <script type="text/javascript">
 mybox = {
 	 scrollTop: 0,
+	 page: 0,
+	 likes: 0,
 	 load: function(){
-	 $.getJSON("/boxes",{'likes':$('#mybox_filter_likes').val(), 'page':$('#mybox_page').val()},
+	 mybox.page = $('#mybox_page').val();
+	 mybox.likes = $('#mybox_likes').val();
+	 $.getJSON("/boxes",{'likes': mybox.likes, 'page': mybox.page},
 	  function(data) {
 		$.each(data, function(i,item){
 
@@ -280,9 +284,7 @@ mybox = {
 		  
 		  $('#boxes'+columnIndex).append(itemData);
 		 
-		  $('#loading').hide();
-		  
-		  $('#wrap').show();
+		  mybox.loadingOff();  
 		  
 		});
 	  });
@@ -294,6 +296,14 @@ mybox = {
 		mybox.scrollTop = $(window).scrollTop();
 		$('#wrap').hide(0, function(){ $('#dialogBox').show(0); } );
 		$('#dialogBox div.window div.close').click(function(){$('#dialogBox').hide(0, function(){ $('#wrap').show( 0, function(){ $(window).scrollTop( mybox.scrollTop ); } ); });});
+	},
+	loadingOff: function(){
+		$('#loading').hide();
+		$('#wrap').show();
+	},
+	loadingOn: function(){
+		$('#wrap').hide();
+		$('#loading').show();
 	}
 }
 
@@ -301,7 +311,7 @@ mybox = {
 </head>
 <body>
 <!-- boxes data -->
-<input type="hidden" id="mybox_filter_likes" value="0"/>
+<input type="hidden" id="mybox_likes" value="0"/>
 <input type="hidden" id="mybox_page" value="0"/>
 <!-- -->
 <div id="loading"></div>
