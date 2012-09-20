@@ -78,17 +78,16 @@ body{
 	width:100%;
 	height:100%;
 	background:#000000;
-	opacity:0.5;
 	position:fixed;
+	overflow:auto;
 	z-index:9;
+	background-image:url(/assert/css/img/images/shadow_bg.png);
 }
-
 #dialogBox .window{
 
 	width:900px;
 	background:#ffffff;
 	padding:30px;
-	position:absolute;
 	left:50%;
 	top:20px;
 	margin-left:-480px;
@@ -286,7 +285,7 @@ function showFullBox(id){
 	//$('#dialogBox div.window').css('top', parseInt($('body').scrollTop())+20+'px');
 	$('#wrap').hide();
 	$('#dialogBox').show();
-	$('#dialogBox div.shadow').click(function(){$('#dialogBox').hide();});
+	$('#dialogBox div.shadow').click(function(){$('#wrap').show();$('#dialogBox').hide();}});
 	$('#dialogBox div.window div.close').click(function(){$('#wrap').show();$('#dialogBox').hide();});
 }
 
