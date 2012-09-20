@@ -42,8 +42,6 @@ class boxPost{
 			$title = mb_substr( $title, 0, 117 ).'...';
 			
 		}else{
-		
-			$title = $this->text;
 			
 			$this->text ='';
 			
