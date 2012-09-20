@@ -26,7 +26,7 @@ class api {
 	
 	$posts =array();
 	
-	$options = array('conditions' => array( 'user = ? AND likes > ?' , $app['user']->id, $likes ), 'order' => 'date desc', 'limit' => $limit, 'offset' => $offset );
+	$options = array('conditions' => array( 'user = ? AND likes > ?' , $app['user']->id, $likes ), 'order' => 'date desc, likes desc', 'limit' => $limit, 'offset' => $offset );
 	
 	$postList = \box\post::find('all',  $options );
 	
