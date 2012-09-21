@@ -169,8 +169,8 @@ body{
 .box_area_item .attachments .item{display:inline-block;overflow:hidden;margin:5px;}
 .box_area_item .attachments .item .full{display:none;}
 .box_area_item .attachments .item .small{border-radius:5px;overflow:hidden;}
-.box_area_item .attachments .item h1{font-size:14px;color:#333333;margin:0px;padding:0px;}
-.box_area_item .attachments .item p{font-size:12px;color:#222222;font-style:italic;}
+.box_area_item .attachments .item h1{font-size:14px;line-height:18px;color:#333333;margin:0px;padding:0px;}
+.box_area_item .attachments .item p{font-size:12px;line-height:16px;color:#222222;font-style:italic;}
 
 .rating{font-size:12px;font-weight:bold;color:#555555;float:left;padding-top:5px;}
 .rating span{float:left;}
@@ -232,7 +232,7 @@ mybox = {
 					
 					if( att.type == 'video' ){
 						attachments = attachments + '<div class="item">';
-						attachments = attachments + '<div class="full"><a href="'+att.src+'" target="_blank"><img src="'+att.image+'"/></a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+						attachments = attachments + '<div class="full"><a href="'+att.src+'" target="_blank"><img src="'+att.image+'"/></a><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
 						attachments = attachments + '<div class="small"><img src="'+att.image+'"/></div>';
 						attachments = attachments + '</div>';
 						
@@ -241,9 +241,9 @@ mybox = {
 					if( att.type == 'photo' ){
 						attachments = attachments + '<div class="item photo">';
 						if( item.from == 'facebook.com' ){
-							attachments = attachments + '<div class="full"><a href="'+att.src+'"><img src="'+att.image+'"/></a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+							attachments = attachments + '<div class="full"><a href="'+att.src+'"><img src="'+att.image+'"/></a><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
 						}else{
-							attachments = attachments + '<div class="full"><img src="'+att.src+'"/><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+							attachments = attachments + '<div class="full"><img src="'+att.src+'"/><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
 						}
 						attachments = attachments + '<div class="small"><img src="'+att.image+'"/></div>';
 						attachments = attachments + '</div>';
@@ -251,7 +251,7 @@ mybox = {
 					
 					if( att.type == 'link' ){
 						attachments = attachments + '<div class="item link">';
-						attachments = attachments + '<div class="full"><a href="'+att.src+'"  target="_blank">'+att.src+'</a><h1>'+att.title+'<h1><p>'+att.description+'<p></div>';
+						attachments = attachments + '<div class="full"><a href="'+att.src+'"  target="_blank">'+att.src+'</a><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
 						attachments = attachments + '<div class="small"><a href="'+att.src+'"  target="_blank">'+att.src+'</a></div>';
 						attachments = attachments + '</div>';
 					}	

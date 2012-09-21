@@ -35,7 +35,7 @@ class boxPost{
 	
 	public function getArray(){
 	
-		$title = trim( strip_tags( $this->text ) );
+		$title = trim( strip_tags( str_replace( array( "<br>" ,"<br/>" ), " ", $this->text ) );
 		
 		if( mb_strlen( $title ) > 120 ){
 		

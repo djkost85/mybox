@@ -14,9 +14,12 @@ class facebook {
 
         $my_url = 'http://mybox.pagodabox.com/login_fb';
   
-        if(isset($_REQUEST['error_reason'])){
-			die('Facebook auth error!');
+        if( isset( $_REQUEST['error_reason'] ) ){
+		
+			die( 'Facebook auth error!' );
+			
             return null;
+			
         }
         
 		if( ! isset( $_REQUEST["code"] ) ){
