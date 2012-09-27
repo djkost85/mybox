@@ -233,10 +233,9 @@ mybox = {
 	 },
 	 load: function(){
 		
-				  
-		if( mybox.loading || mybox.isEnd ) return 0;
-		
 		$('#box_area_nothing').hide(0);
+		
+		if( mybox.loading || mybox.isEnd ) return 0;
 		
 		mybox.page = parseInt( $('#mybox_page').val() );
 		mybox.likes = parseInt( $('#mybox_likes').val() );
