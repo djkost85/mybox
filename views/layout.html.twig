@@ -9,6 +9,7 @@
 <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <script type="text/javascript" src="/assert/js/prettify.js"></script>                                   <!-- PRETTIFY -->
 <script type="text/javascript" src="/assert/js/kickstart.js"></script>                                  <!-- KICKSTART -->
+<script type="text/javascript" src="/assert/js/waypoints.js"></script>   
 <link rel="stylesheet" type="text/css" href="/assert/jquery/css/ui-lightness/jquery-ui-1.8.23.custom.css" media="all" />                  <!-- KICKSTART -->
 <link rel="stylesheet" type="text/css" href="/assert/style.css" media="all" /> 
 <link rel="stylesheet" type="text/css" href="/assert/style.css" media="all" /> 
@@ -18,9 +19,10 @@
 body{
 	background-image:url(/assert/css/img/images/bg.jpg);
 	background-attachment:fixed;
+	margin-bottom:40px;
 }
 #header{
-	background:#333333;
+	background:#d5d5d5;
 	text-align:center;
 	width:800px;
 	background-image:url(/assert/css/img/images/header_bg.png);
@@ -39,19 +41,20 @@ body{
 	top:0px;
 	left:0px;
 	position:fixed;
+	opacity:0.7;
 	background-image:url(/assert/css/img/images/loading.gif);
 	background-repeat:no-repeat;
 	background-position:center;
+	z-index:999;
 }
-#wrap{width:960px;margin:0 auto;background:#333333;overflow:hidden;display:none;}
-#main{width:920px;margin:0 auto;background:#555555;padding:20px;}
+#wrap{width:960px;margin:0 auto;background:#d5d5d5;overflow:hidden;display:none;}
+#main{width:920px;margin:0 auto;padding:20px;}
 #footer{
 	margin:0px;
-	border-style:solid;
 	width:920px;
 	border:0;
-	background:#333333;
-	color:#ffffff;
+	background:#d5d5d5;
+	color:#333333;
 	background-image:url(/assert/css/img/images/footer_bg.png);
 	background-position:left top;
 	background-repeat:repeat-x;
@@ -120,7 +123,6 @@ body{
 	
 	width:960px;
     margin:0 auto;
-	background:#555555;
 
 }
 
@@ -185,11 +187,29 @@ body{
 	clear:both;
 
 }
-#connect_menu{background:#ffffff;padding:20px;border-radius:5px;}
-#connect_menu .title{float:left;font-size:48px;line-height:48px;padding-right:10px;color:#558855;}
+#connect_menu{padding:20px;}
+#connect_menu .title{float:left;font-size:48px;line-height:48px;padding-right:10px;color:#555555;}
 .vk_button{cursor:pointer;float:left;width:48px;height:48px;background-image:url(/assert/css/img/images/vkontakte.png);margin-right:10px;}
 .fb_button{cursor:pointer;float:left;width:48px;height:48px;background-image:url(/assert/css/img/images/facebook.png);margin-right:10px;}
 a.connect{background-image:url(/assert/css/img/images/connect.png);display:block;width:32px;height:32px;}
+
+#likes-bar{
+	position:fixed;
+	left:0px;
+	top:100%;
+	margin-top:-50px;
+	background:#333333;
+	width:100%;
+	height:30px;
+	padding:10px;
+	z-index:10000;
+	font-style:italic;
+
+}
+#likes-bar span.caption{font-family: Verdana; float:left;display:block;margin-right:15px;font-size:24px;color:#ffffff;}
+#likes-bar-slider{float:left;width:200px;height:10px;margin-top:5px;margin-right:15px;}
+#likes-bar span.likes_count{float:left;display:block;font-size:24px;font-weight:bold;}
+#box_area_nothing{font-size:32px;color:#555555;font-style:italic;font-weight:bold;padding:50px;display:none;}
 </style>
 <script type="text/javascript">
 mybox = {
@@ -197,22 +217,82 @@ mybox = {
 	 page: 0,
 	 likes: 0,
 	 itemsCount: 0,
+	 loading: false,
+	 isEnd: false,
+	 pageCount: 9,
+	 debug: true,
+	 
+	 loadNext: function(){
+	 
+		if( mybox.loading || mybox.isEnd  ) return 0;
+
+		$('#mybox_page').val( mybox.page + 1 );
+		
+		mybox.load();
+	 
+	 },
 	 load: function(){
-		 mybox.page = $('#mybox_page').val();
-		 mybox.likes = $('#mybox_likes').val();
-		 $.getJSON("/boxes",{'likes': mybox.likes, 'page': mybox.page},
+		
+				  
+		if( mybox.loading || mybox.isEnd ) return 0;
+		
+		$('#box_area_nothing').hide(0);
+		
+		mybox.page = parseInt( $('#mybox_page').val() );
+		mybox.likes = parseInt( $('#mybox_likes').val() );
+		mybox.loading = true;
+		 
+		$footer = $('#box_area_footer'),
+		
+		$footer.waypoint('remove');
+		
+		opts = {offset: '100%'};
+
+		$.getJSON('/boxes?likes='+mybox.likes+'&page='+mybox.page,{},
+		
 		  function(data) {
+		  
+			if( data.length < mybox.pageCount ){
+			
+				mybox.isEnd = true;		
+				
+			}
+			
 			$.each(data, function(i,item){
 
-			  console.log(item);
+			  if( mybox.debug ) console.log(item);
 			  
 			  mybox.add( item );
-
-			 
-			  mybox.loadingOff();  
+	   
 			  
 			});
+			
+			mybox.loadingOff();  
+			
+			if( ! mybox.isEnd ){
+			
+				$footer.waypoint(function(event, direction) {
+			
+					mybox.loadNext();
+				
+				}, opts);
+				
+			}
+			
+			if( mybox.itemsCount < 1 ){
+		  
+				$('#box_area_nothing').show(1000);
+			
+		    }
+			
+
 		  });
+		  
+		  mybox.loading = false;
+		  
+		  if( mybox.debug ) console.log(mybox);
+		  
+
 		  
 
 	},
@@ -306,6 +386,16 @@ mybox = {
 		$('#boxes0').html('');
 		$('#boxes1').html('');
 		$('#boxes2').html('');
+		
+		$footer = $('#box_area_footer'),
+		
+		$footer.waypoint('remove');
+		
+		$('#mybox_page').val( 0 );
+		
+		mybox.isEnd = false;
+		
+		mybox.loading = false;
 	
 	},
 	show: function(id){

@@ -20,7 +20,7 @@ class api {
 	
 	$page = $page < 0 ? 0 : $page;
 	
-	$limit = 30;
+	$limit = 9;
 	
 	$offset = $limit*$page;
 	
@@ -40,7 +40,7 @@ class api {
 		$posts[ count( $posts ) - 1 ]['attachments'] = json_decode( $posts[ count( $posts ) - 1 ]['attachments'], true );
 	}
 	
-	return $posts;
+	return array_reverse($posts);
 	
   }
   
