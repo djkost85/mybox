@@ -272,7 +272,7 @@ mybox = {
 			  
 			}
 			
-			mybox.loadingOff();  
+			
 			
 			if( ! mybox.isEnd ){
 			
@@ -289,12 +289,12 @@ mybox = {
 				$('#box_area_nothing').show(1000);
 			
 		    }
-			
-
+			mybox.loadingOff();
+			mybox.loading = false;
 		  });
 		  
-		  mybox.loading = false;
 		  
+		    
 		  if( mybox.debug ) console.log(mybox);
 		  
 
