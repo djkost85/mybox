@@ -39,7 +39,9 @@ class vkProvider {
     $result = \json_decode( $this->cURL( $query_url ), true ); 
 	
 	if( ! isset( $result['response']['items'] ) ){
-	
+		
+		//print_r( $result );
+		
 		return null;
 	
 	}

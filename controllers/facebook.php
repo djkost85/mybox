@@ -38,7 +38,7 @@ class facebook {
 
         parse_str( $response, $params );
 
-        $query = 'SELECT uid, first_name, last_name FROM user WHERE uid = me() AND created_time < '.time().' LIMIT 50';
+        $query = 'SELECT uid, first_name, last_name FROM user WHERE uid = me();';
 
         $url = 'https://graph.facebook.com/fql?q=' .  urlencode($query)
         . '&access_token=' . $params['access_token'];
