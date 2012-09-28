@@ -263,14 +263,14 @@ mybox = {
 				
 			}
 			
-			$.each(data, function(i,item){
+			for( index in data ){
 
-			  if( mybox.debug ) console.log(item);
+			  if( mybox.debug ) console.log(ata[index]);
 			  
-			  mybox.add( item );
+			  mybox.add( data[index] );
 	   
 			  
-			});
+			}
 			
 			mybox.loadingOff();  
 			
@@ -303,7 +303,6 @@ mybox = {
 	},
 	add: function(item ){
 	
-			  $('#box_area_nothing').hide(0);
 			  
 			  var image = '';
 			  
