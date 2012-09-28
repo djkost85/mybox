@@ -413,6 +413,8 @@ mybox = {
 		$('#wrap').hide(0, function(){ $('#dialogBox').show(0); } );
 		$('#dialogBox div.window div.close').click(function(){ mybox.close(); });
 		mybox.windowOpened = true;
+		$footer = $('#box_area_footer'),
+		$footer.waypoint('remove');
 	},
 	close: function(){
 		mybox.windowOpened = false;
@@ -420,7 +422,18 @@ mybox = {
 	},
 	loadingOff: function(){
 		$('#loading').hide();
-		if( ! mybox.windowOpened ) $('#wrap').show();
+		if( ! mybox.windowOpened ){
+
+			$('#wrap').show();
+			
+			$footer = $('#box_area_footer'),
+		
+			$footer.waypoint(function(event, direction) {
+			
+				mybox.loadNext();
+				
+			}, opts);
+		}
 	},
 	loadingOn: function(){
 		$('#wrap').hide();
