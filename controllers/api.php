@@ -20,7 +20,9 @@ class api {
 	
 	$page = $page < 0 ? 0 : $page;
 	
-	$limit = 9;
+	$limit = intval( $app['request']->get( 'limit', 30 ) ) ;
+	
+	$limit = ( $limit > 0 and $limit < 100 ) ? $limit : 30 ;
 	
 	$offset = $limit*$page;
 	

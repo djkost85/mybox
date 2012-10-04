@@ -102,6 +102,7 @@ body{
 	margin:0 auto;
 	z-index:10;
 	margin-bottom: 50px;
+	border-radius:5px;
 	
 
 }
@@ -224,7 +225,7 @@ mybox = {
 	 itemsCount: 0,
 	 loading: false,
 	 isEnd: false,
-	 pageCount: 9,
+	 pageCount: 30,
 	 debug: true,
 	 windowOpened: false,
 	 
@@ -253,7 +254,7 @@ mybox = {
 		
 		opts = {offset: '100%'};
 
-		$.getJSON('/boxes?likes='+mybox.likes+'&page='+mybox.page,{},
+		$.getJSON('/boxes?limit='+mybox.pageCount+'&likes='+mybox.likes+'&page='+mybox.page,{},
 		
 		  function(data) {
 		  
