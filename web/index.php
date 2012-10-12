@@ -87,39 +87,25 @@ $app->get('/boxes', function () use ($app) {
 
 });
 
-/** update posts for all users **/
-
-$app->get('/api/update', function () use ($app) {
+/** boxes list **/
+$app->get('/api/posts', function () use ($app) {
 
     $posts = array();
 
     $c = new box\api();
+
+    $posts = $c->getPosts( $app );
+
+    return json_encode( $posts );    
+
+});
+/** return content from readabilty service by url **/
+
+$app->get('/api/post', function () use ($app) {
+
+    $c = new box\api();
 	
-    $update_time_preiod = 0;
-	
-	$update_time = time() - $update_time_preiod;
-	
-	$userList = \box\user::all( array( 'conditions' => array( 'lastupdate < ? ', $update_time ) ) );
-	
-	$updated = array(); 
-	
-	if( count( $userList ) > 0 ){
-	
-		foreach($userList as $k=>$user ){
-			
-			$c->setPosts( $user );
-			
-			$user->lastupdate = time();
-			
-			$user->save();
-			
-			$updated[] = $user->id;
-		
-		}
-		
-	}
-	
-    return json_encode( $updated );    
+    return json_encode( $c->getPost( $app ) );    
 
 });
 

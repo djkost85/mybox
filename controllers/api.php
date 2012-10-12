@@ -2,33 +2,130 @@
 namespace box;
 
 class api {
+  
+  public function getLink( $app ){
+      
+        $link = $app['request']->get( 'url', null );
+        
+        return $this->getLinkData($link);
+        
+  }
+      
+  public function getLinkData( $link ){
+           
+      if( $link == null ) return null;
+      
+      $token = '93f300934628716b1bc619783ca1d773beac60da';
+      
+      return $this->cURL( 'http://www.readability.com/api/content/v1/parser?url='.urlencode($link).'&token='.$token );
+  
+  }
+  
+  public function getPost( $app ){
+      
+      $id = $app['request']->get( 'id', null );
+      
+      if( $id == null ) return null;
+      
+      $post = \box\post::find($id);
 
+      $attachments = json_decode( $post->attachments, true );
+
+      if( $post->parsed != 1 ){
+          
+          foreach($attachments as $i=>$att){
+              
+              $article = json_Decode( $this->getLinkData( $att['src'] ), true );
+              
+              $article['lead_image_url'] = (isset($article['lead_image_url']) and $article['lead_image_url']!=null ) ? $article['lead_image_url'] :'';
+              
+              $article['title'] = ( $att['title']=='' ) ? $article['title'] : $att['title'];
+              
+              switch( $att['type'] ){
+                  
+                  case 'photo':
+                        
+                       $att['src'] = $article['lead_image_url'];
+                      
+                       $att['description'] = $article['content'];
+                       
+                       $att['title'] = $article['title'];
+                      
+                      break;
+                  
+                  case 'video':
+                      
+                       $att['image'] = $article['lead_image_url'];
+                      
+                       $att['description'] = $article['content'];
+                       
+                       $att['title'] = $article['title'];
+                      
+                      break;
+                  
+                  case 'link':
+                      
+                       $att['image'] = $article['lead_image_url'];
+                       
+                       $att['description'] = $article['content'];
+                       
+                       $att['title'] = $article['title'];
+                      
+                      break;
+              }
+              
+              $attachments[$i] = $att;
+              
+          }
+          
+          $post->save();
+          
+      }
+      
+      $post = $post->attributes();
+      
+      $post['attachments'] = $attachments;
+      
+      return $post;
+      
+  }
+  
   public function getPosts( $app ) {
 	
 
-	if( $app['user']->lastupdate == 0 ){
-	
-		$this->setPosts( $app['user'] );
-		
-	}
+        $daysLimit = 30;
 	
 	$likes = intval( $app['request']->get( 'likes', 0 ) );
 	
 	$likes = $likes < 0 ? 0 : $likes;
 	
-	$page = intval( $app['request']->get( 'page', 0 ) );
-	
-	$page = $page < 0 ? 0 : $page;
-	
 	$limit = intval( $app['request']->get( 'limit', 30 ) ) ;
 	
 	$limit = ( $limit > 0 and $limit < 100 ) ? $limit : 30 ;
+        
+        $offset = $app['request']->get( 'offset', 0 );
 	
-	$offset = $limit*$page;
+        $beginDate = intval( $app['request']->get( 'beginDate', 0 ) );
+        
+ 	if( $app['user']->lastupdate == 0 ){
 	
+		$this->setPosts( $app['user'] );
+		
+	}
+        
+        if( $offset < 0 and $beginDate > 0){
+            
+            $this->setPosts( $app['user'] );
+            
+            $options = array('conditions' => array( 'user = ? AND likes > ? AND date > ?' , $app['user']->id, $likes, $beginDate ), 'order' => 'date DESC', 'limit' => $limit, 'offset' => 0 );
+            
+        }else{
+            
+            $options = array('conditions' => array( 'user = ? AND likes > ? AND date > ?' , $app['user']->id, $likes, time() - $daysLimit*3600*24 ), 'order' => 'date DESC', 'limit' => $limit, 'offset' => $offset );
+        
+        }
+        
 	$posts =array();
-	
-	$options = array('conditions' => array( 'user = ? AND likes > ?' , $app['user']->id, $likes ), 'order' => 'date desc, likes desc', 'limit' => $limit, 'offset' => $offset );
 	
 	$postList = \box\post::find('all',  $options );
 	
@@ -40,9 +137,13 @@ class api {
 		unset( $postList[$i] );
 
 		$posts[ count( $posts ) - 1 ]['attachments'] = json_decode( $posts[ count( $posts ) - 1 ]['attachments'], true );
-	}
 	
-	return array_reverse($posts);
+                
+        }
+        
+	//$posts = array_reverse($posts);
+        
+	return array('offset'=>$offset, 'posts'=>$posts, 'isEnd'=>(count($posts)<$limit));
 	
   }
   
@@ -104,6 +205,39 @@ class api {
 	 }
 
   
+  }
+  
+  private function cURL($url, $header=NULL, $cookie=NULL, $p=NULL){
+        $ch = \curl_init();
+        \curl_setopt($ch, CURLOPT_HEADER, $header);
+        \curl_setopt($ch, CURLOPT_NOBODY, $header);
+        \curl_setopt($ch, CURLOPT_URL, $url);
+        \curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        \curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+        \curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+        \curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        \curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        \curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+        if ($p) {
+            \curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            \curl_setopt($ch, CURLOPT_POST, 1);
+            \curl_setopt($ch, CURLOPT_POSTFIELDS, $p);
+        }
+
+        $result = \curl_exec($ch);
+        \curl_close($ch);
+        
+        if ($result) {
+
+            return $result;
+
+        } else {
+
+            return null;
+
+        }
+        
   }
 
 }

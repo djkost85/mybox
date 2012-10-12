@@ -22,12 +22,11 @@ body{
 	margin-bottom:40px;
 }
 #header{
-	background:#d5d5d5;
+	background:#ffffff;
 	text-align:center;
-	width:800px;
+	width:960px;
 	height:40px;
 	padding-top:10px;
-	padding-left:160px;
 	
 }
 #loading{
@@ -44,13 +43,13 @@ body{
 	background-position:center;
 	z-index:999;
 }
-#wrap{width:960px;margin:0 auto;background:#d5d5d5;overflow:hidden;display:none;}
+#wrap{width:960px;margin:0 auto;overflow:hidden;display:none;}
 #main{width:920px;margin:0 auto;padding:20px;}
 #footer{
 	margin:0px;
 	width:920px;
 	border:0;
-	background:#d5d5d5;
+	background:#ffffff;
 	color:#333333;
 	background-position:left top;
 	background-repeat:repeat-x;
@@ -99,6 +98,7 @@ body{
 	z-index:10;
 	margin-bottom: 50px;
 	border-radius:5px;
+        box-shadow:0x 0px 10px black;
 	
 
 }
@@ -123,7 +123,7 @@ body{
 }
 .box_area{
 	
-	width:960px;
+    width:960px;
     margin:0 auto;
 
 }
@@ -148,14 +148,21 @@ body{
 	border-style:solid;
 	background:#ffffff;
 	border-radius:10px;
+        box-shadow:0px 0px 5px silver;
 }
+
 .box_area_item h1{
 	font-size:18px;
 	font-family:Times New Roman;
 	margin:5px 0px 5px 0px;
 	line-height:24px;
 }
+.box_area_item_active{
+    opacity: 0.7;
+    color:#000077;
+}
 .full .overlay{display:none;}
+
 .short .overlay{
 	width:290px;
 	height:50px;
@@ -173,7 +180,7 @@ body{
 .box_area_item .attachments .item{display:inline-block;overflow:hidden;margin:5px;}
 .box_area_item .attachments .item .full{display:none;}
 .box_area_item .attachments .item .small{border-radius:5px;overflow:hidden;}
-.box_area_item .attachments .item h1{font-size:14px;line-height:18px;color:#333333;margin:0px;padding:0px;}
+.box_area_item .attachments .item h1{font-size:14px;line-height:18px;color:#333333;margin:0px;padding:0px;font-weight:normal;}
 .box_area_item .attachments .item p{font-size:12px;line-height:16px;color:#222222;font-style:italic;}
 
 .rating{font-size:12px;font-weight:bold;color:#555555;float:left;padding-top:5px;}
@@ -193,8 +200,8 @@ body{
 #connect_menu .title{float:left;font-size:48px;line-height:48px;padding-right:10px;color:#555555;}
 .vk_button{cursor:pointer;float:left;width:48px;height:48px;background-image:url(/assert/css/img/images/vkontakte.png);margin-right:10px;}
 .fb_button{cursor:pointer;float:left;width:48px;height:48px;background-image:url(/assert/css/img/images/facebook.png);margin-right:10px;}
-a.connect{background-image:url(/assert/css/img/images/connect.png);display:block;width:32px;height:32px;}
-
+a.connect{background-color:#eeeeee;background-image:url(/assert/css/img/images/connect.png);display:block;background-repeat:no-repeat;padding-left:40px;padding-right:10px;font-size:24px;height:32px;text-align:left;color:#000000;text-decoration:none;float:left;line-height:32px;}
+a.connect:hover{background-color:gray;color:#ffffff;}
 #likes-bar{
 	position:fixed;
 	left:0px;
@@ -216,55 +223,89 @@ a.connect{background-image:url(/assert/css/img/images/connect.png);display:block
 <script type="text/javascript">
 mybox = {
 	 scrollTop: 0,
-	 page: 0,
+	 offset: 0,
 	 likes: 0,
 	 itemsCount: 0,
 	 loading: false,
 	 isEnd: false,
-	 pageCount: 30,
+	 limit: 30,
 	 debug: true,
 	 windowOpened: false,
-	 
-	 loadNext: function(){
-	 
-		if( mybox.loading || mybox.isEnd  ) return 0;
+         beginDate: 0,
+         
+	 update: function(){
+		
+		if( mybox.loading ) return 0;
+                if( mybox.windowOpened ) return 0;
+                
+		mybox.loading = true;
+                
+		mybox.likes = parseInt( $('#mybox_likes').val() );
 
-		$('#mybox_page').val( mybox.page + 1 );
+		$.getJSON('/api/posts?beginDate='+mybox.beginDate+'&limit='+mybox.limit+'&likes='+mybox.likes+'&offset=-'+mybox.limit,{},
+		
+		function(data) {
+                    
+			mybox.offset = mybox.offset + data.posts.length;
+                            
+			for( index in data.posts ){
+
+			  if( mybox.debug ) console.log( data.posts[index] );
+			  
+			  mybox.add( data.posts[index], false );
+	   			  
+			}
+			
+                        
+			mybox.loadingOff();
+			mybox.loading = false;
+		  });
+		  
+		  
+		    
+		  if( mybox.debug ) console.log(mybox);
+         },
+	 loadNext: function(){
+
+		if( mybox.loading ) return 0;
+                
+                if( mybox.isEnd) return 0;
+                
+                if(mybox.windowOpened ) return 0;
+                
+                console.log('Loading next page!');
+		
+                $('#mybox_offset').val( mybox.offset + mybox.limit );
 		
 		mybox.load();
 	 
 	 },
 	 load: function(){
-		
-		$('#box_area_nothing').hide(0);
-		
-		if( mybox.loading || mybox.isEnd ) return 0;
-		
-		mybox.page = parseInt( $('#mybox_page').val() );
-		mybox.likes = parseInt( $('#mybox_likes').val() );
+
+		if( mybox.loading || mybox.isEnd || mybox.windowOpened ) return 0;
+                
+                $('#box_area_nothing').hide(0);
+                
 		mybox.loading = true;
-		 
-		$footer = $('#box_area_footer'),
+                
+		mybox.offset = parseInt( $('#mybox_offset').val() );
+		mybox.likes = parseInt( $('#mybox_likes').val() );
 		
-		$footer.waypoint('remove');
-		
-		opts = {offset: '100%'};
 
-		$.getJSON('/boxes?limit='+mybox.pageCount+'&likes='+mybox.likes+'&page='+mybox.page,{},
+		$.getJSON('/api/posts?limit='+mybox.limit+'&likes='+mybox.likes+'&offset='+mybox.offset,{},
 		
-		  function(data) {
+		function(data) {
 		  
-			if( data.length < mybox.pageCount ){
 			
-				mybox.isEnd = true;		
-				
-			}
+			mybox.isEnd = data.isEnd;		
+                        
+                        mybox.offset = parseInt( data.offset );
 			
-			for( index in data ){
+			for( index in data.posts ){
 
-			  if( mybox.debug ) console.log( data[index] );
+			  if( mybox.debug ) console.log( data.posts[index] );
 			  
-			  mybox.add( data[index] );
+			  mybox.add( data.posts[index], true);
 	   
 			  
 			}
@@ -272,7 +313,11 @@ mybox = {
 			
 			
 			if( ! mybox.isEnd ){
-			
+                            
+                                $footer = $('#box_area_footer');
+                                
+                                var opts = {offset:'100%'};
+                                
 				$footer.waypoint(function(event, direction) {
 			
 					mybox.loadNext();
@@ -285,7 +330,8 @@ mybox = {
 		  
 				$('#box_area_nothing').show(1000);
 			
-		    }
+                        }
+                        
 			mybox.loadingOff();
 			mybox.loading = false;
 		  });
@@ -298,10 +344,7 @@ mybox = {
 		  
 
 	},
-	add: function(item ){
-	
-			  $('#box_area_nothing').hide(0);
-			  
+        getHtmlItem: function(item){
 			  var image = '';
 			  
 			  var attachments = '';
@@ -316,7 +359,6 @@ mybox = {
 					
 					if( att.type == 'video' ){
 						attachments = attachments + '<div class="item">';
-						attachments = attachments + '<div class="full"><a href="'+att.src+'" target="_blank"><img src="'+att.image+'"/></a><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
 						attachments = attachments + '<div class="small"><img src="'+att.image+'"/></div>';
 						attachments = attachments + '</div>';
 						
@@ -324,18 +366,12 @@ mybox = {
 					
 					if( att.type == 'photo' ){
 						attachments = attachments + '<div class="item photo">';
-						if( item.from == 'facebook.com' ){
-							attachments = attachments + '<div class="full"><a href="'+att.src+'"><img src="'+att.image+'"/></a><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
-						}else{
-							attachments = attachments + '<div class="full"><img src="'+att.src+'"/><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
-						}
 						attachments = attachments + '<div class="small"><img src="'+att.image+'"/></div>';
 						attachments = attachments + '</div>';
 					}
 					
 					if( att.type == 'link' ){
 						attachments = attachments + '<div class="item link">';
-						attachments = attachments + '<div class="full"><a href="'+att.src+'"  target="_blank">'+att.src+'</a><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
 						attachments = attachments + '<div class="small"><a href="'+att.src+'"  target="_blank">'+att.src+'</a></div>';
 						attachments = attachments + '</div>';
 					}	
@@ -376,12 +412,101 @@ mybox = {
 			  itemData = itemData + '<div class="from"><span class="ui-icon ui-icon-link"></span><a href="http://'+item.from+'">'+item.from+'</a></div>';
 			  
 			  itemData = itemData + '<div class="box_area_clear"></div></div>';
+                          
+                          return itemData;
+        },
+        getHtmlFullItem: function(item){
+			  var image = '';
+			  
+			  var attachments = '';
+			  
+			  if( item.attachments.length > 0 ){
+			  
+				attachments = attachments + '<div class="attachments">';
+				
+				for( index in item.attachments){
+				
+					var att = item.attachments[index];
+					
+					if( att.type == 'video' ){
+						attachments = attachments + '<div class="item">';
+						attachments = attachments + '<div class="full"><a href="'+att.src+'" target="_blank"><img src="'+att.image+'"/></a><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
+						attachments = attachments + '</div>';
+						
+					}
+					
+					if( att.type == 'photo' ){
+						attachments = attachments + '<div class="item photo">';
+						if( item.from == 'facebook.com' ){
+							attachments = attachments + '<div class="full"><a href="'+att.src+'" target="_blank"><img src="'+att.image+'"/></a><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
+						}else{
+							attachments = attachments + '<div class="full"><img src="'+att.src+'"/><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
+						}
+						attachments = attachments + '</div>';
+					}
+					
+					if( att.type == 'link' ){
+						attachments = attachments + '<div class="item link">';
+						attachments = attachments + '<div class="full"><a href="'+att.src+'"  target="_blank">'+att.src+'</a><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
+						attachments = attachments + '</div>';
+					}	
+
+					if( image == '' && att.image !='' ){
+					
+						image = att.image;
+					
+					}
+				}
+				
+				attachments = attachments + '<div class="box_area_clear"></div></div>';
+			  
+			  }
+			  
+			  var date = $.datepicker.formatDate('yy/mm/dd', new Date(item.date * 1000));
+
+			  var itemData = '<div class="data">';
+			  
+			  if( item.title != '' && item.title!=null ) itemData = itemData + '<h1 class="title">'+item.title+'</h1>';
+			  
+			  if( image != '' ) itemData = itemData + '<div class="image'+( item.text == '' ? ' imagecenter' : '' )+'"><img src="'+image+'"/></div>';
+			  
+			  if( item.text != '') itemData = itemData + '<div class="text">'+item.text+'</div>';
+			  
+			  if( attachments != '' ) itemData = itemData + attachments;
+			  
+			  itemData = itemData + '<div class="box_area_clear"></div></div>';
+			  
+			  itemData = itemData + '<div class="overlay"></div>';
+			  
+			  itemData = itemData + '<div class="rating"><span class="ui-icon ui-icon-heart"></span>'+item.likes+'</div>';
+			  
+			  itemData = itemData + '<div class="date"><span class="ui-icon ui-icon-clock"></span>'+date+'</div>';
+			  
+			  itemData = itemData + '<div class="from"><span class="ui-icon ui-icon-link"></span><a href="http://'+item.from+'">'+item.from+'</a></div>';
+			  
+			  itemData = itemData + '<div class="box_area_clear"></div></div>';
+                          
+                          return itemData;
+        },
+	add: function(item, toEND ){
+                          
+                          if( item.date > mybox.beginDate ) mybox.beginDate = item.date;
+                          
+			  $('#box_area_nothing').hide(0);
+			  
+			  var itemData = mybox.getHtmlItem( item );
 
 			  var columnIndex = mybox.itemsCount%3;
 			  
-			  $('#boxes'+columnIndex).append(itemData);
-			  
+			  if( toEND ){
+                                $('#boxes'+columnIndex).append(itemData);
+			  }else{
+                                $('#boxes'+columnIndex).prepend(itemData);
+                          }
 			 mybox.itemsCount = mybox.itemsCount + 1;
+                         
+                         mybox.updateEvent();
+
 	},
 	clear: function(){
 		
@@ -395,7 +520,7 @@ mybox = {
 		
 		$footer.waypoint('remove');
 		
-		$('#mybox_page').val( 0 );
+		$('#mybox_offset').val( 0 );
 		
 		mybox.isEnd = false;
 		
@@ -404,15 +529,32 @@ mybox = {
 		mybox.windowOpened = false;
 	
 	},
-	show: function(id){
-		$('#dialogBox div.window div.content').html($('#box_'+id).html());
-		mybox.scrollTop = $(window).scrollTop();
-		$('#wrap').hide(0, function(){ $('#dialogBox').show(0); } );
-		$('#dialogBox div.window div.close').click(function(){ mybox.close(); });
-		mybox.windowOpened = true;
-		$footer = $('#box_area_footer'),
-		$footer.waypoint('remove');
-	},
+        show: function(id){
+                console.log('Show post #'+id);
+                
+                mybox.windowOpened = true;
+		mybox.loading = true;
+                mybox.loadingOn();
+                
+		$.getJSON('/api/post?id='+id,{},
+		
+                    function(data) {
+                        
+                        console.log( data ); 
+                        var itemData = mybox.getHtmlFullItem( data );
+                        
+                        $('#dialogBox div.window div.content').html( itemData );
+                        mybox.scrollTop = $(window).scrollTop();
+                        $('#wrap').hide(0, function(){ $('#dialogBox').show(0); } );
+                        $('#dialogBox div.window div.close').click(function(){ mybox.close(); });
+                        mybox.windowOpened = true;
+                        mybox.loadingOff();
+                        mybox.loading = false;
+
+                    }
+                );
+                
+        },
 	close: function(){
 		mybox.windowOpened = false;
 		$('#dialogBox').hide(0, function(){ $('#wrap').show( 0, function(){ $(window).scrollTop( mybox.scrollTop ); } ); });
@@ -423,27 +565,30 @@ mybox = {
 
 			$('#wrap').show();
 			
-			$footer = $('#box_area_footer'),
-		
-			$footer.waypoint(function(event, direction) {
-			
-				mybox.loadNext();
-				
-			}, opts);
 		}
 	},
 	loadingOn: function(){
 		$('#wrap').hide();
 		$('#loading').show();
-	}
+	},
+        updateEvent: function(){
+            $('.box_area_item').hover(
+                function(){
+                    $(this).addClass('box_area_item_active');
+                },
+                function(){
+                    $(this).removeClass('box_area_item_active');
+                }
+               
+            );
+        }
 }
-
 </script>
 </head>
 <body>
 <!-- boxes data -->
 <input type="hidden" id="mybox_likes" value="0"/>
-<input type="hidden" id="mybox_page" value="0"/>
+<input type="hidden" id="mybox_offset" value="0"/>
 <!-- -->
 <div id="loading"></div>
 <div id="dialogBox">
@@ -455,7 +600,7 @@ mybox = {
 <a id="top-of-page"></a>
 <div id="wrap">
 <div id="header">
-<a href="/connect" class="connect"></a>
+<a href="/connect" class="connect">Connect</a>
 </div>
 {% block content %}{% endblock %}
 

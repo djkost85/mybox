@@ -4,7 +4,7 @@ namespace box;
 
 class boxPost{
 
-    public $source = 0;
+        public $source = 0;
 	
 	public $text = '';
 
@@ -28,7 +28,7 @@ class boxPost{
 	
 	}
 
-    public function getId(){
+        public function getId(){
 
 		return md5( $this->userId  . $this->date . $this->source . $this->from );
 	}
@@ -55,7 +55,8 @@ class boxPost{
 				'user' => $this->userId,
 				'date' => $this->date,
 				'source_name' => $this->source_name,
-				'source_link' => $this->source_link
+				'source_link' => $this->source_link,
+                                'parsed'=> 0
 				
 			);
 	

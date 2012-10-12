@@ -17,7 +17,9 @@
 
 <script type="text/javascript">
 mybox.load();
-	$(function() {
+setInterval(function(){mybox.update();},60000);
+$(function() {
+               
 		$( "#likes-bar-slider" ).slider({
 			orientation: "horizontal",
 			range: "min",
