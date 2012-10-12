@@ -39,7 +39,7 @@ class api {
               
               $article['lead_image_url'] = (isset($article['lead_image_url']) and $article['lead_image_url']!=null ) ? $article['lead_image_url'] :'';
               
-              $article['title'] = ( $att['title']=='' ) ? $article['title'] : $att['title'];
+              //$article['title'] = ( $att['title']=='' ) ? $article['title'] : $att['title'];
               
               switch( $att['type'] ){
                   
@@ -49,17 +49,21 @@ class api {
                       
                        $att['description'] = $article['content'];
                        
-                       $att['title'] = $article['title'];
+                       //$att['title'] = $article['title'];
                       
                       break;
                   
+                  
                   case 'video':
                       
-                       $att['image'] = $article['lead_image_url'];
-                      
-                       $att['description'] = $article['content'];
-                       
-                       $att['title'] = $article['title'];
+                       if($post->from != 'vk.com'){
+                           
+                            $att['image'] = $article['lead_image_url'];
+
+                            $att['description'] = $article['content'];
+
+                            //$att['title'] = $article['title'];
+                       }
                       
                       break;
                   
