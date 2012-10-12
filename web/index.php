@@ -213,6 +213,13 @@ $app->get('/login_vk', function () use ($app) {
 
 });
 
+/** logout **/
+$app->get("/logout", function () use ($app) {
 
+    $app['session']->remove( 'user' );
+    
+    return new RedirectResponse( BASE_URL.'/connect' );
+
+});
 
 $app->run();
