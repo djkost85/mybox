@@ -297,7 +297,7 @@ mybox = {
 			  if( toEND ){
                                 $container.isotope('insert',$(data)).imagesLoaded( function(){
                                     $container.isotope('reLayout');
-                                    setTimeout(function(){ mybox.loading = false; }, 3000 );
+                                    setTimeout(function(){ mybox.loading = false; }, 5000 );
                                     
                                 });
                                
@@ -307,7 +307,7 @@ mybox = {
                                 $container.prepend(data).isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' }).imagesLoaded( function(){
                                     
                                     $container.isotope('reLayout');     
-                                    setTimeout(function(){ mybox.loading = false; }, 3000 );
+                                    setTimeout(function(){ mybox.loading = false; }, 5000 );
  
                                 });
                           }
