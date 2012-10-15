@@ -18,7 +18,7 @@ a:hover{text-decoration:none;}
 	padding:10px;
         border-radius:10px;
         opacity:0.7;
-	
+	margin: -20px -20px 20px -20px;
 }
 #loading{
 	width:100%;
