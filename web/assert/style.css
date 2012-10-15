@@ -18,7 +18,7 @@ a:hover{text-decoration:none;}
 	padding:10px;
         border-radius:10px;
         opacity:0.7;
-	margin: -20px -20px 20px -20px;
+
 }
 #loading{
 	width:100%;
@@ -34,7 +34,7 @@ a:hover{text-decoration:none;}
 	background-position:center;
 	z-index:999;
 }
-#wrap{margin:0 auto;overflow:hidden;display:none;}
+#wrap{margin:0px -20px 0px -20px;overflow:hidden;display:none;}
 #main{margin:0 auto;padding:20px;}
 #boxes_container{z-index:2;}
 #footer{
