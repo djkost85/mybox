@@ -145,7 +145,7 @@ mybox = {
 					var att = item.attachments[index];
 					
 					if( att.type == 'video' ){
-						attachments = attachments + '<div class="item">';
+						attachments = attachments + '<div class="item video">';
 						attachments = attachments + '<div class="small"><img src="'+att.image+'"/></div>';
 						attachments = attachments + '</div>';
 						
@@ -216,7 +216,7 @@ mybox = {
 					var att = item.attachments[index];
 					
 					if( att.type == 'video' ){
-						attachments = attachments + '<div class="item">';
+						attachments = attachments + '<div class="item video">';
 						attachments = attachments + '<div class="full"><a href="'+att.src+'" target="_blank"><img src="'+att.image+'"/></a><h1>'+att.title+'</h1><p>'+att.description+'<p></div>';
 						attachments = attachments + '</div>';
 						
@@ -339,7 +339,7 @@ mybox = {
 	},
         show: function(id){
                 console.log('Show post #'+id);
-                
+                mybox.scrollTop = $(window).scrollTop();
                 mybox.windowOpened = true;
 		mybox.loading = true;
                 mybox.loadingOn();
@@ -352,7 +352,7 @@ mybox = {
                         var itemData = mybox.getHtmlFullItem( data );
                         
                         $('#dialogBox div.window div.content').html( itemData );
-                        mybox.scrollTop = $(window).scrollTop();
+\\  
                         $('#wrap').hide(0, function(){ $('#dialogBox').show(100); } );
                         $('#dialogBox').css('overflow', 'auto');
                         $('#dialogBox div.window div.close').click(function(){ mybox.close(); });
