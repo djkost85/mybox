@@ -8,18 +8,16 @@
 </div>
 <div class="box_area">
 <div id="box_area_nothing">Nothing not found...</div>
-<div id="boxes0" class="boxes_column boxes_column0"></div>
-<div id="boxes1" class="boxes_column boxes_column1"></div>
-<div id="boxes2" class="boxes_column boxes_column2"></div>
+<div id="boxes_container"></div>
+
 <div class="box_area_clear"></div>
 <div id="box_area_footer"></div>
 </div>
 
 <script type="text/javascript">
-mybox.load();
-setInterval(function(){mybox.update();},60000);
+
 $(function() {
-               
+                mybox.init();
 		$( "#likes-bar-slider" ).slider({
 			orientation: "horizontal",
 			range: "min",

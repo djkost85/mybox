@@ -6,219 +6,17 @@
 <meta name="description" content="" />
 <script type="text/javascript" src="/assert/jquery/js/jquery-1.8.0.min.js"></script> 
 <script type="text/javascript" src="/assert/jquery/js/jquery-ui-1.8.23.custom.min.js"></script>  
-<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-<script type="text/javascript" src="/assert/js/prettify.js"></script>                                   <!-- PRETTIFY -->
-<script type="text/javascript" src="/assert/js/kickstart.js"></script>                                  <!-- KICKSTART -->
-<script type="text/javascript" src="/assert/js/waypoints.js"></script>   
+
+<script type="text/javascript" src="/assert/js/waypoints.js"></script> 
+<script type="text/javascript" src="/assert/js/jquery.isotope.min.js"></script>  
+<script type="text/javascript" src="/assert/js/jquery.imagesloaded.min.js"></script>  
 <link rel="stylesheet" type="text/css" href="/assert/jquery/css/ui-lightness/jquery-ui-1.8.23.custom.css" media="all" />                  <!-- KICKSTART -->
 <link rel="stylesheet" type="text/css" href="/assert/style.css" media="all" /> 
-<link rel="stylesheet" type="text/css" href="/assert/style.css" media="all" /> 
+
 <!-- CUSTOM STYLES -->
 
 <style type="text/css">
-body{
-	background-image:url(/assert/css/img/images/bg.jpg);
-	background-attachment:fixed;
-	margin-bottom:40px;
-}
-#header{
-	background:#ffffff;
-	text-align:center;
-	width:960px;
-	height:40px;
-	padding-top:10px;
-	
-}
-#loading{
-	width:100%;
-	height:100%;
-	background:#ffffff;
-	display:block;
-	top:0px;
-	left:0px;
-	position:fixed;
-	opacity:0.7;
-	background-image:url(/assert/css/img/images/loading.gif);
-	background-repeat:no-repeat;
-	background-position:center;
-	z-index:999;
-}
-#wrap{width:960px;margin:0 auto;overflow:hidden;display:none;}
-#main{width:920px;margin:0 auto;padding:20px;}
-#footer{
-	margin:0px;
-	width:920px;
-	border:0;
-	background:#ffffff;
-	color:#333333;
-	background-position:left top;
-	background-repeat:repeat-x;
-	padding:10px 20px 10px 20px;
-	height:30px;
-	
-	
-}
-#footer a{color:#ffffff;}
 
-#dialogBox{
-	width:100%;
-	height:100%;
-	position:fixed;
-	display:none;
-	top:0px;
-	left:0px;
-	z-index:9;
-	background-image:url(/assert/css/img/images/shadow_bg.png);
-	overflow:auto;
-	margin-bottom:-50px;
-	padding: 25px 0px 25px 0px;
-}
-#dialogBox .window .content  .data h1.title{	
-	font-size:24px;
-	line-height:32px;
-	color:#000000;
-	font-style:italic;
-	font-family:Times New Roman;
-	
-}
-#dialogBox .window  .content .data .image{display:none;}
-#dialogBox .window  .content .attachments{display:block;text-align:center;align:center;}
-#dialogBox .window  .content .attachments .item{display:inline-block;overflow:hidden;margin:5px;}
-#dialogBox .window  .content .attachments .item .full{display:block;}
-#dialogBox .window  .content .attachments .item .small{display:none;}
-#dialogBox .window  .content .overlay{display:none;}
-
-#dialogBox .window{
-
-	width:900px;
-	background:#ffffff;
-	padding:30px;
-	top:20px;
-	margin:0 auto;
-	z-index:10;
-	margin-bottom: 50px;
-	border-radius:5px;
-        box-shadow:0x 0px 10px black;
-	
-
-}
-#dialogBox .window .close{
-	display:block;
-	color:#555555;
-	margin-top:-18px;
-	margin-right:-18px;
-	float:right;
-	font-size:18px;
-	line-height:18px;
-	font-family:Verdana;
-	cursor: pointer;
-
-}
-
-#dialogBox .window .content{
-
-	width:900px;
-	background:#ffffff;
-
-}
-.box_area{
-	
-    width:960px;
-    margin:0 auto;
-
-}
-
-.boxes_column{
-	
-	float:left;
-	width:320px;
-	overflow:hidden;
-	
-}
-
-
-.box_area_item{
-
-	width:290px;
-	padding:10px;
-	margin:5px 5px 10px 5px;;
-	cursor:pointer;
-	border-width:0px 0px 0px 0px;
-	border-color:#555555;
-	border-style:solid;
-	background:#ffffff;
-	border-radius:10px;
-        box-shadow:0px 0px 5px silver;
-}
-
-.box_area_item h1{
-	font-size:18px;
-	font-family:Times New Roman;
-	margin:5px 0px 5px 0px;
-	line-height:24px;
-}
-.box_area_item_active{
-    opacity: 0.7;
-    color:#000077;
-}
-.full .overlay{display:none;}
-
-.short .overlay{
-	width:290px;
-	height:50px;
-	display:block;
-	background-image:url(/assert/css/img/images/white_overlay_grad.png);
-	margin-bottom:-50px;
-	margin-top:-47px;
-	position:absolute;
-}
-.short .data{max-height:300px;overflow:hidden;}
-.short .data .image{border-radius:5px;overflow:hidden;float:left;margin-right:5px;margin-bottom:5px;}
-.short .data .imagecenter{width:290px;text-align:center;align:center;}
-.short .data .imagecenter{align:center;display:inline-block;}
-.box_area_item .attachments{display:none;}
-.box_area_item .attachments .item{display:inline-block;overflow:hidden;margin:5px;}
-.box_area_item .attachments .item .full{display:none;text-align:left;}
-.box_area_item .attachments .item .small{border-radius:5px;overflow:hidden;}
-.box_area_item .attachments .item h1{font-size:14px;line-height:18px;color:#333333;margin:0px;padding:0px;font-weight:normal;}
-.box_area_item .attachments .item p{font-size:12px;line-height:16px;color:#222222;font-style:italic;}
-
-.rating{font-size:12px;font-weight:bold;color:#555555;float:left;padding-top:5px;}
-.rating span{float:left;}
-.date{font-size:12px;font-weight:bold;color:#555555;float:left;padding-top:5px;}
-.date span{float:left;}
-.from{font-size:12px;font-weight:bold;color:#555555;float:left;padding-top:5px;}
-.from a{font-size:12px;font-weight:bold;color:#555555;text-decoration:none;}
-.from span{float:left;}
-
-.box_area_clear{
-
-	clear:both;
-
-}
-#connect_menu{padding:20px;}
-#connect_menu .title{float:left;font-size:48px;line-height:48px;padding-right:10px;color:#555555;}
-.vk_button{cursor:pointer;float:left;width:48px;height:48px;background-image:url(/assert/css/img/images/vkontakte.png);margin-right:10px;}
-.fb_button{cursor:pointer;float:left;width:48px;height:48px;background-image:url(/assert/css/img/images/facebook.png);margin-right:10px;}
-a.connect{background-color:#eeeeee;background-image:url(/assert/css/img/images/connect.png);display:block;background-repeat:no-repeat;padding-left:40px;padding-right:10px;font-size:24px;height:32px;text-align:left;color:#000000;text-decoration:none;float:left;line-height:32px;}
-a.connect:hover{background-color:gray;color:#ffffff;}
-#likes-bar{
-	position:fixed;
-	left:0px;
-	top:100%;
-	margin-top:-50px;
-	background:#333333;
-	width:100%;
-	height:30px;
-	padding:10px;
-	z-index:8;
-	font-style:italic;
-
-}
-#likes-bar span.caption{font-family: Verdana; float:left;display:block;margin-right:15px;font-size:24px;color:#ffffff;}
-#likes-bar-slider{float:left;width:200px;height:10px;margin-top:5px;margin-right:15px;}
-#likes-bar span.likes_count{float:left;display:block;font-size:24px;font-weight:bold;}
-#box_area_nothing{font-size:32px;color:#555555;font-style:italic;font-weight:bold;padding:50px;display:none;}
 </style>
 <script type="text/javascript">
 mybox = {
@@ -226,7 +24,7 @@ mybox = {
 	 offset: 0,
 	 likes: 0,
 	 itemsCount: 0,
-	 loading: false,
+	 loading: true,
 	 isEnd: false,
 	 limit: 30,
 	 debug: true,
@@ -247,18 +45,12 @@ mybox = {
 		function(data) {
                     
 			mybox.offset = mybox.offset + data.posts.length;
-                            
-			for( index in data.posts ){
 
-			  if( mybox.debug ) console.log( data.posts[index] );
+			if( mybox.debug ) console.log( data.posts );
 			  
-			  mybox.add( data.posts[index], false );
-	   			  
-			}
-			
-                        
-			mybox.loadingOff();
-			mybox.loading = false;
+			mybox.add( data.posts, false );
+
+
 		  });
 		  
 		  
@@ -271,7 +63,9 @@ mybox = {
                 
                 if( mybox.isEnd) return 0;
                 
-                if(mybox.windowOpened ) return 0;
+                if( mybox.windowOpened ) return 0;
+                
+                mybox.loading = true;
                 
                 console.log('Loading next page!');
 		
@@ -282,7 +76,7 @@ mybox = {
 	 },
 	 load: function(){
 
-		if( mybox.loading || mybox.isEnd || mybox.windowOpened ) return 0;
+
                 
                 $('#box_area_nothing').hide(0);
                 
@@ -301,16 +95,9 @@ mybox = {
                         
                         mybox.offset = parseInt( data.offset );
 			
-			for( index in data.posts ){
-
-			  if( mybox.debug ) console.log( data.posts[index] );
+			if( mybox.debug ) console.log( data.posts);
 			  
-			  mybox.add( data.posts[index], true);
-	   
-			  
-			}
-			
-			
+			mybox.add( data.posts, true);
 			
 			if( ! mybox.isEnd ){
                             
@@ -332,8 +119,8 @@ mybox = {
 			
                         }
                         
-			mybox.loadingOff();
-			mybox.loading = false;
+
+                        
 		  });
 		  
 		  
@@ -484,28 +271,49 @@ mybox = {
 			  
 			  itemData = itemData + '<div class="from"><span class="ui-icon ui-icon-link"></span><a href="http://'+item.from+'">'+item.from+'</a></div>';
 			  
-			  itemData = itemData + '<div class="box_area_clear"></div></div>';
+			  itemData = itemData + '<div class="box_area_clear"></div></div><div class="box_area_clear"></div>';
                           
                           return itemData;
         },
-	add: function(item, toEND ){
+	add: function(items, toEND ){
                           
-                          if( item.date > mybox.beginDate ) mybox.beginDate = item.date;
+                          
                           
 			  $('#box_area_nothing').hide(0);
-			  
-			  var itemData = mybox.getHtmlItem( item );
-
-			  var columnIndex = mybox.itemsCount%3;
-			  
-			  if( toEND ){
-                                $('#boxes'+columnIndex).append(itemData);
-			  }else{
-                                $('#boxes'+columnIndex).prepend(itemData);
+                          var data ='';
+                          var beginDate = mybox.beginDate;
+			  for( index in items ){
+                            if( items[index].date > beginDate) beginDate = items[index].date;
+                            data = data + mybox.getHtmlItem( items[index] );
+                            mybox.itemsCount = mybox.itemsCount + 1;
+                            
                           }
-			 mybox.itemsCount = mybox.itemsCount + 1;
-                         
-                         mybox.updateEvent();
+                          
+                          var $container = $('#boxes_container');
+                          
+                          //$container.isotope('destroy');
+                          
+                          mybox.loadingOff();
+			  if( toEND ){
+                                $container.isotope('insert',$(data)).imagesLoaded( function(){
+                                    $container.isotope('reLayout');
+                                    mybox.loading = false;
+                                    
+                                });
+                               
+
+                          }else{   
+
+                                $container.prepend(data).isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' }).imagesLoaded( function(){
+                                    
+                                    $container.isotope('reLayout');     
+                                    mybox.loading = false;
+ 
+                                });
+                          }
+                          
+                                                 
+
 
 	},
 	clear: function(){
@@ -545,7 +353,8 @@ mybox = {
                         
                         $('#dialogBox div.window div.content').html( itemData );
                         mybox.scrollTop = $(window).scrollTop();
-                        $('#wrap').hide(0, function(){ $('#dialogBox').show(0); } );
+                        $('#wrap').hide(0, function(){ $('#dialogBox').show(100); } );
+                        $('#dialogBox').css('overflow', 'auto');
                         $('#dialogBox div.window div.close').click(function(){ mybox.close(); });
                         mybox.windowOpened = true;
                         mybox.loadingOff();
@@ -558,6 +367,7 @@ mybox = {
 	close: function(){
 		mybox.windowOpened = false;
 		$('#dialogBox').hide(0, function(){ $('#wrap').show( 0, function(){ $(window).scrollTop( mybox.scrollTop ); } ); });
+                $('#boxes_container').isotope('reLayout');
 	},
 	loadingOff: function(){
 		$('#loading').hide();
@@ -566,6 +376,7 @@ mybox = {
 			$('#wrap').show();
 			
 		}
+                
 	},
 	loadingOn: function(){
 		$('#wrap').hide();
@@ -581,7 +392,22 @@ mybox = {
                 }
                
             );
-        }
+
+
+        },
+        init:function(){
+               $('#boxes_container').isotope({
+                    itemSelector : '.box_area_item', 
+                    animationOptions: {
+                                    duration: 2000,
+                                    easing: 'blind',
+                                    queue: false
+                                  }
+                    });
+                mybox.load();
+                setInterval(function(){mybox.update();},60000);
+                mybox.updateEvent(); 
+           }
 }
 </script>
 </head>

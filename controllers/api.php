@@ -117,12 +117,13 @@ class api {
 		
 	}
         
-        if( $offset < 0 and $beginDate > 0){
+        if( $offset < 0 ){
             
             $this->setPosts( $app['user'] );
             
+
             $options = array('conditions' => array( 'user = ? AND likes > ? AND date > ?' , $app['user']->id, $likes, $beginDate ), 'order' => 'date DESC', 'limit' => $limit, 'offset' => 0 );
-            
+     
         }else{
             
             $options = array('conditions' => array( 'user = ? AND likes > ? AND date > ?' , $app['user']->id, $likes, time() - $daysLimit*3600*24 ), 'order' => 'date DESC', 'limit' => $limit, 'offset' => $offset );
